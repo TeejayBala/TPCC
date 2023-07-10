@@ -348,7 +348,7 @@ var controller = {
             }).render(document.querySelector("#hundreds-report"));
 
             new gridjs.Grid({
-                columns: ["#", "Name", "R"],
+                columns: ["#", "Name", "W"],
                 data: matchUtil.parseTopRuns(self.topWickets,"wickets")
             }).render(document.querySelector("#top-wickets-report"));
 
@@ -368,17 +368,17 @@ var controller = {
             }).render(document.querySelector("#maiden-overs-report"));
 
             new gridjs.Grid({
-                columns: ["#", "Name", "M"],
+                columns: ["#", "Name", "C"],
                 data: matchUtil.parseTopRuns(self.mostCatches,"catches")
             }).render(document.querySelector("#catches-report"));
 
             new gridjs.Grid({
-                columns: ["#", "Name", "M"],
+                columns: ["#", "Name", "R"],
                 data: matchUtil.parseTopRuns(self.mostRunouts,"runouts")
             }).render(document.querySelector("#runouts-report"));
 
             new gridjs.Grid({
-                columns: ["#", "Name", "M"],
+                columns: ["#", "Name", "S"],
                 data: matchUtil.parseTopRuns(self.mostStumpings,"stumpings")
             }).render(document.querySelector("#stumpings-report"));
 

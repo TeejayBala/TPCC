@@ -380,5 +380,9 @@ var controller = {
         destory() {
 
         }
+    },
+    points : {
+        init() {
+        }
     }
 }

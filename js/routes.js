@@ -2,7 +2,7 @@ Router.add({
     path: '#/',
     on: function() {
         console.log("on - /")
-        Router.navigate('#/dashboard',true);
+        Router.navigate('#/matches',true);
     }
 });
 
@@ -55,6 +55,14 @@ Router.add({
     }
 });
 
+//Leaderboard
+Router.add({
+    path: '#/points',
+    on: function() {
+        templateUtil.loadTemplate(templateConfig.points);
+    }
+});
+
 
 
 
@@ -89,6 +97,14 @@ var templateConfig = {
         title : "TPCC - Leaderboard",
         callback()  {
             controller.leaderboard.init();
+        }
+    },
+    points : {
+        id : "points",
+        container : "#sub-container",
+        title : "TPCC - Points",
+        callback()  {
+            controller.points.init();
         }
     }
 }

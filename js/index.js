@@ -203,7 +203,11 @@ var controller = {
         }
     },
     leaderboard : {
-        init() {
+        range : "",
+        stats : {},
+        init(stats,range) {
+            this.range = range;
+            this.stats = stats;
             this.eventHandler();
             this.constructorLeaderboardData();
             this.constructorLeaderboardDetails();
@@ -227,8 +231,7 @@ var controller = {
             this.mostCatches = [];
             this.mostStumpings = [];
             playerIds.forEach(function(playerId){
-                // var playerStats = playersStats[playerId];
-                var playerStats = playersStats_2023[playerId];
+                var playerStats = self.stats[playerId];
                 if (playerStats.batting.runs > 0) {
                     self.topRuns.push({runs : playerStats.batting.runs , player_id : playerId});
                 }
@@ -313,12 +316,15 @@ var controller = {
         },
         constructorLeaderboardDetails() {
 
-            document.querySelector("#batting-time-range").innerText = "May 15 to Nov 15 (6 months)";
-            document.querySelector("#bowling-time-range").innerText = "May 15 to Nov 15 (6 months)";
-            document.querySelector("#fielding-time-range").innerText = "May 15 to Nov 15 (6 months)";
-            // document.querySelector("#batting-time-range").innerText = "January 26, 2022 to Today";
-            // document.querySelector("#bowling-time-range").innerText = "January 26, 2022 to Today";
-            // document.querySelector("#fielding-time-range").innerText = "January 26, 2022 to Today";
+            if (this.range == "may23") {
+                document.querySelector("#batting-time-range").innerText = "May 15 2023 to Nov 15  2023(6 months)";
+                document.querySelector("#bowling-time-range").innerText = "May 15  2023 to Nov 15  2023(6 months)";
+                document.querySelector("#fielding-time-range").innerText = "May 15  2023 to Nov 15  2023(6 months)";
+            } else {
+                document.querySelector("#batting-time-range").innerText = "January 1 2022 to Today";
+                document.querySelector("#bowling-time-range").innerText = "January 1 2022 to Today";
+                document.querySelector("#fielding-time-range").innerText = "January 1 2022 to Today";
+            }
             
             var self = this;
             new gridjs.Grid({

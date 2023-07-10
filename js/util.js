@@ -9,7 +9,7 @@ var templateUtil = {
         wrapper.classList.add("layouts");
         wrapper.appendChild(clone);
         this.setTitle(templateObj.title);
-        this.selectMenu(templateObj.id);
+        this.selectMenu(templateObj.tab_id || templateObj.id);
         document.querySelector(templateObj.container).appendChild(wrapper);
         templateObj.callback();
     },

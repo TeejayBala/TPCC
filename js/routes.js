@@ -57,6 +57,15 @@ Router.add({
 
 //Leaderboard
 Router.add({
+    path: '#/leaderboard/:leaderboard_id',
+    on: function() {
+        templateUtil.loadTemplate(templateConfig.leaderboard_may23,window.route.params.leaderboard_id);
+    }
+});
+
+
+//Leaderboard
+Router.add({
     path: '#/points',
     on: function() {
         templateUtil.loadTemplate(templateConfig.points);
@@ -96,7 +105,16 @@ var templateConfig = {
         container : "#sub-container",
         title : "TPCC - Leaderboard",
         callback()  {
-            controller.leaderboard.init();
+            controller.leaderboard.init(playersStats);
+        }
+    },
+    leaderboard_may23 : {
+        id : "leaderboard",
+        tab_id : "leaderboard_may23",
+        container : "#sub-container",
+        title : "TPCC - Leaderboard",
+        callback()  {
+            controller.leaderboard.init(playersStats_2023,window.route.params.leaderboard_id);
         }
     },
     points : {

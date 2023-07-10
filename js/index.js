@@ -263,7 +263,7 @@ var controller = {
                     self.mostRunouts.push({runouts : (playerStats.fielding.runouts + playerStats.fielding.assistedrunouts) , player_id : playerId});
                 }
                 if (playerStats.fielding.catches > 0 || playerStats.fielding.caughtbehind > 0) {
-                    self.mostCatches.push({catches : (playerStats.fielding.catches + playerStats.fielding.assistedrunouts) , player_id : playerId});
+                    self.mostCatches.push({catches : (playerStats.fielding.catches + playerStats.fielding.caughtbehind) , player_id : playerId});
                 }
                 if (playerStats.fielding.stumpings > 0) {
                     self.mostStumpings.push({"stumpings" : playerStats.fielding.stumpings , player_id : playerId});

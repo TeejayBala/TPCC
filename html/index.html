@@ -1,1 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="../css/grid.min.css" rel="stylesheet" />
+    <link href="../css/index.css" rel="stylesheet" />
+    <title>TPCC</title>
+    <link rel="icon" href="../image/MAIN_LOGO_SQUARE.png" sizes="32x32">
+  </head>
+  <body>
+    <script>
+      localStorage.clear();
+    </script>
+    <script src="../js/constants.js"></script>
+    <script src="../js/util.js"></script>
+    <script src="../js/matches.js"></script>
+    <script src="../js/grid.min.js"></script>
+    <script src="../js/hash-router.min.js"></script>
 
+    <!-- CountUp.js -->
+    <script>var t=function(){return t=Object.assign||function(t){for(var i,n=1,s=arguments.length;n<s;n++)for(var a in i=arguments[n])Object.prototype.hasOwnProperty.call(i,a)&&(t[a]=i[a]);return t},t.apply(this,arguments)},i=function(){function i(i,n,s){var a=this;this.endVal=n,this.options=s,this.version="2.6.2",this.defaults={startVal:0,decimalPlaces:0,duration:2,useEasing:!0,useGrouping:!0,useIndianSeparators:!1,smartEasingThreshold:999,smartEasingAmount:333,separator:",",decimal:".",prefix:"",suffix:"",enableScrollSpy:!1,scrollSpyDelay:200,scrollSpyOnce:!1},this.finalEndVal=null,this.useEasing=!0,this.countDown=!1,this.error="",this.startVal=0,this.paused=!0,this.once=!1,this.count=function(t){a.startTime||(a.startTime=t);var i=t-a.startTime;a.remaining=a.duration-i,a.useEasing?a.countDown?a.frameVal=a.startVal-a.easingFn(i,0,a.startVal-a.endVal,a.duration):a.frameVal=a.easingFn(i,a.startVal,a.endVal-a.startVal,a.duration):a.frameVal=a.startVal+(a.endVal-a.startVal)*(i/a.duration);var n=a.countDown?a.frameVal<a.endVal:a.frameVal>a.endVal;a.frameVal=n?a.endVal:a.frameVal,a.frameVal=Number(a.frameVal.toFixed(a.options.decimalPlaces)),a.printValue(a.frameVal),i<a.duration?a.rAF=requestAnimationFrame(a.count):null!==a.finalEndVal?a.update(a.finalEndVal):a.options.onCompleteCallback&&a.options.onCompleteCallback()},this.formatNumber=function(t){var i,n,s,e,o=t<0?"-":"";i=Math.abs(t).toFixed(a.options.decimalPlaces);var r=(i+="").split(".");if(n=r[0],s=r.length>1?a.options.decimal+r[1]:"",a.options.useGrouping){e="";for(var l=3,h=0,u=0,p=n.length;u<p;++u)a.options.useIndianSeparators&&4===u&&(l=2,h=1),0!==u&&h%l==0&&(e=a.options.separator+e),h++,e=n[p-u-1]+e;n=e}return a.options.numerals&&a.options.numerals.length&&(n=n.replace(/[0-9]/g,(function(t){return a.options.numerals[+t]})),s=s.replace(/[0-9]/g,(function(t){return a.options.numerals[+t]}))),o+a.options.prefix+n+s+a.options.suffix},this.easeOutExpo=function(t,i,n,s){return n*(1-Math.pow(2,-10*t/s))*1024/1023+i},this.options=t(t({},this.defaults),s),this.formattingFn=this.options.formattingFn?this.options.formattingFn:this.formatNumber,this.easingFn=this.options.easingFn?this.options.easingFn:this.easeOutExpo,this.startVal=this.validateValue(this.options.startVal),this.frameVal=this.startVal,this.endVal=this.validateValue(n),this.options.decimalPlaces=Math.max(this.options.decimalPlaces),this.resetDuration(),this.options.separator=String(this.options.separator),this.useEasing=this.options.useEasing,""===this.options.separator&&(this.options.useGrouping=!1),this.el="string"==typeof i?document.getElementById(i):i,this.el?this.printValue(this.startVal):this.error="[CountUp] target is null or undefined","undefined"!=typeof window&&this.options.enableScrollSpy&&(this.error?console.error(this.error,i):(window.onScrollFns=window.onScrollFns||[],window.onScrollFns.push((function(){return a.handleScroll(a)})),window.onscroll=function(){window.onScrollFns.forEach((function(t){return t()}))},this.handleScroll(this)))}return i.prototype.handleScroll=function(t){if(t&&window&&!t.once){var i=window.innerHeight+window.scrollY,n=t.el.getBoundingClientRect(),s=n.top+window.pageYOffset,a=n.top+n.height+window.pageYOffset;a<i&&a>window.scrollY&&t.paused?(t.paused=!1,setTimeout((function(){return t.start()}),t.options.scrollSpyDelay),t.options.scrollSpyOnce&&(t.once=!0)):(window.scrollY>a||s>i)&&!t.paused&&t.reset()}},i.prototype.determineDirectionAndSmartEasing=function(){var t=this.finalEndVal?this.finalEndVal:this.endVal;this.countDown=this.startVal>t;var i=t-this.startVal;if(Math.abs(i)>this.options.smartEasingThreshold&&this.options.useEasing){this.finalEndVal=t;var n=this.countDown?1:-1;this.endVal=t+n*this.options.smartEasingAmount,this.duration=this.duration/2}else this.endVal=t,this.finalEndVal=null;null!==this.finalEndVal?this.useEasing=!1:this.useEasing=this.options.useEasing},i.prototype.start=function(t){this.error||(t&&(this.options.onCompleteCallback=t),this.duration>0?(this.determineDirectionAndSmartEasing(),this.paused=!1,this.rAF=requestAnimationFrame(this.count)):this.printValue(this.endVal))},i.prototype.pauseResume=function(){this.paused?(this.startTime=null,this.duration=this.remaining,this.startVal=this.frameVal,this.determineDirectionAndSmartEasing(),this.rAF=requestAnimationFrame(this.count)):cancelAnimationFrame(this.rAF),this.paused=!this.paused},i.prototype.reset=function(){cancelAnimationFrame(this.rAF),this.paused=!0,this.resetDuration(),this.startVal=this.validateValue(this.options.startVal),this.frameVal=this.startVal,this.printValue(this.startVal)},i.prototype.update=function(t){cancelAnimationFrame(this.rAF),this.startTime=null,this.endVal=this.validateValue(t),this.endVal!==this.frameVal&&(this.startVal=this.frameVal,null==this.finalEndVal&&this.resetDuration(),this.finalEndVal=null,this.determineDirectionAndSmartEasing(),this.rAF=requestAnimationFrame(this.count))},i.prototype.printValue=function(t){var i;if(this.el){var n=this.formattingFn(t);if(null===(i=this.options.plugin)||void 0===i?void 0:i.render)this.options.plugin.render(this.el,n);else if("INPUT"===this.el.tagName)this.el.value=n;else"text"===this.el.tagName||"tspan"===this.el.tagName?this.el.textContent=n:this.el.innerHTML=n}},i.prototype.ensureNumber=function(t){return"number"==typeof t&&!isNaN(t)},i.prototype.validateValue=function(t){var i=Number(t);return this.ensureNumber(i)?i:(this.error="[CountUp] invalid start or end value: ".concat(t),null)},i.prototype.resetDuration=function(){this.startTime=null,this.duration=1e3*Number(this.options.duration),this.remaining=this.duration},i}();window.CountUp = i;</script>
+    
+    <div id="main-container" style="width: 100%;height: 100%;">
+      <div id="top-menu">
+
+        <div id="menu-lists" style="display: inline-block;vertical-align: middle;"> 
+          <div class="menu-list" id="dashboard">
+            <a href="#/dashboard">Dashboard</a>
+          </div>
+  
+          <div class="menu-list" id="matches">
+            <a href="#/matches">Matches</a>
+          </div>
+
+          <!-- <div style="height: 100%;display: inline-block;vertical-align: middle;margin: 0px 30px; ">
+            <img src="../image/MAIN_LOGO.jpg" alt="" style="height: 100%;width: 100px;border-radius: 25px;filter: invert(0.1);">
+          </div> -->
+  
+          <div class="menu-list" id="players">
+            <a href="#/players">Players</a>
+          </div>
+  
+          <div class="menu-list" id="leaderboard">
+            <a href="#/leaderboard">Leaderboard</a>
+          </div>
+        </div>
+        
+      </div>
+      <div id="sub-container"></div>
+    </div>
+
+
+
+
+
+
+    <template layout-id="dashboard">
+      dashboard
+    </template>
+
+    <template layout-id="matches">
+      <div id="match-lists">
+        <div class="match-list dummy hide">
+          <p id="date"></p>
+          <p id="vs">VS</p>
+          <p id="team_a" class="hide"></p>
+          <p id="team_b" class="hide"></p>
+          <p id="summary"></p>
+          <i class="rightArrow"></i>
+        </div>
+      </div>
+      <div id="match-details">
+        <div style="display: flex;">
+          <div id="match-summry">
+            <p id="tournament-name" style="display: inline-block;"> </p>
+            <br>
+            <p id="overs" style="color: darkgoldenrod;display: inline-block;"> </p>,
+            <p id="date" style="color: darkgoldenrod;display: inline-block;"> </p>,
+            <p id="ground-detail" style="color: darkgoldenrod;display: inline-block;"> </p>
+            <br>
+            <p id="toss-result" style="color: antiquewhite;display: inline-block;"> </p>
+          </div>
+
+          <div id="match-total-runs">
+            <div>
+              <p id="team_a_run" style="float: right;color: floralwhite;"></p>
+              <div style="display: flex;">
+                <i id="team_a_logo"></i>
+                <p id="team_a"></p>
+              </div>
+            </div>
+            <div>
+              <p id="team_b_run" style="float: right;color: floralwhite;"></p>
+              <div style="display: flex;">
+                <i id="team_b_logo"></i>
+                <p id="team_b"></p>
+              </div>
+            </div>
+            <p style="font-weight: bolder;display: inline-block;">Result : </p>
+            <p id="result" style="display: inline-block;"> </p>
+          </div>
+        </div>
+        <br>
+        <div style="height: calc(100% - 130px);">
+          <div style="display: flex;">
+            <i id="team_a_score_logo"></i>
+            <p id="team_a_score_name" style="margin-left: 5px;"></p>
+          </div>
+          <div class="invert" id="team-a-batting-table"></div>
+          <br>
+          <div class="invert" id="team-a-bowling-table"></div>
+
+          <br>
+          <br>
+          
+          
+          <div style="display: flex;">
+            <i id="team_b_score_logo"></i>
+            <p id="team_b_score_name" style="margin-left: 5px;"></p>
+          </div>
+          <div class="invert" id="team-b-batting-table"></div>
+          <br>
+          <div class="invert" id="team-b-bowling-table"></div>
+        </div>
+        
+      </div>
+    </template>
+
+
+    
+    
+    <template layout-id="players">
+      <div id="player-lists">
+        <div class="player-list dummy hide">
+          <div style="display: inline-block;height: 50px;">
+            <img id="profile-pic">
+          </div>
+          <p id="name" style="display: inline-block;width: calc(100% - 60px);"></p>
+          <i class="rightArrow"></i>
+        </div>
+      </div>
+
+      <div id="player-details" style="text-align: center;">
+        <div style="width: 30%;display: inline-block;vertical-align: top;">
+          <div style="font-size: 18px;">Batting Stats</div>
+          <div id="batting-stats">
+            <div class="count-box">
+              <div id="matches">0</div>
+              <p>MATCHES</p>
+            </div>
+            <div class="count-box">
+              <div id="innings">0</div>
+              <p>INNINGS</p>
+            </div>
+            <div class="count-box">
+              <div id="notout">0</div>
+              <p>NOT OUT</p>
+            </div>
+            <div class="count-box" style="    padding: 0px 3px 8px 3px;">
+              <div id="highestruns">0</div>
+              <p style="font-size: 11px;">HIGHEST<br/> RUNS</p>
+            </div>
+            <div class="count-box">
+              <div id="runs">0</div>
+              <p>RUNS</p>
+            </div>
+            <div class="count-box">
+              <div id="balls">0</div>
+              <p>BALLS</p>
+            </div>
+            <div class="count-box">
+              <div id="avg">0</div>
+              <p>AVG</p>
+            </div>
+            <div class="count-box">
+              <div id="sr">0</div>
+              <p>SR</p>
+            </div>
+            <div class="count-box">
+              <div data-id="30s">0</div>
+              <p>30S</p>
+            </div>
+            <div class="count-box">
+              <div data-id="50s">0</div>
+              <p>50S</p>
+            </div>
+            <div class="count-box">
+              <div data-id="100s">0</div>
+              <p>100S</p>
+            </div>
+            <div class="count-box">
+              <div data-id="4s">0</div>
+              <p>4S</p>
+            </div>
+            <div class="count-box">
+              <div data-id="6s">0</div>
+              <p>6S</p>
+            </div>
+            <div class="count-box">
+              <div id="ducks">0</div>
+              <p>DUCKS</p>
+            </div>
+          </div>
+        </div>
+        <div style="width: 30%;display: inline-block;vertical-align: top;">
+          <div style="font-size: 18px;">Bowling Stats</div>
+          <div id="bowling-stats">
+          <div class="count-box">
+            <div id="matches">0</div>
+            <p>MATCHES</p>
+          </div>
+          <div class="count-box">
+            <div id="innings">0</div>
+            <p>INNINGS</p>
+          </div>
+          <div class="count-box">
+            <div id="overs">0</div>
+            <p>OVERS</p>
+          </div>
+          <div class="count-box">
+            <div id="maidens">0</div>
+            <p>MAIDENS</p>
+          </div>
+          <div class="count-box">
+            <div id="wickets">0</div>
+            <p>WICKETS</p>
+          </div>
+          <div class="count-box">
+            <div id="runs">0</div>
+            <p>RUNS</p>
+          </div>
+          <div class="count-box" style="    padding: 0px 3px 8px 3px;">
+            <div id="bestbowling">0/0</div>
+            <p style="font-size: 11px;">BEST <br/>BOWLING</p>
+          </div>
+          <div class="count-box">
+            <div data-id="3wickets">0</div>
+            <p>3 WICKETS</p>
+          </div>
+          <div class="count-box">
+            <div data-id="5wickets">0</div>
+            <p>5 WICKETS</p>
+          </div>
+          <div class="count-box">
+            <div id="economy">0</div>
+            <p>ECONOMY</p>
+          </div>
+          <div class="count-box">
+            <div id="sr">0</div>
+            <p>SR</p>
+          </div>
+          <div class="count-box">
+            <div id="avg">0</div>
+            <p>AVG</p>
+          </div>
+          <div class="count-box">
+            <div id="wides">0</div>
+            <p>WIDES</p>
+          </div>
+          <div class="count-box">
+            <div id="noballs">0</div>
+            <p>NOBALLS</p>
+          </div>
+          <div class="count-box">
+            <div id="dotballs">0</div>
+            <p>DOT BALLS</p>
+          </div>
+          <div class="count-box">
+            <div data-id="4s">0</div>
+            <p>4S</p>
+          </div>
+          <div class="count-box">
+            <div data-id="6s">0</div>
+            <p>6S</p>
+          </div>
+        </div>
+        </div>
+        <div style="width: 30%;display: inline-block;vertical-align: top;">
+          <div style="font-size: 18px;">Fielding Stats</div>
+          <div id="fielding-stats">
+            <div class="count-box">
+              <div id="matches">0</div>
+              <p>MATCHES</p>
+            </div>
+            <div class="count-box">
+              <div id="catches">0</div>
+              <p>CATCHES</p>
+            </div>
+            <div class="count-box" style="    padding: 0px 3px 8px 3px;">
+              <div id="caughtbehind">0</div>
+              <p style="font-size: 11px;">CAUGHT <br/>BEHIND</p>
+            </div>
+            <div class="count-box">
+              <div id="runouts">0</div>
+              <p>RUN OUTS</p>
+            </div>
+            <div class="count-box">
+              <div id="stumpings">0</div>
+              <p>STUMPINGS</p>
+            </div>
+            <div class="count-box" style="    padding: 0px 3px 8px 3px;">
+              <div id="assistedrunouts">0</div>
+              <p style="font-size: 11px;">ASSISTED RUN <br/>OUTS</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </template>
+
+
+
+    <template layout-id="leaderboard">
+      <div style="height: 100%;overflow: scroll;">
+        <h3 style="color: brown;">Batting Reports - <span id="batting-time-range"></span></h3>
+        <br/>
+        <div>
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Top Runs</h4>
+            <div class="invert" id="top-runs-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Most Thirties</h4>
+            <div class="invert" id="thirties-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Most Fifties</h4>
+            <div class="invert" id="fifties-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Most Hundreds</h4>
+            <div class="invert" id="hundreds-report"></div>
+          </div>
+        </div>
+        <br/>
+
+        <h3 style="color: brown;">Bowling Reports - <span id="bowling-time-range"></span></h3>
+        <br/>
+        <div>
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Top Wickets</h4>
+            <div class="invert" id="top-wickets-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">3 Wicket</h4>
+            <div class="invert" id="most-three-wickets-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">5 Wicket</h4>
+            <div class="invert" id="most-five-wickets-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Maiden Overs</h4>
+            <div class="invert" id="maiden-overs-report"></div>
+          </div>
+        </div>
+        <br/>
+
+        <h3 style="color: brown;">Fielding Reports - <span id="fielding-time-range"></span></h3>
+        <br/>
+        <div style="margin-bottom: 25px;">
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Catches and Caught Behind</h4>
+            <div class="invert" id="catches-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Runouts and Assisted Runouts</h4>
+            <div class="invert" id="runouts-report"></div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 5px);vertical-align: top;">
+            <h4 style="color: teal;">Stumpings</h4>
+            <div class="invert" id="stumpings-report"></div>
+          </div>
+        </div>
+      </div>
+      
+    </template>
+    
+
+
+    <script src="../js/index.js"></script>
+    <script src="../js/routes.js"></script>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+     
+<head>
+    <title>
+        HTML DOM Window opener Property
+    </title>
+</head>
+ 
+<body>
+     
+    <h2>
+        HTML DOM Window opener Property
+    </h2>
+     
+    <button onclick = "myGeeks()">
+        Click Here!
+    </button>
+ 
+    <!-- script to open new windows -->
+    <script>
+        window.bala = "balu"
+        
+        function imOpen(win) {
+                debugger;
+            }
+            window.open('index2.html');
+
+        
+        
+        window.addEventListener('message', console.log)
+            window.addEventListener("message", function() {
+                debugger;
+            })
+        
+        function myGeeks() {
+            // var win = window.open("", "win","width = 500, height = 300");
+
+            var win = window.open("", "", "width=300,height=300");
+
+                         
+            win.document.write("<p>Balakumar testing New Window</p><script>window.opener.imOpen(window);console.log(window.opener.postMessage(\"balakumar\",\"*\"));\<\/script>");
+             
+            win.opener.document.write("<p>Balakumar testing  Window</p>");
+        }
+    </script>
+</body>
+ 
+</html> 

@@ -30,7 +30,7 @@ const playerNames = {
         "Deepak Raj Mariyappan":3092272,
         "Jay":                  3173458, 
         "Jayaraj M":            2938679, "Arjun":                3173458,
-        "Karthi Raja":          10104412, "Karthikraja":          10104412,
+        "Karthi Raja":          10104412, "Karthikraja":          10104412,"Karthikraja G":          10104412,
         "Lokesh G":             15618359,
         "Nagarathinam Harinarayanan":7804617, "†Nagarathinam Harinarayanan":7804617, "† Nagarathinam Harinarayanan":7804617,
         "Raj Kumar":            3343356,

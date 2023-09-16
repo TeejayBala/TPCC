@@ -10,6 +10,7 @@ const playerIds = [
     3092272,
     3173458,
     2938679,
+    3173269,
     3163993,
     15618359,
     7804617,
@@ -30,8 +31,9 @@ const playerNames = {
         "Deepak Raj Mariyappan":3092272,
         "Jay":                  3173458, 
         "Jayaraj M":            2938679, "Arjun":                3173458,
+        "Jenesh":               3173269,
         "Karthi Raja":          3163993, "Karthikraja":          3163993,"Karthikraja G":          3163993,
-        "Lokesh G":             15618359,
+        "Lokesh G":             15618359,"†Lokesh G":             15618359, 
         "Nagarathinam Harinarayanan":7804617, "†Nagarathinam Harinarayanan":7804617, "† Nagarathinam Harinarayanan":7804617,
         "Raj Kumar":            3343356,
         "Ranjith G":            2938688, "Ranjith" : 2938688,
@@ -49,6 +51,7 @@ var playerIdNames = {
     3092272 : "Deepak Raj Mariyappan",
     3173458 : "Jay",
     2938679 : "Jayaraj M",
+    3173269 : "Jenesh",
     3163993 : "Karthi Raja",
     15618359 : "Lokesh G",
     7804617 : "Nagarathinam Harinarayanan",
@@ -69,8 +72,9 @@ const playersPhotos = {
     3092272     :  "/image/profile/3092272.jpeg",     //'Deepak Raj Mariyappan',
     3173458     :  "/image/profile/3173458.jpeg",     //'Jay',
     2938679     :  "/image/profile/2938679.jpeg",     //'Jayaraj M',
+    3173269     :  "/image/profile/3173269.jpeg",     //'Jenesh',
     3163993    :  "/image/profile/10104412.jpeg",     //'Karthi Raja', // Old ID - 10104412
-    15618359    :  "/image/profile/15618359.jpeg",     //'Lokesh G',
+    15618359    :  "/image/profile/15618359.jpeg",    //'Lokesh G',
     7804617     :  "/image/profile/7804617.jpeg",     //'Nagarathinam Harinarayanan',
     3343356     :  "/image/profile/3343356.jpeg",     //'Raj Kumar',
     2938688     :  "/image/profile/2938688.jpeg",     //'Ranjith G',
@@ -173,8 +177,14 @@ const playersStats = {
         bowling : JSON.parse(JSON.stringify(bowlingStatsObj)),
         fielding: JSON.parse(JSON.stringify(fieldingStatsObj))
     },
+    3173269     :  {
+        player_id: 3173269,
+        batting : JSON.parse(JSON.stringify(battingStatsObj)),
+        bowling : JSON.parse(JSON.stringify(bowlingStatsObj)),
+        fielding: JSON.parse(JSON.stringify(fieldingStatsObj))
+    },
     3163993    :  {
-        player_id: 1010441,
+        player_id: 3163993,
         batting : JSON.parse(JSON.stringify(battingStatsObj)),
         bowling : JSON.parse(JSON.stringify(bowlingStatsObj)),
         fielding: JSON.parse(JSON.stringify(fieldingStatsObj))

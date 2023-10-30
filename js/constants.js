@@ -13,9 +13,11 @@ const playerIds = [
     3173269,
     3163993,
     15618359,
+    6149496,
     7804617,
     3343356,
     2938688,
+    9472826,
     3161332,
     2969572,
     3161354,
@@ -42,7 +44,9 @@ const playerNames = {
         "Selva":                3161354,
         "Siva Sankar":          3032818,
         "sugumar":              3171953,
-        "Sumangar G":           2938713
+        "Sumangar G":           2938713,   "Suman":           2938713,
+        "Maharajan" :           6149496,
+        "Rengaraj" :            9472826
 }
 var playerIdNames = {
     15434419 : "Ajay",                 
@@ -62,7 +66,9 @@ var playerIdNames = {
     3161354 : "Selva",
     3032818 : "Siva Sankar",
     3171953 : "sugumar",
-    2938713 : "Sumangar G"
+    2938713 : "Sumangar G",
+    6149496 : "Maharajan",
+    9472826 : "Rengaraj"
 }
 
 const playersPhotos = {
@@ -84,6 +90,8 @@ const playersPhotos = {
     3032818     :  "/image/profile/3032818.jpeg",     //'Siva Sankar',
     3171953     :  "/image/profile/3171953.jpeg",     //'sugumar',
     2938713     :  "/image/profile/2938713.jpeg",     //'Sumangar G'
+    6149496     :  "/image/profile/6149496.jpeg",     //'Maharajan'
+    9472826     :  "/image/profile/9472826.jpeg",     //'Rengaraj'
 
     // 14125110    :  "",     //'A S Krishna',
     // 6149496     :   "",     //'Maharajan',
@@ -249,6 +257,18 @@ const playersStats = {
         bowling : JSON.parse(JSON.stringify(bowlingStatsObj)),
         fielding: JSON.parse(JSON.stringify(fieldingStatsObj))
     },
+    6149496:  {
+        player_id: 2938713,
+        batting : JSON.parse(JSON.stringify(battingStatsObj)),
+        bowling : JSON.parse(JSON.stringify(bowlingStatsObj)),
+        fielding: JSON.parse(JSON.stringify(fieldingStatsObj))
+    },
+    9472826:  {
+        player_id: 2938713,
+        batting : JSON.parse(JSON.stringify(battingStatsObj)),
+        bowling : JSON.parse(JSON.stringify(bowlingStatsObj)),
+        fielding: JSON.parse(JSON.stringify(fieldingStatsObj))
+    }
 }
 
 const playersStats_2023 = JSON.parse(JSON.stringify(playersStats));

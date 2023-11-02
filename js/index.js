@@ -317,9 +317,9 @@ var controller = {
         constructorLeaderboardDetails() {
 
             if (this.range == "may23") {
-                document.querySelector("#batting-time-range").innerText = "May 15 2023 to Nov 15  2023(6 months)";
-                document.querySelector("#bowling-time-range").innerText = "May 15  2023 to Nov 15  2023(6 months)";
-                document.querySelector("#fielding-time-range").innerText = "May 15  2023 to Nov 15  2023(6 months)";
+                document.querySelector("#batting-time-range").innerText = "May 15 2023 to Dec 15  2023";
+                document.querySelector("#bowling-time-range").innerText = "May 15  2023 to Dec 15  2023";
+                document.querySelector("#fielding-time-range").innerText = "May 15  2023 to Dec 15  2023";
             } else {
                 document.querySelector("#batting-time-range").innerText = "January 1 2022 to Today";
                 document.querySelector("#bowling-time-range").innerText = "January 1 2022 to Today";

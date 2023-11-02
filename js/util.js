@@ -152,10 +152,14 @@ var matchUtil = {
         // playerObj.balls  += matchUtil.oversToBalls(bowlingObj.overs || 0);
     // },
 
-    parseTopRuns(players,key) {
+    parseTopRuns(players,key,key2) {
         var newArray = [];
         players.forEach(function(player,index) {
-            newArray[index] = [index+1,playerIdNames[player.player_id], player[key]];
+            if (key2) {
+                newArray[index] = [index+1,playerIdNames[player.player_id], player[key], player[key2]];
+            } else {
+                newArray[index] = [index+1,playerIdNames[player.player_id], player[key]];
+            }
         });
         return newArray;
     },

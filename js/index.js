@@ -233,7 +233,7 @@ var controller = {
             playerIds.forEach(function(playerId){
                 var playerStats = self.stats[playerId];
                 if (playerStats.batting.runs > 0) {
-                    self.topRuns.push({runs : playerStats.batting.runs , player_id : playerId});
+                    self.topRuns.push({runs : playerStats.batting.runs , player_id : playerId , innings : self.stats[playerId].batting.innings});
                 }
                 if (playerStats.batting["30s"] > 0) {
                     self["30s"].push({"30s" : playerStats.batting["30s"] , player_id : playerId});
@@ -247,7 +247,7 @@ var controller = {
 
 
                 if (playerStats.bowling.wickets > 0) {
-                    self.topWickets.push({wickets : playerStats.bowling.wickets , player_id : playerId});
+                    self.topWickets.push({wickets : playerStats.bowling.wickets , player_id : playerId, innings : self.stats[playerId].bowling.innings});
                 }
                 if (playerStats.bowling["3wickets"] > 0) {
                     self["3wickets"].push({"3wickets" : playerStats.bowling["3wickets"] , player_id : playerId});
@@ -328,8 +328,8 @@ var controller = {
             
             var self = this;
             new gridjs.Grid({
-                columns: ["#", "Name", "R"],
-                data: matchUtil.parseTopRuns(self.topRuns,"runs")
+                columns: ["#", "Name", "R","In"],
+                data: matchUtil.parseTopRuns(self.topRuns,"runs","innings")
             }).render(document.querySelector("#top-runs-report"));
 
             new gridjs.Grid({
@@ -348,8 +348,8 @@ var controller = {
             }).render(document.querySelector("#hundreds-report"));
 
             new gridjs.Grid({
-                columns: ["#", "Name", "W"],
-                data: matchUtil.parseTopRuns(self.topWickets,"wickets")
+                columns: ["#", "Name", "W","In"],
+                data: matchUtil.parseTopRuns(self.topWickets,"wickets","innings")
             }).render(document.querySelector("#top-wickets-report"));
 
             new gridjs.Grid({

@@ -1,0 +1,107 @@
+{
+//Run scored - 1 point:
+runs : "🏏 [Player Name] scored 1 run! +1 point | Total Runs: [Total Runs] ([Runs] runs)",
+
+//Six runs (off one ball) bonus - 2 points:
+six : "💥 [Player Name] hit a six! +2 points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//Four runs (off one ball) bonus - 1 point:
+four : "👌 [Player Name] scored a four! +1 point | Total Runs: [Total Runs] ([Runs] runs)",
+
+//Dismissed for duck - 10 points:
+duck : "🦆 [Player Name] dismissed for a duck! -10 points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//Strike Rate Between 0.00 and 49.99 runs per 100 balls - 10 points:
+strike_rate_1 : "🎯 [Player Name] with a low strike rate! -10 points | Total Runs: [Total Runs] ([Runs] runs) | Total Balls Faced: [Total Balls Faced] ([Balls Faced] balls) | Strike Rate: [Strike Rate]",
+
+//Between 100.00 and 124.99 runs per 100 balls - 10 points:
+strike_rate_2 : "🚀 [Player Name] with a solid strike rate! +10 points | Total Runs: [Total Runs] ([Runs] runs) | Total Balls Faced: [Total Balls Faced] ([Balls Faced] balls) | Strike Rate: [Strike Rate]",
+
+//Between 125.00 and 149.99 runs per 100 balls - 20 points:
+strike_rate_3 : "🔥 [Player Name] on fire with the bat! +20 points | Total Runs: [Total Runs] ([Runs] runs) | Total Balls Faced: [Total Balls Faced] ([Balls Faced] balls) | Strike Rate: [Strike Rate]",
+
+//Between 150.00 and 174.99 runs per 100 balls - 30 Points:
+strike_rate_4 : "🔥 [Player Name] with an impressive strike rate! +30 points | Total Runs: [Total Runs] ([Runs] runs) | Total Balls Faced: [Total Balls Faced] ([Balls Faced] balls) | Strike Rate: [Strike Rate]",
+
+//Between 175.00 and 199.99 runs per 100 balls - 40 Points:
+strike_rate_5 : "🚀 [Player Name] hitting it out of the park! +40 points | Total Runs: [Total Runs] ([Runs] runs) | Total Balls Faced: [Total Balls Faced] ([Balls Faced] balls) | Strike Rate: [Strike Rate]",
+
+//Above 200.00 runs per 100 balls - 50 Points:
+strike_rate_6 : "🔥 [Player Name] with an extraordinary strike rate! +50 points | Total Runs: [Total Runs] ([Runs] runs) | Total Balls Faced: [Total Balls Faced] ([Balls Faced] balls) | Strike Rate: [Strike Rate]",
+
+//On reaching 10 runs - 10 Points:
+runs_10 : "🔟 [Player Name] reached 10 runs! +10 points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//On reaching 20 runs - 20 Points:
+runs_20 : "2️⃣0️⃣ [Player Name] reached 20 runs! +20 points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//On reaching 30 runs - 30 Points:
+runs_30 : "3️⃣0️⃣ [Player Name] reached 30 runs! +30 points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//On reaching 40 runs - 40 Points:
+runs_40 : "4️⃣0️⃣ [Player Name] reached 40 runs! +40 points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//On reaching 50 runs - 50 points:
+runs_50 : "5️⃣0️⃣ [Player Name] reached 50 runs! +50 points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//50 or more Runs Scored - Runs X 2 points:
+runs_50_plus : "🔥 [Player Name] scored 50 or more runs! +[Runs * 2] points | Total Runs: [Total Runs] ([Runs] runs)",
+
+//Wicket - 20 points:
+wicket : "🎯 [Player Name] took a wicket! +20 points | Total Wickets: [Total Wickets] ([Wickets] wickets)",
+
+//Maiden over - 40 points:
+maiden : "🚫 [Player Name] bowled a maiden over! +40 points | Total Maidens: [Total Maidens] ([Maidens] maidens)",
+
+//Run conceded - 0 point:
+run_conceded : "🏏 [Player Name] conceded a run. No additional points. | Total Runs Conceded: [Total Runs Conceded] ([Runs Conceded] runs)",
+
+//Economy Between 00.00 and 01.99 runs per over - 30 points:
+economy_rate_1 : "🔒 [Player Name] with a tight economy! +30 points | Total Runs Conceded: [Total Runs Conceded] ([Runs Conceded] runs) | Total Overs Bowled: [Total Overs Bowled] ([Overs Bowled] overs) | Economy Rate: [Economy Rate]",
+
+//Between 02.00 and 03.99 runs per over - 20 points:
+economy_rate_2 : "🔒 [Player Name] maintaining a good economy! +20 points | Total Runs Conceded: [Total Runs Conceded] ([Runs Conceded] runs) | Total Overs Bowled: [Total Overs Bowled] ([Overs Bowled] overs) | Economy Rate: [Economy Rate]",
+
+//Between 04.00 and 05.99 runs per over - 10 points:
+economy_rate_3 : "🔒 [Player Name] with a steady economy! +10 points | Total Runs Conceded: [Total Runs Conceded] ([Runs Conceded] runs) | Total Overs Bowled: [Total Overs Bowled] ([Overs Bowled] overs) | Economy Rate: [Economy Rate]",
+
+//Between 08.00 and 9.99 runs per over - (-10) Points:
+economy_rate_4 : "⚠️ [Player Name] struggling with economy. -10 points | Total Runs Conceded: [Total Runs Conceded] ([Runs Conceded] runs) | Total Overs Bowled: [Total Overs Bowled] ([Overs Bowled] overs) | Economy Rate: [Economy Rate]",
+
+//Between 10.00 and 11.99 runs per over - (-20) Points:
+economy_rate_5 : "⚠️ [Player Name] under pressure in terms of economy. -20 points | Total Runs Conceded: [Total Runs Conceded] ([Runs Conceded] runs) | Total Overs Bowled: [Total Overs Bowled] ([Overs Bowled] overs) | Economy Rate: [Economy Rate]",
+
+//Above 12.00 runs per over - (-30) Points:
+economy_rate_6 : "⚠️ [Player Name] facing challenges with economy. -30 points | Total Runs Conceded: [Total Runs Conceded] ([Runs Conceded] runs) | Total Overs Bowled: [Total Overs Bowled] ([Overs Bowled] overs) | Economy Rate: [Economy Rate]",
+
+//On taking 2 wickets - 10 Points:
+wickets_2 : "✌️ [Player Name] grabbed 2 wickets! +10 points | Total Wickets: [Total Wickets] ([Wickets] wickets)",
+
+//On taking 3 wickets - 20 Points:
+wickets_3 : "🤟 [Player Name] completed a hat-trick! +20 points | Total Wickets: [Total Wickets] ([Wickets] wickets)",
+
+//On taking 4 wickets - 40 Points:
+wickets_4 : "🔥 [Player Name] on fire with 4 wickets! +40 points | Total Wickets: [Total Wickets] ([Wickets] wickets)",
+
+//On taking 5 wickets - 50 Points:
+wickets_5 : "🔥🔥 [Player Name] with a fantastic 5-wicket haul! +50 points | Total Wickets: [Total Wickets] ([Wickets] wickets)",
+
+//Official Player of The Match - 50 Points:
+man_of_the_match : "🏆 [Player Name] is the Official Player of the Match! +50 points | Total Awards: [Total Awards] ([Awards] awards)",
+
+//Catch (Fielder) - 10 Points:
+catches_fielder : "👐 [Player Name] took a catch as a fielder! +10 points | Total Catches: [Total Catches] ([Catches] catches)",
+
+//Catch (Wicketkeeper) - 10 Points:
+catches_wicketkeeper : "🧤 [Player Name] with a catch as the wicketkeeper! +10 points | Total Catches: [Total Catches] ([Catches] catches)",
+
+//Stumping - 20 Points:
+stumping : "👏 [Player Name] with a stumping behind the stumps! +20 points | Total Stumpings: [Total Stumpings] ([Stumpings] stumpings)",
+
+//Run out (direct) - 20 Points:
+run_out_direct : "🏃‍♂️💨 [Player Name] with a direct run-out! +20 points | Total Run Outs: [Total Run Outs] ([Run Outs] run-outs)",
+
+//Run out (indirect/per player) - 10 Points:
+run_out_indirect : "🏃‍♂️💨 [Player Name] involved in a run-out! +10 points | Total Run Outs: [Total Run Outs] ([Run Outs] run-outs)"
+
+}

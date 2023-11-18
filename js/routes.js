@@ -55,13 +55,13 @@ Router.add({
     }
 });
 
-//Leaderboard
-Router.add({
-    path: '#/leaderboard/:leaderboard_id',
-    on: function() {
-        templateUtil.loadTemplate(templateConfig.leaderboard_may23,window.route.params.leaderboard_id);
-    }
-});
+// //Leaderboard
+// Router.add({
+//     path: '#/leaderboard/:leaderboard_id',
+//     on: function() {
+//         templateUtil.loadTemplate(templateConfig.leaderboard_may23,window.route.params.leaderboard_id);
+//     }
+// });
 
 
 //Leaderboard
@@ -69,6 +69,14 @@ Router.add({
     path: '#/points',
     on: function() {
         templateUtil.loadTemplate(templateConfig.points);
+    }
+});
+
+//Leaderboard
+Router.add({
+    path: '#/points-system',
+    on: function() {
+        templateUtil.loadTemplate(templateConfig.pointsSystem);
     }
 });
 
@@ -123,6 +131,14 @@ var templateConfig = {
         title : "TPCC - Points",
         callback()  {
             controller.points.init();
+        }
+    },
+    pointsSystem : {
+        id : "points-system",
+        container : "#sub-container",
+        title : "TPCC - Points System",
+        callback()  {
+            controller.pointsSystem.init();
         }
     }
 }

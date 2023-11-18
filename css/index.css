@@ -290,5 +290,10 @@ th.gridjs-th {
 } */
 
 .gridjs-container{
-    width: calc(100% - 4px) !important;
+    /* width: calc(100% - 4px) !important; */
+}
+
+input.gridjs-input {
+    font-size: 10px;
+    padding: 5px 5px;
 }

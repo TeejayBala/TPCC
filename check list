@@ -1,0 +1,42 @@
+for new match adding
+    1) Patch match data
+        Api.get('/scorecard/v2/get-scorecard/' + matchID, null, function (error, result) {
+            console.log(result);
+        });
+
+        and add in matches.js file.
+
+
+    2) Patch MVP data
+        Api.get('/mvp/get-match-player-mvp/' + matchID, null, function (error, result) {
+            var players = [];
+            result.data.forEach(function (player) {
+                if (player.team_id == "2040687") {
+                    players.push(player);
+                }
+            });
+            console.log(matchID , JSON.stringify(players));
+        });
+
+        and add in mvp.js file.
+
+
+for new player adding
+    
+    1) Get players data array from
+
+        var request = $.ajax({
+            url: baseURL + "/team/get-team-member/" + teamID + queryParam,
+            type: "GET",
+            dataType: "json",
+            headers: headerSettings
+        });
+
+        and replace in players variable in matches.js
+    
+    2) Add constents for player
+        add player id in below variables
+            playerIds
+            playerNames
+            playerIdNames
+        add player photo url in playersPhotos

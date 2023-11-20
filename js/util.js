@@ -153,7 +153,7 @@ var matchUtil = {
         var runs = battingObj.runs;
 
         battingPoints += runs*1;
-        pointsLog.push(contentUtil.pointsMessage("runs",{player_name : playerName , "total_runs" : battingObj.runs , total_points : -10 }));
+        pointsLog.push(contentUtil.pointsMessage("runs",{player_name : playerName , "total_runs" : battingObj.runs , total_points : runs*1 }));
         
         if (runs >= 10) {
             if (SR >= 200) {

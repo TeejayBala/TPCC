@@ -559,7 +559,6 @@ playerIds.forEach(function(playerId){
     // Bowling Average = Number of Runs Conceded / Number of Wickets Taken
     playerStats.bowling.avg = playerStats.bowling.runs/playerStats.bowling.wickets;
 
-
     playersStats[playerId].bowling.matches = playersStats[playerId].fielding.matches = playersStats[playerId].batting.matches;
 
 })

@@ -415,31 +415,38 @@
     </template>
     
     <template layout-id="points">
-      <div style="height: 100%;overflow: scroll;">
+      <div style="height: 100%;overflow: hidden scroll;">
         <select name="range" id="range">
           <option value="playersStats_2023">May 2023</option>
           <option value="playersStats">Overall</option>
         </select>
         <br>
         <div>
-          <div style="display: inline-block;width: calc(33.33% - 5px);">
+          <div style="display: inline-block;width: calc(25% - 15px);margin: 5px;">
             <div style="display: inline-block;vertical-align: top;">
               <h3 style="color: teal;">Batting Points</h3>
               <div class="invert" id="batting-points"></div>
             </div>
           </div>
 
-          <div style="display: inline-block;width: calc(33.33% - 5px);">
+          <div style="display: inline-block;width: calc(25% - 15px);margin: 5px;">
             <div style="display: inline-block;vertical-align: top;">
               <h3 style="color: teal;">Bowler Points</h3>
               <div class="invert" id="bowling-points"></div>
             </div>
           </div>
 
-          <div style="display: inline-block;width: calc(33.33% - 5px);">
+          <div style="display: inline-block;width: calc(25% - 15px);margin: 5px;">
             <div style="display: inline-block;vertical-align: top;">
               <h3 style="color: teal;">Fielder Points</h3>
               <div class="invert" id="fielding-points"></div>
+            </div>
+          </div>
+
+          <div style="display: inline-block;width: calc(25% - 15px);margin: 5px;">
+            <div style="display: inline-block;vertical-align: top;">
+              <h3 style="color: teal;">Other Points</h3>
+              <div class="invert" id="other-points"></div>
             </div>
           </div>
         </div>

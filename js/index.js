@@ -500,6 +500,11 @@ var controller = {
                     data: matchUtil.parseForTable(self.topFieldingPoint,"points")
                 },tabelStyle)).render(document.querySelector("#fielding-points"));
 
+                this.otherGrid = new gridjs.Grid(Object.assign({
+                    columns: ["Rank", "Name", "Points",{id: "name" , name : "Name" , hidden : true}],
+                    data: matchUtil.parseForTable(self.topOtherPoint,"points")
+                },tabelStyle)).render(document.querySelector("#other-points"));
+
                 this.battingGrid.on('rowClick', (...args) => {
                     var playerId = args[1].cells[3].data;
                     var playerName =  args[1].cells[1].data;
@@ -581,6 +586,33 @@ var controller = {
                     }
                 });
 
+                this.otherGrid.on('rowClick', (...args) => {
+                    var playerId = args[1].cells[3].data;
+                    var playerName =  args[1].cells[1].data;
+                    if (args[0].target.getAttribute("data-column-id") == "points") {
+                        var playerPointsLog = window[self.range][playerId].pointsLog.others;
+                        var popupContent = "";
+                        Object.keys(playerPointsLog).forEach(matchId => {
+                            var oppObj = matches[matchId].team_a.name === myTeam.name ? matches[matchId].team_b : matches[matchId].team_a;
+                            var oppName = oppObj.name;
+                            var match = matches[matchId];
+                            popupContent += "{popup-match-name}[Vs "+ oppName + "] - "+stringUtil.parseDate(match.start_datetime)+"\n";
+                            playerPointsLog[matchId].forEach(function(pointLog) {
+                                popupContent += "<li>"+pointLog + "</li>\n";
+                            });
+                        })
+                        window.popup = new Popup(Object.assign(popupStyle,{
+                            id: "other-points",
+                            title: `Other points - ${playerName}`,
+                            content: popupContent,
+                        }));
+            
+                        window.popup.show();
+                    } else if (args[0].target.getAttribute("data-column-id") == "fielder") {
+                        // redirectHash("/players/"+playerId);
+                    }
+                });
+
             } else {
                 this.battingGrid.updateConfig({
                     data: matchUtil.parseForTable(self.topBattingPoint,"points")
@@ -592,6 +624,10 @@ var controller = {
     
                 this.fieldingGrid.updateConfig({
                     data: matchUtil.parseForTable(self.topFieldingPoint,"points")
+                }).forceRender();
+
+                this.otherGrid.updateConfig({
+                    data: matchUtil.parseForTable(self.topOtherPoint,"points")
                 }).forceRender();
             }
         },

@@ -205,8 +205,7 @@ var popupStyle = {
     titleColor: "rgb(92, 0, 95)",
     // backgroundColor: "#ffebfe",
     fontSizeMultiplier : 0.6,
-    // widthMultiplier : 1.2,
-    fadeTime : "0.5s"
+    // widthMultiplier : 1.2
 }
 
 var pointsHighlight = {

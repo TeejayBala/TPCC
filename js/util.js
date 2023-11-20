@@ -188,7 +188,9 @@ var matchUtil = {
         }
 
         playerObj.points.batting += battingPoints;
-        playerObj.pointsLog.batting[match.match_id] = pointsLog;
+        if (pointsLog.length > 0) {
+            playerObj.pointsLog.batting[match.match_id] = pointsLog;
+        }
     },
     playerBowlingStats(bowlingObj, playerObj, match) {
         var playerBowlingObj = playerObj.bowling;
@@ -272,7 +274,9 @@ var matchUtil = {
 
         
         playerObj.points.bowling += bowlingPoints;
-        playerObj.pointsLog.bowling[match.match_id] = pointsLog;
+        if (pointsLog.length > 0) {
+            playerObj.pointsLog.bowling[match.match_id] = pointsLog;
+        }
     },
 
     playerFieldingStats(oppBatterObj, resultObj, match, wicketKeeper) {
@@ -403,9 +407,9 @@ var matchUtil = {
         var newArray = [];
         players.forEach(function(player,index) {
             if (key2) {
-                newArray[index] = [index+1,playerIdNames[player.player_id], player[key], player[key2]];
+                newArray[index] = [index+1,playerIdNames[player.player_id], player[key], player[key2], player.player_id];
             } else {
-                newArray[index] = [index+1,playerIdNames[player.player_id], player[key]];
+                newArray[index] = [index+1,playerIdNames[player.player_id], player[key], player.player_id];
             }
         });
         return newArray;
@@ -426,4 +430,14 @@ var errorAlert = function(message,silent) {
     if (!silent) {
         alert("!!!Error Alert : "+message+". Kindly inform to the administrator.");
     }
+}
+
+function redirectHash(hashurl,silentRedirect) {
+    if (silentRedirect) {
+        hashurl = (hashurl[0] == "#")? hashurl : "#"+hashurl;
+        router.replaceCurrentRouteWith(hashurl);
+    } else {
+        window.location.hash = hashurl;
+    }
+    
 }

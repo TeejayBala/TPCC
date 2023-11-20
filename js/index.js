@@ -486,19 +486,101 @@ var controller = {
             
             if (data == "first" ) {
                 this.battingGrid = new gridjs.Grid(Object.assign({
-                    columns: ["Rank", "Batsmen", "Points"],
+                    columns: ["Rank", "Batsmen", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topBattingPoint,"points")
                 },tabelStyle)).render(document.querySelector("#batting-points"));
     
                 this.bowlingGrid = new gridjs.Grid(Object.assign({
-                    columns: ["Rank", "Bowler", "Points"],
+                    columns: ["Rank", "Bowler", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topBowlingPoint,"points")
                 },tabelStyle)).render(document.querySelector("#bowling-points"));
     
                 this.fieldingGrid = new gridjs.Grid(Object.assign({
-                    columns: ["Rank", "Fielder", "Points"],
+                    columns: ["Rank", "Fielder", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topFieldingPoint,"points")
-                },tabelStyle)).render(document.querySelector("#fielding-points")); 
+                },tabelStyle)).render(document.querySelector("#fielding-points"));
+
+                this.battingGrid.on('rowClick', (...args) => {
+                    var playerId = args[1].cells[3].data;
+                    var playerName =  args[1].cells[1].data;
+                    if (args[0].target.getAttribute("data-column-id") == "points") {
+                        var playerPointsLog = window[self.range][playerId].pointsLog.batting;
+                        var popupContent = "";
+                        Object.keys(playerPointsLog).forEach(matchId => {
+                            var oppObj = matches[matchId].team_a.name === myTeam.name ? matches[matchId].team_b : matches[matchId].team_a;
+                            var oppName = oppObj.name;
+                            var match = matches[matchId];
+                            popupContent += "{popup-match-name}[Vs "+ oppName + "] - "+stringUtil.parseDate(match.start_datetime)+"\n";
+                            playerPointsLog[matchId].forEach(function(pointLog) {
+                                popupContent += "<li>"+pointLog + "</li>\n";
+                            });
+                        })
+                        window.popup = new Popup(Object.assign(popupStyle,{
+                            id: "batting-points",
+                            title: `Batting points - ${playerName}`,
+                            content: popupContent,
+                        }));
+            
+                        window.popup.show();
+                    } else if (args[0].target.getAttribute("data-column-id") == "batsmen") {
+                        // redirectHash("/players/"+playerId);
+                    }
+                });
+                
+                this.bowlingGrid.on('rowClick', (...args) => {
+                    var playerId = args[1].cells[3].data;
+                    var playerName =  args[1].cells[1].data;
+                    if (args[0].target.getAttribute("data-column-id") == "points") {
+                        var playerPointsLog = window[self.range][playerId].pointsLog.bowling;
+                        var popupContent = "";
+                        Object.keys(playerPointsLog).forEach(matchId => {
+                            var oppObj = matches[matchId].team_a.name === myTeam.name ? matches[matchId].team_b : matches[matchId].team_a;
+                            var oppName = oppObj.name;
+                            var match = matches[matchId];
+                            popupContent += "{popup-match-name}[Vs "+ oppName + "] - "+stringUtil.parseDate(match.start_datetime)+"\n";
+                            playerPointsLog[matchId].forEach(function(pointLog) {
+                                popupContent += "<li>"+pointLog + "</li>\n";
+                            });
+                        })
+                        window.popup = new Popup(Object.assign(popupStyle,{
+                            id: "bowling-points",
+                            title: `Bowling points - ${playerName}`,
+                            content: popupContent,
+                        }));
+            
+                        window.popup.show();
+                    } else if (args[0].target.getAttribute("data-column-id") == "bowler") {
+                        // redirectHash("/players/"+playerId);
+                    }
+                });
+                
+                this.fieldingGrid.on('rowClick', (...args) => {
+                    var playerId = args[1].cells[3].data;
+                    var playerName =  args[1].cells[1].data;
+                    if (args[0].target.getAttribute("data-column-id") == "points") {
+                        var playerPointsLog = window[self.range][playerId].pointsLog.fielding;
+                        var popupContent = "";
+                        Object.keys(playerPointsLog).forEach(matchId => {
+                            var oppObj = matches[matchId].team_a.name === myTeam.name ? matches[matchId].team_b : matches[matchId].team_a;
+                            var oppName = oppObj.name;
+                            var match = matches[matchId];
+                            popupContent += "{popup-match-name}[Vs "+ oppName + "] - "+stringUtil.parseDate(match.start_datetime)+"\n";
+                            playerPointsLog[matchId].forEach(function(pointLog) {
+                                popupContent += "<li>"+pointLog + "</li>\n";
+                            });
+                        })
+                        window.popup = new Popup(Object.assign(popupStyle,{
+                            id: "fielding-points",
+                            title: `Fielding points - ${playerName}`,
+                            content: popupContent,
+                        }));
+            
+                        window.popup.show();
+                    } else if (args[0].target.getAttribute("data-column-id") == "fielder") {
+                        // redirectHash("/players/"+playerId);
+                    }
+                });
+
             } else {
                 this.battingGrid.updateConfig({
                     data: matchUtil.parseForTable(self.topBattingPoint,"points")

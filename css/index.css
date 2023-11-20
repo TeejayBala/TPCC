@@ -334,3 +334,20 @@ select {
       background-color: var(--option-bg);
     }
   }
+
+  /* #layout-points td.gridjs-td:nth-child(2), */
+  #layout-points td.gridjs-td:nth-child(3){
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  /* #layout-points td.gridjs-td:nth-child(2):hover, */
+  #layout-points td.gridjs-td:nth-child(3):hover {
+    color: #1e90ff;
+  }
+  .popup-match-name {
+    font-weight: 600;
+    color: var(--secondcolor);
+  }
+  #sen-point,#fir-point {
+    font-weight: 600;
+  }

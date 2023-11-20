@@ -184,106 +184,131 @@ var tabelStyle = {
     sort: true
 }
 
+var popupStyle = {
+    css: `
+        .popup-header {
+            text-align: left;
+        }
+        .popup-body {
+            text-align: left;
+            overflow: scroll;
+        }
+        .popup-title {
+            font-size: 30px;
+        }
+        .popup-content{
+            height: 80% !important;
+            width: 80% !important;
+        }
+    `,
+    // titleMargin: "0",
+    titleColor: "rgb(92, 0, 95)",
+    // backgroundColor: "#ffebfe",
+    fontSizeMultiplier : 0.6,
+    // widthMultiplier : 1.2,
+    fadeTime : "0.5s"
+}
+
 var pointsHighlight = {
     //Run scored - 1 point:
-    runs : "🏏 {player_name} scored {total_runs} runs! +1 point | Total Runs: {total_runs} | Total Points: {total_points}",
+    runs : "🏏 {player_name} scored {total_runs} runs! +1 <b id='sen-point'>point</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Six runs (off one ball) bonus - 2 points:
-    six : "💥 {player_name} hit {total_six} six! +2 points | Total Sixes: {total_six} | Total Points: {total_points}",
+    six : "💥 {player_name} hit {total_six} six! <b id='sen-point'>+2 points</b> | Total Sixes: {total_six} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Four runs (off one ball) bonus - 1 point:
-    four : "👌 {player_name} scored {total_four} four! +1 point | Total Fours: {total_four} | Total Points: {total_points}",
+    four : "👌 {player_name} scored {total_four} four! <b id='sen-point'>+1 point</b> | Total Fours: {total_four} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Dismissed for duck - 10 points:
-    duck : "🦆 {player_name} dismissed for a duck! -10 points | Total Runs: {total_runs} | Total Points: {total_points}",
+    duck : "🦆 {player_name} dismissed for a duck! <b id='sen-point'>-10 points</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Strike Rate Between 0.00 and 49.99 runs per 100 balls - 10 points:
-    strike_rate_1 : "🎯 {player_name} with a low strike rate! -10 points | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points: {total_points}",
+    strike_rate_1 : "🎯 {player_name} with a low strike rate! <b id='sen-point'>-10 points</b> | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 100.00 and 124.99 runs per 100 balls - 10 points:
-    strike_rate_2 : "🚀 {player_name} with a solid strike rate! +10 points | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points: {total_points}",
+    strike_rate_2 : "🚀 {player_name} with a solid strike rate! <b id='sen-point'>+10 points</b> | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 125.00 and 149.99 runs per 100 balls - 20 points:
-    strike_rate_3 : "🔥 {player_name} on fire with the bat! +20 points | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points: {total_points}",
+    strike_rate_3 : "🔥 {player_name} on fire with the bat! <b id='sen-point'>+20 points</b> | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 150.00 and 174.99 runs per 100 balls - 30 Points:
-    strike_rate_4 : "🔥 {player_name} with an impressive strike rate! +30 points | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points: {total_points}",
+    strike_rate_4 : "🔥 {player_name} with an impressive strike rate! <b id='sen-point'>+30 points</b> | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 175.00 and 199.99 runs per 100 balls - 40 Points:
-    strike_rate_5 : "🚀 {player_name} hitting it out of the park! +40 points | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points: {total_points}",
+    strike_rate_5 : "🚀 {player_name} hitting it out of the park! <b id='sen-point'>+40 points</b> | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Above 200.00 runs per 100 balls - 50 Points:
-    strike_rate_6 : "🔥 {player_name} with an extraordinary strike rate! +50 points | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points: {total_points}",
+    strike_rate_6 : "🔥 {player_name} with an extraordinary strike rate! <b id='sen-point'>+50 points</b> | Total Runs: {total_runs} | Total Balls Faced: {total_balls_faced} balls | Strike Rate: {strike_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On reaching 10 runs - 10 Points:
-    runs_10 : "🔟 {player_name} reached 10 runs! +10 points | Total Runs: {total_runs} | Total Points: {total_points}",
+    runs_10 : "🔟 {player_name} reached 10 runs! <b id='sen-point'>+10 points</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On reaching 20 runs - 20 Points:
-    runs_20 : "2️⃣0️⃣ {player_name} reached 20 runs! +20 points | Total Runs: {total_runs} | Total Points: {total_points}",
+    runs_20 : "2️⃣0️⃣ {player_name} reached 20 runs! <b id='sen-point'>+20 points</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On reaching 30 runs - 30 Points:
-    runs_30 : "3️⃣0️⃣ {player_name} reached 30 runs! +30 points | Total Runs: {total_runs} | Total Points: {total_points}",
+    runs_30 : "3️⃣0️⃣ {player_name} reached 30 runs! <b id='sen-point'>+30 points</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On reaching 40 runs - 40 Points:
-    runs_40 : "4️⃣0️⃣ {player_name} reached 40 runs! +40 points | Total Runs: {total_runs} | Total Points: {total_points}",
+    runs_40 : "4️⃣0️⃣ {player_name} reached 40 runs! <b id='sen-point'>+40 points</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On reaching 50 runs - 50 points:
-    runs_50 : "5️⃣0️⃣ {player_name} reached 50 runs! +50 points | Total Runs: {total_runs} | Total Points: {total_points}",
+    runs_50 : "5️⃣0️⃣ {player_name} reached 50 runs! <b id='sen-point'>+50 points</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //50 or more Runs Scored - Runs X 2 points:
-    runs_50_plus : "🔥🔥 {player_name} scored {total_runs} runs! +(Runs * 2) points | Total Runs: {total_runs} | Total Points: {total_points}",
+    runs_50_plus : "🔥🔥 {player_name} scored {total_runs} runs! <b id='sen-point'>+(Runs * 2) points</b> | Total Runs: {total_runs} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Wicket - 20 points:
-    wicket : "🎯 {player_name} took a wicket! +20 points | Total Wickets: {total_wickets} wickets | Total Points: {total_points}",
+    wicket : "🎯 {player_name} took a wicket! <b id='sen-point'>+20 points</b> | Total Wickets: {total_wickets} wickets | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Maiden over - 40 points:
-    maidens : "🚫 {player_name} bowled a maiden over! +40 points | Total Maidens: {total_maidens} maidens | Total Points: {total_points}",
+    maidens : "🚫 {player_name} bowled a maiden over! <b id='sen-point'>+40 points</b> | Total Maidens: {total_maidens} maidens | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Economy Between 00.00 and 01.99 runs per over - 30 points:
-    economy_rate_1 : "🔒 {player_name} with a tight economy! +30 points | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points: {total_points}",
+    economy_rate_1 : "🔒 {player_name} with a tight economy! <b id='sen-point'>+30 points</b> | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 02.00 and 03.99 runs per over - 20 points:
-    economy_rate_2 : "🔒 {player_name} maintaining a good economy! +20 points | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points: {total_points}",
+    economy_rate_2 : "🔒 {player_name} maintaining a good economy! <b id='sen-point'>+20 points</b> | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 04.00 and 05.99 runs per over - 10 points:
-    economy_rate_3 : "🔒 {player_name} with a steady economy! +10 points | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points: {total_points}",
+    economy_rate_3 : "🔒 {player_name} with a steady economy! <b id='sen-point'>+10 points</b> | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 08.00 and 9.99 runs per over - (-10) Points:
-    economy_rate_4 : "⚠️ {player_name} struggling with economy. -10 points | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points: {total_points}",
+    economy_rate_4 : "⚠️ {player_name} struggling with economy. <b id='sen-point'>-10 points</b> | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Between 10.00 and 11.99 runs per over - (-20) Points:
-    economy_rate_5 : "⚠️ {player_name} under pressure in terms of economy. -20 points | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points: {total_points}",
+    economy_rate_5 : "⚠️ {player_name} under pressure in terms of economy. <b id='sen-point'>-20 points</b> | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Above 12.00 runs per over - (-30) Points:
-    economy_rate_6 : "⚠️ {player_name} facing challenges with economy. -30 points | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points: {total_points}",
+    economy_rate_6 : "⚠️ {player_name} facing challenges with economy. <b id='sen-point'>-30 points</b> | Total Runs Conceded: {total_runs_conceded} runs | Total Overs Bowled: {total_overs_bowled} overs | Economy Rate: {economy_rate} | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On taking 2 wickets - 10 Points:
-    wickets_2 : "✌️ {player_name} grabbed 2 wickets! +10 points | Total Wickets: {total_wickets} wickets | Total Points: {total_points}",
+    wickets_2 : "✌️ {player_name} grabbed 2 wickets! <b id='sen-point'>+10 points</b> | Total Wickets: {total_wickets} wickets | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On taking 3 wickets - 20 Points:
-    wickets_3 : "🤟 {player_name} grabbed 3 wickets! +20 points | Total Wickets: {total_wickets} wickets | Total Points: {total_points}",
+    wickets_3 : "🤟 {player_name} grabbed 3 wickets! <b id='sen-point'>+20 points</b> | Total Wickets: {total_wickets} wickets | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On taking 4 wickets - 40 Points:
-    wickets_4 : "🔥 {player_name} on fire with 4 wickets! +40 points | Total Wickets: {total_wickets} wickets | Total Points: {total_points}",
+    wickets_4 : "🔥 {player_name} on fire with 4 wickets! <b id='sen-point'>+40 points</b> | Total Wickets: {total_wickets} wickets | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //On taking 5 wickets - 50 Points:
-    wickets_5 : "🔥🔥 {player_name} with a fantastic 5-wicket haul! +50 points | Total Wickets: {total_wickets} wickets | Total Points: {total_points}",
+    wickets_5 : "🔥🔥 {player_name} with a fantastic 5-wicket haul! <b id='sen-point'>+50 points</b> | Total Wickets: {total_wickets} wickets | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Official Player of The Match - 50 Points:
-    man_of_the_match : "🏆 {player_name} is the Official Player of the Match! +50 points | Total Points: {total_points}",
+    man_of_the_match : "🏆 {player_name} is the Official Player of the Match! <b id='sen-point'>+50 points</b> | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Catch (Fielder) - 10 Points:
-    catches_fielder : "👐 {player_name} took a catch as a fielder! +10 points | Total Points: {total_points}",
+    catches_fielder : "👐 {player_name} took a catch as a fielder! <b id='sen-point'>+10 points</b> | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Catch (Wicketkeeper) - 10 Points:
-    catches_wicketkeeper : "🧤 {player_name} with a catch as the wicketkeeper! +10 points | Total Points: {total_points}",
+    catches_wicketkeeper : "🧤 {player_name} with a catch as the wicketkeeper! <b id='sen-point'>+10 points</b> | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Stumping - 20 Points:
-    stumping : "👏 {player_name} with a stumping behind the stumps! +20 points | Total Points: {total_points}",
+    stumping : "👏 {player_name} with a stumping behind the stumps! <b id='sen-point'>+20 points</b> | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Run out (direct) - 20 Points:
-    run_out_direct : "🏃‍♂️💨 {player_name} with a direct run-out! +20 points | Total Points: {total_points}",
+    run_out_direct : "🏃‍♂️💨 {player_name} with a direct run-out! <b id='sen-point'>+20 points</b> | Total Points:<b id='sen-point'> {total_points} </b>",
     
     //Run out (indirect/per player) - 10 Points:
-    run_out_indirect : "🏃‍♂️💨 {player_name} involved in a run-out! +10 points | Total Points: {total_points}",
+    run_out_indirect : "🏃‍♂️💨 {player_name} involved in a run-out! <b id='sen-point'>+10 points</b> | Total Points:<b id='sen-point'> {total_points} </b>",
 }

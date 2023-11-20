@@ -533,7 +533,7 @@ var controller = {
                         })
                         window.popup = new Popup(Object.assign(popupStyle,{
                             id: "batting-points",
-                            title: `Batting points - ${playerName}`,
+                            title: `Batting points - ${playerName} - ${window[self.range][playerId].points.batting} points`,
                             content: popupContent,
                         }));
             
@@ -560,7 +560,7 @@ var controller = {
                         })
                         window.popup = new Popup(Object.assign(popupStyle,{
                             id: "bowling-points",
-                            title: `Bowling points - ${playerName}`,
+                            title: `Bowling points - ${playerName} - ${window[self.range][playerId].points.bowling} points`,
                             content: popupContent,
                         }));
             
@@ -587,7 +587,7 @@ var controller = {
                         })
                         window.popup = new Popup(Object.assign(popupStyle,{
                             id: "fielding-points",
-                            title: `Fielding points - ${playerName}`,
+                            title: `Fielding points - ${playerName} - ${window[self.range][playerId].points.fielding} points`,
                             content: popupContent,
                         }));
             
@@ -614,7 +614,7 @@ var controller = {
                         })
                         window.popup = new Popup(Object.assign(popupStyle,{
                             id: "other-points",
-                            title: `Other points - ${playerName}`,
+                            title: `Other points - ${playerName} - ${window[self.range][playerId].points.others} points`,
                             content: popupContent,
                         }));
             

@@ -636,6 +636,12 @@ var controller = {
                     data: matchUtil.parseForTable(self.topOtherPoint,"points")
                 }).forceRender();
             }
+
+            var searchInputs = document.querySelectorAll(".gridjs-search-input");
+            searchInputs.forEach(function(input) {
+                input.setAttribute("placeholder","Search a keyword...");
+            });
+            
         },
         destory() {
 

@@ -454,6 +454,12 @@ var controller = {
             });
         },
         constructorPoints(data) { 
+            if (this.range == "playersStats_2023") {
+                document.querySelector("#points-time-range").innerText = "May 15 2023 to Dec 31  2023";
+            } else {
+                document.querySelector("#points-time-range").innerText = "January 1 2022 to Today";
+            }
+            
             this.batting = [];
             this.bowling = [];
             this.fielding = [];

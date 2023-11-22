@@ -383,107 +383,25 @@ players.members = members;
 
 
 var matches = {};
+var matchNames = [];
+var matchRunrates = [];
+var winsCounts = {
+    byFirstBowl : 0,
+    byFirstBat : 0
+};
+var lossesCounts = {
+    byFirstBowl : 0,
+    byFirstBat : 0
+};
+var noResults = {
+    byFirstBowl : 0,
+    byFirstBat : 0
+};
 
 var matchesArray = Object.values(rawMatchesData).reverse();
-var matchOrder = Object.keys(rawMatchesData).reverse();
-
-// matchesArray.forEach(matchObj => {
-//     var matchData = matchObj.data;
-//     matchData.result = (matchData.winning_team == myTeam.name) ? "win" : "lose" ;
-//     matchData.match_status = matchObj.status;
-
-//     var battingData = matchObj.data.team_a.name === myTeam.name ? matchObj.data.team_a : matchObj.data.team_b; 
-//     var bowlData = matchObj.data.team_a.name === myTeam.name ? matchObj.data.team_b : matchObj.data.team_a; 
-
-//     battingData.scorecard[0].batting.forEach(function(batterObj) {
-//         if (playerIds.indexOf(batterObj.player_id) !== -1) {
-//             matchUtil.playerBattingStats(batterObj, playersStats[batterObj.player_id].batting);
-//         }
-//     });
-//     battingData.scorecard[0].to_be_bat.forEach(function(player) {
-//         if (playerIds.indexOf(player.player_id) !== -1) {
-//             playersStats[player.player_id].batting.matches++;
-//         }
-//     });
-    
-//     bowlData.scorecard[0].bowling.forEach(function(bowlerObj) {
-//         if (playerIds.indexOf(bowlerObj.player_id) !== -1) {
-//             matchUtil.playerBowlingStats(bowlerObj, playersStats[bowlerObj.player_id].bowling)
-//         }
-//     });
-
-
-//     bowlData.scorecard[0].batting.forEach(function(fielderObj) {
-        
-//         if(fielderObj.how_to_out != "not out") {
-//             var how_to_out = fielderObj.how_to_out;
-
-//             if (how_to_out.startsWith("run out ")) {
-//                 how_to_out = how_to_out.replace("run out", "").split("/");
-//                 var runoutFielder = playerNames[how_to_out[0].trim()];
-//                 if (how_to_out.length > 1) {
-//                     var runoutAssistFielder = playerNames[how_to_out[1].trim()];
-//                     if (playersStats[runoutAssistFielder]) {
-//                         playersStats[runoutAssistFielder].fielding.assistedrunouts++;
-//                     } else {
-//                         errorAlert("Fielding data parseing error. how_to_out "+fielderObj.how_to_out+". Matchid - "+matchData.match_id,true);
-//                     }
-//                 }
-//                 if (playersStats[runoutFielder]) {
-//                     playersStats[runoutFielder].fielding.runouts++;
-//                 } else {
-//                     errorAlert("Fielding data parseing error. how_to_out "+fielderObj.how_to_out+". Matchid - "+matchData.match_id,true);
-//                 }
-
-//             } else if (how_to_out.startsWith("c ")) {
-//                 how_to_out = how_to_out.replace("c", "").split(" b ");
-//                 if (how_to_out.length > 2) {
-//                     errorAlert("Fielding data parseing error. how_to_out "+fielderObj.how_to_out+". Matchid - "+matchData.match_id);
-//                 }
-//                 var catcherId = playerNames[how_to_out[0].trim()];
-//                 if (playersStats[catcherId]) {
-//                     if (battingData.wicket_keeper_info && battingData.wicket_keeper_info.player_id == catcherId ) {
-//                         playersStats[catcherId].fielding.caughtbehind++;
-//                     } else {
-//                         playersStats[catcherId].fielding.catches++;
-//                     }
-//                 } else {
-//                     errorAlert("Fielding data parseing error. how_to_out "+fielderObj.how_to_out+". Matchid - "+matchData.match_id,true);
-//                 }
-
-//             } else if (how_to_out.startsWith("c&b ")) {
-//                 how_to_out = how_to_out.replace("c&b", "");
-//                 var catcherId = playerNames[how_to_out.trim()];
-//                 if (playersStats[catcherId]) {
-//                     playersStats[catcherId].fielding.catches++;
-//                 } else {
-//                     errorAlert("Fielding data parseing error. how_to_out "+fielderObj.how_to_out+". Matchid - "+matchData.match_id,true);
-//                 }
-
-//             } else if (how_to_out.startsWith("st ")) {
-//                 how_to_out = how_to_out.replace("st", "").split("b");
-//                 var keeperId = playerNames[how_to_out[0].trim()];
-
-//                 if (playersStats[keeperId]) {
-//                     playersStats[keeperId].fielding.stumpings++;
-//                 } else {
-//                     errorAlert("Fielding data parseing error. how_to_out "+fielderObj.how_to_out+". Matchid - "+matchData.match_id,true);
-//                 }
-//             } else if (how_to_out.startsWith("b ") || how_to_out.startsWith("lbw ") || how_to_out.startsWith('retired out') ) {
-//                 //skiped
-//             } else {
-//                 errorAlert("Fielding data parseing error.");
-//             }
-//         }
-//     });
-    
-//     matches[matchData.match_id.toString()] = matchData;
-// });
-
-
-
-
-//Leaderboard
+var matchOrder = Object.keys(rawMatchesData).map(function (x) { 
+    return parseInt(x, 10); 
+}).reverse();
 
 function parseMatchData(resultObj,parseData) {
     matchesArray.forEach(matchObj => {
@@ -524,6 +442,53 @@ function parseMatchData(resultObj,parseData) {
         
         matchUtil.playerOtherStats(resultObj,matchData);
 
+        var myTeamInnings = matchData.team_a.id == myTeam.id ? matchData.team_a : matchData.team_b;
+        var oppTeamInnings = matchData.team_a.id == myTeam.id ? matchData.team_b : matchData.team_a;
+        matchNames.push(oppTeamInnings.name);
+        matchRunrates.push(myTeamInnings.innings[0].summary.rr);
+
+        // var counts = (matchData.match_result === "Abandoned") 
+        //     ? noResults :
+        //     matchData.winning_team == myTeam.name ? 
+        //         winsCounts : 
+        //         lossesCounts;
+
+        // if (matchData.toss_details.indexOf(myTeam.name) != -1) {
+        //     if (matchData.toss_details.indexOf("opt to field") != -1 ) {
+        //         counts.byFirstBowl++;
+        //     } else if (matchData.toss_details.indexOf("opt to bat") != -1 ) {
+        //         counts.byFirstBat++;
+        //     } else {
+        //         errorAlert("Toss details parsing failed",false);
+        //     }
+        // } else {
+        //     if (matchData.toss_details.indexOf("opt to field") != -1 ) {
+        //         counts.byFirstBat++;
+        //     } else if (matchData.toss_details.indexOf("opt to bat") != -1 ) {
+        //         counts.byFirstBowl++;
+        //     } else {
+        //         errorAlert("Toss details parsing failed",false);
+        //     }
+        // }
+        
+        const counts = (matchData.match_result === "Abandoned") ? noResults : (matchData.winning_team === myTeam.name ? winsCounts : lossesCounts);
+
+        const isOptToField = matchData.toss_details.includes("opt to field");
+        const isOptToBat = matchData.toss_details.includes("opt to bat");
+
+        if (matchData.toss_details.includes(myTeam.name)) {
+            counts.byFirstBowl += isOptToField ? 1 : 0;
+            counts.byFirstBat += isOptToBat ? 1 : 0;
+        } else {
+            counts.byFirstBat += isOptToField ? 1 : 0;
+            counts.byFirstBowl += isOptToBat ? 1 : 0;
+        }
+
+        if (!(isOptToField || isOptToBat)) {
+            errorAlert("Toss details parsing failed", false);
+        }
+
+        
         matches[matchData.match_id.toString()] = matchData;
     });
 }

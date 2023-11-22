@@ -12,11 +12,53 @@ Router.navigate = function(n,silentRedirect) {
 
 var controller = {
     dashboard : {
-        init(matches) {
+        init() {
             this.eventHandler();
         },
-        eventHandler(matches) {
+        eventHandler() {
+            var winningCounts = winsCounts.byFirstBat + winsCounts.byFirstBowl;
+            var lossingCounts = lossesCounts.byFirstBat + lossesCounts.byFirstBowl;
+            var no_Results = noResults.byFirstBat + noResults.byFirstBowl;
             
+            var config = stats.winRadio;
+            config.data = {
+                labels: ['Wins','No Result' , 'Losses','Won by batting first.', 'Won by bowling first.','Batting first.', 'Bowling first.','Lose by batting first.', 'Lose by bowling first.'],
+                datasets: [
+                    {
+                        data: [winningCounts,no_Results,lossingCounts],
+                        backgroundColor: ["#64C864","#eee","#DC8282"],
+                        borderRadius : 20
+                    },{ 
+                        weight: 0.3
+                    },
+                    {
+                        backgroundColor: ["#6478C8","#6478C8","#6478C8","#6478C8","#9664C8","#eee","#eee",'#E6A064', '#A0825A'],
+                        data: [0,0,0, winsCounts.byFirstBat,winsCounts.byFirstBowl, noResults.byFirstBat , noResults.byFirstBowl , lossesCounts.byFirstBat,lossesCounts.byFirstBowl],
+                        weight: 0.7,
+                        borderRadius : 20
+                    }
+                ]
+            };
+            var winningRatioStats = new Chart(document.getElementById('win-ratio-stats'), config);
+
+            stringUtil._CountUp(document.querySelector("#wins-count"), winningCounts);
+            stringUtil._CountUp(document.querySelector("#losses-count"), lossingCounts);
+            
+            var config = stats.runrate;
+            config.data = {
+                labels: matchNames,
+                datasets: [
+                    {
+                        label: 'Run Rate',
+                        data: matchRunrates,
+                        borderColor: "#b01e2e",
+                        fill: false,
+                        cubicInterpolationMode: 'monotone',
+                        tension: 0.4
+                    }
+                ]
+            };
+            var runrateStats = new Chart(document.getElementById('run-rate-stats'), config);
         },
         destory() {
 

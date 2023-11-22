@@ -1,8 +1,7 @@
 Router.add({
     path: '#/',
     on: function() {
-        console.log("on - /")
-        Router.navigate('#/matches',true);
+        Router.navigate('#/dashboard',true);
     }
 });
 

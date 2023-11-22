@@ -30,13 +30,13 @@ var mvpList = {7502974 : [{"matches":1,"team_id":2040687,"team_name":"Tamil Pasa
 
 
 
-//MPV list
-Api.get('/mvp/get-match-player-mvp/' + matchID, null, function (error, result) {
-    var players = [];
-    result.data.forEach(function (player) {
-        if (player.team_id == "2040687") {
-            players.push(player);
-        }
-    });
-    console.log(matchID , JSON.stringify(players));
-});
+// //MPV list
+// Api.get('/mvp/get-match-player-mvp/' + matchID, null, function (error, result) {
+//     var players = [];
+//     result.data.forEach(function (player) {
+//         if (player.team_id == "2040687") {
+//             players.push(player);
+//         }
+//     });
+//     console.log(matchID , JSON.stringify(players));
+// });

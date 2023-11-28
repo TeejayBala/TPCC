@@ -83,32 +83,34 @@
 
 
     <template layout-id="dashboard">
-      <div style="display: flex;">
-        <div style="display: flex;text-align: center;">
-          <div style="display: flex;align-items: center;height: 150px;"> 
-            <div style=" margin: 0px 20px; line-height: 1;">
-              <p style="font-size: 20px;color: red;"> Losses</p>
-              <p id="losses-count" style="font-size: 40px;"></p>
+      <div style="height: 100%;overflow: scroll;">
+        <div style="display: flex;">
+          <div style="display: flex;text-align: center;">
+            <div style="display: flex;align-items: center;height: 150px;"> 
+              <div style=" margin: 0px 20px; line-height: 1;">
+                <p style="font-size: 20px;color: #b01e2e;"> Losses</p>
+                <p id="losses-count" style="font-size: 40px;"></p>
+              </div>
+            </div>
+            <div style="height:150px;width:150px;margin: 0;position: relative;">
+              <canvas id="win-ratio-stats"></canvas>
+              <img src="../image/MAIN_LOGO_SQUARE.png" style="width: 50%;height: 50%;border-radius: 50%;position: absolute;top: calc(37.5px);left: calc(40px);">
+            </div>
+            <div style="display: flex;align-items: center;height: 150px;"> 
+              <div style=" margin: 0px 20px; line-height: 1;">
+                <p style="font-size: 20px;color: green;"> Wins</p>
+                <p id="wins-count" style="font-size: 40px;"></p>
+              </div>
             </div>
           </div>
-          <div style="height:150px;width:150px;margin: 0;position: relative;">
-            <canvas id="win-ratio-stats"></canvas>
-            <img src="../image/MAIN_LOGO_SQUARE.png" style="width: 50%;height: 50%;border-radius: 50%;position: absolute;top: calc(37.5px);left: calc(40px);">
-          </div>
-          <div style="display: flex;align-items: center;height: 150px;"> 
-            <div style=" margin: 0px 20px; line-height: 1;">
-              <p style="font-size: 20px;color: green;"> Wins</p>
-              <p id="wins-count" style="font-size: 40px;"></p>
-            </div>
+          <div style="height:250px;width:100%;">
+            <canvas id="run-rate-stats"></canvas>
           </div>
         </div>
         <div style="height:250px;width:100%;">
-          <canvas id="run-rate-stats"></canvas>
+            <canvas id="run-rate-stats"></canvas>
         </div>
       </div>
-      <div style="height:250px;width:100%;">
-          <canvas id="run-rate-stats"></canvas>
-        </div>
     </template>
 
     <template layout-id="matches">

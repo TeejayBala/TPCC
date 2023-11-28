@@ -152,8 +152,10 @@ var matchUtil = {
 
         var runs = battingObj.runs;
 
-        battingPoints += runs*1;
-        pointsLog.push(contentUtil.pointsMessage("runs",{player_name : playerName , "total_runs" : battingObj.runs , total_points : runs*1 }));
+        if (runs > 0) {
+            battingPoints += runs*1;
+            pointsLog.push(contentUtil.pointsMessage("runs",{player_name : playerName , "total_runs" : battingObj.runs , total_points : runs*1 }));
+        }
         
         if (runs >= 10) {
             if (SR >= 200) {
@@ -393,7 +395,7 @@ var matchUtil = {
     },
 
     playerOtherStats(resultObj,match) {
-        var mvpPlayer = mvpList[match.match_id][0].player_id;
+        var mvpPlayer = mvpList[match.match_id][0] && mvpList[match.match_id][0].player_id || 0;
         if (resultObj[mvpPlayer]) {
             resultObj[mvpPlayer].points.others += 50;
             var pointsLog = resultObj[mvpPlayer].pointsLog.others[match.match_id];
@@ -402,7 +404,7 @@ var matchUtil = {
             } else {
                 resultObj[mvpPlayer].pointsLog.others[match.match_id] = [contentUtil.pointsMessage("man_of_the_match",{player_name : playerIdNames[mvpPlayer] , total_points : 50 })]
             }
-        } else {
+        } else if (mvpPlayer != 0) {
             errorAlert("MVP player not a team player. Matchid - "+match.match_id +" Player id - "+mvpPlayer, false);
         }
     },

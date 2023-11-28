@@ -83,6 +83,7 @@ a{
     flex-wrap: nowrap;
     overflow-x: auto;
     margin-bottom: 15px;
+    padding-bottom: 15px;
 }
 
 .match-list {
@@ -103,6 +104,9 @@ a{
 }
 .match-list.lose {
     border-top: 1px solid #b01e2e !important;
+}
+.match-list.noresults {
+    border-top: 1px solid white !important;
 }
 .match-list #team_a,
 .match-list #team_b,
@@ -186,6 +190,9 @@ a{
 }
 #match-details #result.lose{
     color: #b01e2e;
+}
+#match-details #result.noresults {
+    color: #818181;
 }
 
 

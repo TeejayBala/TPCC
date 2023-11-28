@@ -126,10 +126,17 @@ var controller = {
             matchDetails.querySelector("#team_b").innerText =
             matchDetails.querySelector("#team_b_score_name").innerText = match.team_b.name;
 
-            matchDetails.querySelector("#team_a_logo").style.backgroundImage =
-            matchDetails.querySelector("#team_a_score_logo").style.backgroundImage = 'url('+match.team_a.logo+')';
-            matchDetails.querySelector("#team_b_logo").style.backgroundImage = 
-            matchDetails.querySelector("#team_b_score_logo").style.backgroundImage ='url('+match.team_b.logo+')';
+            if (match.team_a.id == myTeam.id) {
+                matchDetails.querySelector("#team_a_logo").style.backgroundImage =
+                matchDetails.querySelector("#team_a_score_logo").style.backgroundImage = 'url("../image/MAIN_LOGO_SQUARE.png")';
+                matchDetails.querySelector("#team_b_logo").style.backgroundImage = 
+                matchDetails.querySelector("#team_b_score_logo").style.backgroundImage ='url("../image/DUMMY_MAIN_LOGO.png")';
+            } else {
+                matchDetails.querySelector("#team_a_logo").style.backgroundImage =
+                matchDetails.querySelector("#team_a_score_logo").style.backgroundImage = 'url("../image/DUMMY_MAIN_LOGO.png")';
+                matchDetails.querySelector("#team_b_logo").style.backgroundImage = 
+                matchDetails.querySelector("#team_b_score_logo").style.backgroundImage ='url("../image/MAIN_LOGO_SQUARE.png")';
+            }
 
             
             new gridjs.Grid({

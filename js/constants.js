@@ -152,6 +152,23 @@ var fieldingStatsObj = {
 }
 
 var playersStats = {};
+var matchStats = {
+    matchRunrates : [],
+    matchOppNames : [],
+    winsCounts : {
+        byFirstBowl : 0,
+        byFirstBat : 0
+    },
+    lossesCounts : {
+        byFirstBowl : 0,
+        byFirstBat : 0
+    },
+    noResults : {
+        byFirstBowl : 0,
+        byFirstBat : 0
+    },
+    partnershipsData : [],
+}
 
 playerIds.forEach(function(playerId) {
     playersStats[playerId] = {
@@ -177,8 +194,9 @@ playerIds.forEach(function(playerId) {
 });
 
 var playersStats_2023 = JSON.parse(JSON.stringify(playersStats));
+var matchStats_2023 = JSON.parse(JSON.stringify(matchStats));
 
-var tabelStyle = {
+var tableStyle = {
     search : true,
     pagination: {limit : 10 , summary : false},
     sort: true

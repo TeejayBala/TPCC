@@ -41,5 +41,11 @@ for new player adding
             playerIdNames
         add player photo url in playersPhotos
 
+for partnership 
+    Api.get('/api/v1/graph/get-match-partnership-data/' + matchID, null, function (error, result) {
+        console.log(matchID , JSON.stringify(result));
+    });
 
-for every work update the version for js files in index.html
+
+for every work update the version 
+    update version in js urls in index.html

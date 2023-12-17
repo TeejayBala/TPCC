@@ -285,7 +285,7 @@ var matchUtil = {
         }
     },
 
-    playerFieldingStats(oppBatterObj, resultObj, match, wicketKeeper) {
+    playerFieldingStats(oppBatterObj, playersResultObj, match, wicketKeeper) {
         
         if(oppBatterObj.how_to_out != "not out") {
             var how_to_out = oppBatterObj.how_to_out;
@@ -295,34 +295,34 @@ var matchUtil = {
                 var runoutFielder = playerNames[how_to_out[0].trim()];
                 if (how_to_out.length > 1) {
                     var runoutAssistFielder = playerNames[how_to_out[1].trim()];
-                    if (resultObj[runoutAssistFielder]) {
-                        resultObj[runoutAssistFielder].fielding.assistedrunouts++;
-                        resultObj[runoutAssistFielder].points.fielding += 10;
-                        var pointsLog = resultObj[runoutAssistFielder].pointsLog.fielding[match.match_id];
+                    if (playersResultObj[runoutAssistFielder]) {
+                        playersResultObj[runoutAssistFielder].fielding.assistedrunouts++;
+                        playersResultObj[runoutAssistFielder].points.fielding += 10;
+                        var pointsLog = playersResultObj[runoutAssistFielder].pointsLog.fielding[match.match_id];
                         if (pointsLog) {
                             pointsLog.push(contentUtil.pointsMessage("run_out_indirect",{player_name : playerIdNames[runoutAssistFielder] , total_points : 10 }));
                         } else {
-                            resultObj[runoutAssistFielder].pointsLog.fielding[match.match_id] = [contentUtil.pointsMessage("run_out_indirect",{player_name : playerIdNames[runoutAssistFielder] , total_points : 10 })]
+                            playersResultObj[runoutAssistFielder].pointsLog.fielding[match.match_id] = [contentUtil.pointsMessage("run_out_indirect",{player_name : playerIdNames[runoutAssistFielder] , total_points : 10 })]
                         }
                     } else {
                         errorAlert("Fielding data parseing error. how_to_out "+oppBatterObj.how_to_out+". Matchid - "+match.match_id,true);
                     }
                 }
-                if (resultObj[runoutFielder]) {
-                    resultObj[runoutFielder].fielding.runouts++;
+                if (playersResultObj[runoutFielder]) {
+                    playersResultObj[runoutFielder].fielding.runouts++;
                     var pointLog;
                     if (how_to_out.length > 1) {
-                        resultObj[runoutFielder].points.fielding += 10;
+                        playersResultObj[runoutFielder].points.fielding += 10;
                         pointLog = contentUtil.pointsMessage("run_out_indirect",{player_name : playerIdNames[runoutFielder] , total_points : 10 });
                     } else {
-                        resultObj[runoutFielder].points.fielding += 20;
+                        playersResultObj[runoutFielder].points.fielding += 20;
                         pointLog = contentUtil.pointsMessage("run_out_direct",{player_name : playerIdNames[runoutFielder] , total_points : 20 });
                     }
-                    var pointsLog = resultObj[runoutFielder].pointsLog.fielding[match.match_id];
+                    var pointsLog = playersResultObj[runoutFielder].pointsLog.fielding[match.match_id];
                     if (pointsLog) {
                         pointsLog.push(pointLog);
                     } else {
-                        resultObj[runoutFielder].pointsLog.fielding[match.match_id] = [pointLog];
+                        playersResultObj[runoutFielder].pointsLog.fielding[match.match_id] = [pointLog];
                     }
                 } else {
                     errorAlert("Fielding data parseing error. how_to_out "+oppBatterObj.how_to_out+". Matchid - "+match.match_id,true);
@@ -334,21 +334,21 @@ var matchUtil = {
                     errorAlert("Fielding data parseing error. how_to_out "+oppBatterObj.how_to_out+". Matchid - "+match.match_id,false);
                 }
                 var catcherId = playerNames[how_to_out[0].trim()];
-                if (resultObj[catcherId]) {
+                if (playersResultObj[catcherId]) {
                     var pointLog;
                     if (wicketKeeper && wicketKeeper.player_id == catcherId ) {
-                        resultObj[catcherId].fielding.caughtbehind++;
+                        playersResultObj[catcherId].fielding.caughtbehind++;
                         pointLog = contentUtil.pointsMessage("catches_wicketkeeper",{player_name : playerIdNames[catcherId] , total_points : 10 });
                     } else {
-                        resultObj[catcherId].fielding.catches++;
+                        playersResultObj[catcherId].fielding.catches++;
                         pointLog = contentUtil.pointsMessage("catches_fielder",{player_name : playerIdNames[catcherId] , total_points : 10 });
                     }
-                    resultObj[catcherId].points.fielding += 10;
-                    var pointsLog = resultObj[catcherId].pointsLog.fielding[match.match_id];
+                    playersResultObj[catcherId].points.fielding += 10;
+                    var pointsLog = playersResultObj[catcherId].pointsLog.fielding[match.match_id];
                     if (pointsLog) {
                         pointsLog.push(pointLog);
                     } else {
-                        resultObj[catcherId].pointsLog.fielding[match.match_id] = [pointLog];
+                        playersResultObj[catcherId].pointsLog.fielding[match.match_id] = [pointLog];
                     }
                 } else {
                     errorAlert("Fielding data parseing error. how_to_out "+oppBatterObj.how_to_out+". Matchid - "+match.match_id,true);
@@ -357,14 +357,14 @@ var matchUtil = {
             } else if (how_to_out.startsWith("c&b ")) {
                 how_to_out = how_to_out.replace("c&b", "");
                 var catcherId = playerNames[how_to_out.trim()];
-                if (resultObj[catcherId]) {
-                    resultObj[catcherId].fielding.catches++;
-                    resultObj[catcherId].points.fielding += 10;
-                    var pointsLog = resultObj[catcherId].pointsLog.fielding[match.match_id];
+                if (playersResultObj[catcherId]) {
+                    playersResultObj[catcherId].fielding.catches++;
+                    playersResultObj[catcherId].points.fielding += 10;
+                    var pointsLog = playersResultObj[catcherId].pointsLog.fielding[match.match_id];
                     if (pointsLog) {
                         pointsLog.push(contentUtil.pointsMessage("catches_fielder",{player_name : playerIdNames[catcherId] , total_points : 10 }));
                     } else {
-                        resultObj[catcherId].pointsLog.fielding[match.match_id] = [contentUtil.pointsMessage("catches_fielder",{player_name : playerIdNames[catcherId] , total_points : 10 })]
+                        playersResultObj[catcherId].pointsLog.fielding[match.match_id] = [contentUtil.pointsMessage("catches_fielder",{player_name : playerIdNames[catcherId] , total_points : 10 })]
                     }
                 } else {
                     errorAlert("Fielding data parseing error. how_to_out "+oppBatterObj.how_to_out+". Matchid - "+match.match_id,true);
@@ -374,14 +374,14 @@ var matchUtil = {
                 how_to_out = how_to_out.replace("st", "").split("b");
                 var keeperId = playerNames[how_to_out[0].trim()];
 
-                if (resultObj[keeperId]) {
-                    resultObj[keeperId].fielding.stumpings++;
-                    resultObj[keeperId].points.fielding += 20;
-                    var pointsLog = resultObj[keeperId].pointsLog.fielding[match.match_id];
+                if (playersResultObj[keeperId]) {
+                    playersResultObj[keeperId].fielding.stumpings++;
+                    playersResultObj[keeperId].points.fielding += 20;
+                    var pointsLog = playersResultObj[keeperId].pointsLog.fielding[match.match_id];
                     if (pointsLog) {
                         pointsLog.push(contentUtil.pointsMessage("stumping",{player_name : playerIdNames[keeperId] , total_points : 10 }));
                     } else {
-                        resultObj[keeperId].pointsLog.fielding[match.match_id] = [contentUtil.pointsMessage("stumping",{player_name : playerIdNames[keeperId] , total_points : 20 })]
+                        playersResultObj[keeperId].pointsLog.fielding[match.match_id] = [contentUtil.pointsMessage("stumping",{player_name : playerIdNames[keeperId] , total_points : 20 })]
                     }
                 } else {
                     errorAlert("Fielding data parseing error. how_to_out "+oppBatterObj.how_to_out+". Matchid - "+match.match_id,true);
@@ -394,15 +394,15 @@ var matchUtil = {
         }
     },
 
-    playerOtherStats(resultObj,match) {
+    playerOtherStats(playersResultObj,match) {
         var mvpPlayer = mvpList[match.match_id][0] && mvpList[match.match_id][0].player_id || 0;
-        if (resultObj[mvpPlayer]) {
-            resultObj[mvpPlayer].points.others += 50;
-            var pointsLog = resultObj[mvpPlayer].pointsLog.others[match.match_id];
+        if (playersResultObj[mvpPlayer]) {
+            playersResultObj[mvpPlayer].points.others += 50;
+            var pointsLog = playersResultObj[mvpPlayer].pointsLog.others[match.match_id];
             if (pointsLog) {
                 pointsLog.push(contentUtil.pointsMessage("man_of_the_match",{player_name : playerIdNames[mvpPlayer] , total_points : 10 }));
             } else {
-                resultObj[mvpPlayer].pointsLog.others[match.match_id] = [contentUtil.pointsMessage("man_of_the_match",{player_name : playerIdNames[mvpPlayer] , total_points : 50 })]
+                playersResultObj[mvpPlayer].pointsLog.others[match.match_id] = [contentUtil.pointsMessage("man_of_the_match",{player_name : playerIdNames[mvpPlayer] , total_points : 50 })]
             }
         } else if (mvpPlayer != 0) {
             errorAlert("MVP player not a team player. Matchid - "+match.match_id +" Player id - "+mvpPlayer, false);

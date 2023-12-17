@@ -12,13 +12,30 @@ Router.navigate = function(n,silentRedirect) {
 
 var controller = {
     dashboard : {
+        range : "",
         init() {
             this.eventHandler();
         },
         eventHandler() {
-            var winningCounts = winsCounts.byFirstBat + winsCounts.byFirstBowl;
-            var lossingCounts = lossesCounts.byFirstBat + lossesCounts.byFirstBowl;
-            var no_Results = noResults.byFirstBat + noResults.byFirstBowl;
+            var self = this;
+            this.range = document.querySelectorAll("#range")[0].value;
+            this.constructorDashboard("first");
+            document.querySelectorAll("#range")[0].addEventListener("change", function(){
+                self.range = document.querySelectorAll("#range")[0].value;
+                self.constructorDashboard();
+            });
+        },
+        constructorDashboard(data) {
+            if (data != "first") {
+                this.winningRatioStats.destroy();
+                this.runrateStats.destroy();
+            }
+            
+            var matchStats = window[this.range];
+            
+            var winningCounts = matchStats.winsCounts.byFirstBat + matchStats.winsCounts.byFirstBowl;
+            var lossingCounts = matchStats.lossesCounts.byFirstBat + matchStats.lossesCounts.byFirstBowl;
+            var no_Results = matchStats.noResults.byFirstBat + matchStats.noResults.byFirstBowl;
             
             var config = stats.winRadio;
             config.data = {
@@ -33,24 +50,25 @@ var controller = {
                     },
                     {
                         backgroundColor: ["#6478C8","#6478C8","#6478C8","#6478C8","#9664C8","#eee","#eee",'#E6A064', '#A0825A'],
-                        data: [0,0,0, winsCounts.byFirstBat,winsCounts.byFirstBowl, noResults.byFirstBat , noResults.byFirstBowl , lossesCounts.byFirstBat,lossesCounts.byFirstBowl],
+                        data: [0,0,0, matchStats.winsCounts.byFirstBat,matchStats.winsCounts.byFirstBowl, matchStats.noResults.byFirstBat , matchStats.noResults.byFirstBowl , matchStats.lossesCounts.byFirstBat,matchStats.lossesCounts.byFirstBowl],
                         weight: 0.7,
                         borderRadius : 20
                     }
                 ]
             };
-            var winningRatioStats = new Chart(document.getElementById('win-ratio-stats'), config);
+            
+            this.winningRatioStats = new Chart(document.getElementById('win-ratio-stats'), config);
 
             stringUtil._CountUp(document.querySelector("#wins-count"), winningCounts);
             stringUtil._CountUp(document.querySelector("#losses-count"), lossingCounts);
             
             var config = stats.runrate;
             config.data = {
-                labels: matchNames,
+                labels: matchStats.matchOppNames,
                 datasets: [
                     {
                         label: 'Run Rate',
-                        data: matchRunrates,
+                        data: matchStats.matchRunrates,
                         borderColor: "#b01e2e",
                         fill: false,
                         cubicInterpolationMode: 'monotone',
@@ -58,7 +76,53 @@ var controller = {
                     }
                 ]
             };
-            var runrateStats = new Chart(document.getElementById('run-rate-stats'), config);
+            this.runrateStats = new Chart(document.getElementById('run-rate-stats'), config);
+
+            matchStats.partnershipsData.sort((a, b) => {
+                return b.total_runs - a.total_runs;
+            });
+            
+            var topPartnership = [];
+            for (let index = 0; index < 5; index++) {
+                const partnership = matchStats.partnershipsData[index];
+                var players = partnership.player_a_name + " " + partnership.player_a_runs+"(" +partnership.player_a_balls + ") || " + 
+                              partnership.player_b_name + " " + partnership.player_b_runs+"(" +partnership.player_b_balls + ")";
+                var matchObj = matches[partnership.match_id];
+                var oppObj = matchObj.team_a.name === myTeam.name ? matchObj.team_b : matchObj.team_a;
+                var oppName = oppObj.name;
+                
+                var date    = stringUtil.parseDate(matchObj.start_datetime);
+                topPartnership.push([index+1, players, partnership.total_runs, partnership.total_balls,oppName,date]);
+            }
+
+            if (data == "first") {
+                this.topPartnerships = new gridjs.Grid({
+                    columns: [
+                        {name : "*" ,width : "8px" },
+                        {
+                            name : "PARTNERS" ,
+                            width : "180px" , 
+                            formatter: (cell) => gridjs.html(`${cell.split("||")[0]} && <br>${cell.split("||")[1]}`)
+                        }, 
+                        {name : "RUNS" ,width : "70px" },
+                        {name : "BALLS" ,width : "70px" },
+                        "VS",
+                        "DATE"],
+                    data: topPartnership,
+                    style : {
+                        table: {
+                            'font-size': '13px'
+                        },
+                        th: {
+                            'font-size': '11px'
+                        }                  
+                    }
+                }).render(document.querySelector("#top-partnership"));
+            } else {
+                this.topPartnerships.updateConfig({
+                    data: topPartnership
+                }).forceRender();
+            }
         },
         destory() {
 
@@ -383,57 +447,57 @@ var controller = {
                 this.topRunsReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "R" ,width : "80px" },{name : "In" ,width : "80px" }],
                     data: matchUtil.parseForTable(self.topRuns,"runs","innings")
-                },tabelStyle)).render(document.querySelector("#top-runs-report"));
+                },tableStyle)).render(document.querySelector("#top-runs-report"));
 
                 this.thirtiesReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "30s" ,width : "100px" }],
                     data: matchUtil.parseForTable(self["30s"],"30s")
-                },tabelStyle)).render(document.querySelector("#thirties-report"));
+                },tableStyle)).render(document.querySelector("#thirties-report"));
 
                 this.fiftiesReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "50s" ,width : "100px" }],
                     data: matchUtil.parseForTable(self["50s"],"50s")
-                },tabelStyle)).render(document.querySelector("#fifties-report"));
+                },tableStyle)).render(document.querySelector("#fifties-report"));
 
                 this.hundredsReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "100s" ,width : "100px" }],
                     data: matchUtil.parseForTable(self["100s"],"100s")
-                },tabelStyle)).render(document.querySelector("#hundreds-report"));
+                },tableStyle)).render(document.querySelector("#hundreds-report"));
 
                 this.topWicketsReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "W" ,width : "80px" },{name : "In" ,width : "80px" }],
                     data: matchUtil.parseForTable(self.topWickets,"wickets","innings")
-                },tabelStyle)).render(document.querySelector("#top-wickets-report"));
+                },tableStyle)).render(document.querySelector("#top-wickets-report"));
 
                 this.mostThreeWicketsReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "3W" ,width : "100px" }],
                     data: matchUtil.parseForTable(self["3wickets"],"3wickets")
-                },tabelStyle)).render(document.querySelector("#most-three-wickets-report"));
+                },tableStyle)).render(document.querySelector("#most-three-wickets-report"));
 
                 this.mostFiveWicketsReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "5W" ,width : "100px" }],
                     data: matchUtil.parseForTable(self["5wickets"],"5wickets")
-                },tabelStyle)).render(document.querySelector("#most-five-wickets-report"));
+                },tableStyle)).render(document.querySelector("#most-five-wickets-report"));
 
                 this.maidenOversReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "M" ,width : "100px" }],
                     data: matchUtil.parseForTable(self.maidens,"maidens")
-                },tabelStyle)).render(document.querySelector("#maiden-overs-report"));
+                },tableStyle)).render(document.querySelector("#maiden-overs-report"));
 
                 this.catchesReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "C" ,width : "100px" }],
                     data: matchUtil.parseForTable(self.mostCatches,"catches")
-                },tabelStyle)).render(document.querySelector("#catches-report"));
+                },tableStyle)).render(document.querySelector("#catches-report"));
 
                 this.runoutsReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "R" ,width : "100px" }],
                     data: matchUtil.parseForTable(self.mostRunouts,"runouts")
-                },tabelStyle)).render(document.querySelector("#runouts-report"));
+                },tableStyle)).render(document.querySelector("#runouts-report"));
 
                 this.stumpingsReportGrid = new gridjs.Grid(Object.assign({
                     columns: ["#", "Name",  {name : "S" ,width : "100px" }],
                     data: matchUtil.parseForTable(self.mostStumpings,"stumpings")
-                },tabelStyle)).render(document.querySelector("#stumpings-report"));
+                },tableStyle)).render(document.querySelector("#stumpings-report"));
             } else {
                 this.topRunsReportGrid.updateConfig({
                     data: matchUtil.parseForTable(self.topRuns,"runs","innings")
@@ -548,22 +612,22 @@ var controller = {
                 this.battingGrid = new gridjs.Grid(Object.assign({
                     columns: ["Rank", "Batsmen", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topBattingPoint,"points")
-                },tabelStyle)).render(document.querySelector("#batting-points"));
+                },tableStyle)).render(document.querySelector("#batting-points"));
     
                 this.bowlingGrid = new gridjs.Grid(Object.assign({
                     columns: ["Rank", "Bowler", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topBowlingPoint,"points")
-                },tabelStyle)).render(document.querySelector("#bowling-points"));
+                },tableStyle)).render(document.querySelector("#bowling-points"));
     
                 this.fieldingGrid = new gridjs.Grid(Object.assign({
                     columns: ["Rank", "Fielder", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topFieldingPoint,"points")
-                },tabelStyle)).render(document.querySelector("#fielding-points"));
+                },tableStyle)).render(document.querySelector("#fielding-points"));
 
                 this.otherGrid = new gridjs.Grid(Object.assign({
                     columns: ["Rank", "Name", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topOtherPoint,"points")
-                },tabelStyle)).render(document.querySelector("#other-points"));
+                },tableStyle)).render(document.querySelector("#other-points"));
 
                 this.battingGrid.on('rowClick', (...args) => {
                     var playerId = args[1].cells[3].data;

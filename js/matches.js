@@ -386,29 +386,30 @@ players.members = members;
 
 
 var matches = {};
-var matchNames = [];
-var matchRunrates = [];
-var winsCounts = {
-    byFirstBowl : 0,
-    byFirstBat : 0
-};
-var lossesCounts = {
-    byFirstBowl : 0,
-    byFirstBat : 0
-};
-var noResults = {
-    byFirstBowl : 0,
-    byFirstBat : 0
-};
+// var matchOppNames = [];
+// var matchRunrates = [];
+// var winsCounts = {
+//     byFirstBowl : 0,
+//     byFirstBat : 0
+// };
+// var lossesCounts = {
+//     byFirstBowl : 0,
+//     byFirstBat : 0
+// };
+// var noResults = {
+//     byFirstBowl : 0,
+//     byFirstBat : 0
+// };
 
 var matchesArray = Object.values(rawMatchesData).reverse();
 var matchOrder = Object.keys(rawMatchesData).map(function (x) { 
     return parseInt(x, 10); 
 }).reverse();
 
-function parseMatchData(resultObj,parseData) {
+function parseMatchData(playersResultObj,matchResultObj,parseData) {
     matchesArray.forEach(matchObj => {
         var matchData = matchObj.data;
+        var matchId = matchData.match_id.toString();
         if (parseData) {
             var timeInMs = new Date(matchData.start_datetime).getTime();
             if (!(timeInMs > parseData.startTime && timeInMs < parseData.endTime)) {
@@ -428,34 +429,34 @@ function parseMatchData(resultObj,parseData) {
 
         battingData.scorecard[0].batting.forEach(function(batterObj) {
             if (playerIds.indexOf(batterObj.player_id) !== -1) {
-                matchUtil.playerBattingStats(batterObj, resultObj[batterObj.player_id],matchData);
+                matchUtil.playerBattingStats(batterObj, playersResultObj[batterObj.player_id],matchData);
             }
         });
         battingData.scorecard[0].to_be_bat.forEach(function(player) {
             if (playerIds.indexOf(player.player_id) !== -1) {
-                resultObj[player.player_id].batting.matches++;
+                playersResultObj[player.player_id].batting.matches++;
             }
         });
         
         bowlData.scorecard[0].bowling.forEach(function(bowlerObj) {
             if (playerIds.indexOf(bowlerObj.player_id) !== -1) {
-                matchUtil.playerBowlingStats(bowlerObj, resultObj[bowlerObj.player_id],matchData)
+                matchUtil.playerBowlingStats(bowlerObj, playersResultObj[bowlerObj.player_id],matchData)
             }
         });
 
         bowlData.scorecard[0].batting.forEach(function(oppBatterObj) {
-            matchUtil.playerFieldingStats(oppBatterObj, resultObj, matchData,battingData.wicket_keeper_info);
+            matchUtil.playerFieldingStats(oppBatterObj, playersResultObj, matchData,battingData.wicket_keeper_info);
         });
         
-        matchUtil.playerOtherStats(resultObj,matchData);
+        matchUtil.playerOtherStats(playersResultObj,matchData);
 
-        if (!parseData) {
+        // if (!parseData) {
             var myTeamInnings = matchData.team_a.id == myTeam.id ? matchData.team_a : matchData.team_b;
             var oppTeamInnings = matchData.team_a.id == myTeam.id ? matchData.team_b : matchData.team_a;
-            matchNames.push(oppTeamInnings.name);
-            matchRunrates.push(myTeamInnings.innings[0].summary.rr);
+            matchResultObj.matchOppNames.push(oppTeamInnings.name);
+            matchResultObj.matchRunrates.push(myTeamInnings.innings[0].summary.rr);
             
-            const counts = (matchData.match_result === "Abandoned") ? noResults : (matchData.winning_team === myTeam.name ? winsCounts : lossesCounts);
+            const counts = (matchData.match_result === "Abandoned") ? matchResultObj.noResults : (matchData.winning_team === myTeam.name ? matchResultObj.winsCounts : matchResultObj.lossesCounts);
 
             const isOptToField = matchData.toss_details.includes("opt to field");
             const isOptToBat = matchData.toss_details.includes("opt to bat");
@@ -471,18 +472,24 @@ function parseMatchData(resultObj,parseData) {
             if (!(isOptToField || isOptToBat)) {
                 errorAlert("Toss details parsing failed", false);
             }
-        }
 
+            allPartnerships[matchId].data.graph_data.forEach(function(partnership) {
+                if (partnership.team_id == myTeam.id) {
+                    matchResultObj.partnershipsData.push(partnership);
+                }
+            });
+            
+        // }
         
-        matches[matchData.match_id.toString()] = matchData;
+        matches[matchId] = matchData;
     });
 }
 
 // Overall
-parseMatchData(playersStats);
+parseMatchData(playersStats,matchStats);
 
 // May 15 to Nov 15
-parseMatchData(playersStats_2023,{
+parseMatchData(playersStats_2023,matchStats_2023,{
     startTime : 1684089000000,
     endTime : 1704017145769
 });

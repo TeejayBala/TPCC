@@ -475,7 +475,11 @@ function parseMatchData(playersResultObj,matchResultObj,parseData) {
 
             allPartnerships[matchId].data.graph_data.forEach(function(partnership) {
                 if (partnership.team_id == myTeam.id) {
-                    matchResultObj.partnershipsData.push(partnership);
+                    if (playerNames[partnership.player_a_name] && playerNames[partnership.player_b_name]) {
+                        matchResultObj.partnershipsData.push(partnership);
+                    } else {
+                        errorAlert("Partnership data parsing failed - " + partnership.player_a_name +"  ||  "+partnership.player_b_name, false);
+                    }
                 }
             });
             

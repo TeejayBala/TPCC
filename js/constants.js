@@ -44,11 +44,11 @@ const playerNames = {
         "Sanjay V":             2969572, "†Sanjay V":2969572,"† Sanjay V":2969572,
         "Selva":                3161354,
         "Siva Sankar":          3032818,
-        "sugumar":              3171953,
+        "sugumar":              3171953,   "Sugumar":         3171953,
         "Sumangar G":           2938713,   "Suman":           2938713,
         "Maharajan" :           6149496,
         "Rengaraj" :            9472826,
-        "Prabakaran" :          3293159
+        "Prabakaran" :          3293159,    "Praba Bro Zoho" : 3293159
 }
 var playerIdNames = {
     15434419 : "Ajay",                 

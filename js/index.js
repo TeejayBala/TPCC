@@ -83,7 +83,7 @@ var controller = {
             });
             
             var topPartnership = [];
-            for (let index = 0; index < 5; index++) {
+            for (let index = 0; index < matchStats.partnershipsData.length; index++) {
                 const partnership = matchStats.partnershipsData[index];
                 var players = partnership.player_a_name + " " + partnership.player_a_runs+"(" +partnership.player_a_balls + ") || " + 
                               partnership.player_b_name + " " + partnership.player_b_runs+"(" +partnership.player_b_balls + ")";
@@ -109,6 +109,7 @@ var controller = {
                         "VS",
                         "DATE"],
                     data: topPartnership,
+                    pagination: {limit : 5 , summary : false},
                     style : {
                         table: {
                             'font-size': '13px'

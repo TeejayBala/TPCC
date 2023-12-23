@@ -20,6 +20,12 @@ for new match adding
 
         and add in mvp.js file.
 
+    3) for partnership 
+        Api.get('/graph/get-match-partnership-data/' + matchID, null, function (error, result) {
+            console.log(matchID , JSON.stringify(result));
+        });
+    and add in partnership.js file.
+
 
 for new player adding
     
@@ -41,10 +47,6 @@ for new player adding
             playerIdNames
         add player photo url in playersPhotos
 
-for partnership 
-    Api.get('/api/v1/graph/get-match-partnership-data/' + matchID, null, function (error, result) {
-        console.log(matchID , JSON.stringify(result));
-    });
 
 
 for every work update the version 

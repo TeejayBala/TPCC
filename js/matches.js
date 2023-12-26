@@ -389,21 +389,6 @@ players.members = members;
 
 
 var matches = {};
-// var matchOppNames = [];
-// var matchRunrates = [];
-// var winsCounts = {
-//     byFirstBowl : 0,
-//     byFirstBat : 0
-// };
-// var lossesCounts = {
-//     byFirstBowl : 0,
-//     byFirstBat : 0
-// };
-// var noResults = {
-//     byFirstBowl : 0,
-//     byFirstBat : 0
-// };
-
 var matchesArray = Object.values(rawMatchesData).reverse();
 var matchOrder = Object.keys(rawMatchesData).map(function (x) { 
     return parseInt(x, 10); 
@@ -458,6 +443,7 @@ function parseMatchData(playersResultObj,matchResultObj,parseData) {
             var oppTeamInnings = matchData.team_a.id == myTeam.id ? matchData.team_b : matchData.team_a;
             matchResultObj.matchOppNames.push(oppTeamInnings.name);
             matchResultObj.matchRunrates.push(myTeamInnings.innings[0].summary.rr);
+            matchResultObj.matchEcorates.push(oppTeamInnings.innings[0].summary.rr);
             
             const counts = (matchData.match_result === "Abandoned") ? matchResultObj.noResults : (matchData.winning_team === myTeam.name ? matchResultObj.winsCounts : matchResultObj.lossesCounts);
 

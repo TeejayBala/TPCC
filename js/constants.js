@@ -154,6 +154,7 @@ var fieldingStatsObj = {
 var playersStats = {};
 var matchStats = {
     matchRunrates : [],
+    matchEcorates : [],
     matchOppNames : [],
     winsCounts : {
         byFirstBowl : 0,

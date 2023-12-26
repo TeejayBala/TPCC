@@ -76,8 +76,25 @@ var controller = {
                     }
                 ]
             };
-            this.runrateStats = new Chart(document.getElementById('run-rate-stats'), config);
+            this.runrateStats = new Chart(document.getElementById('batting-run-rate-stats'), config);
 
+
+            var config = stats.ecorate;
+            config.data = {
+                labels: matchStats.matchOppNames,
+                datasets: [
+                    {
+                        label: 'Economy Rate',
+                        data: matchStats.matchEcorates,
+                        borderColor: "#b01e2e",
+                        fill: false,
+                        cubicInterpolationMode: 'monotone',
+                        tension: 0.4
+                    }
+                ]
+            };
+            this.ecorateStats = new Chart(document.getElementById('bowling-eco-rate-stats'), config);
+            
             matchStats.partnershipsData.sort((a, b) => {
                 return b.total_runs - a.total_runs;
             });

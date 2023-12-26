@@ -86,14 +86,29 @@
     <template layout-id="dashboard">
       <div style="height: 100px;">
         <select name="range" id="range" style="float: right;">
-          <option value="matchStats">Overall</option>
           <option value="matchStats_2023">May 2023</option>
+          <option value="matchStats">Overall</option>
         </select>
       </div>
       
       <div style="height: calc(100% - 100px);overflow: scroll;">
         <div style="display: flex;">
-          <div style="display: flex;text-align: center;">
+          <div style="width: 50%;">
+            <h4>Batting Run-rate Stats</h4>
+            <div style="height:250px;width:100%;">
+              <canvas id="batting-run-rate-stats"></canvas>
+            </div>
+            <h4>Bowling Eco-rate Stats</h4>
+            <div style="height:250px;width:100%;">
+              <canvas id="bowling-eco-rate-stats"></canvas>
+            </div>
+          </div>
+          <div style="width: 50%;">
+            <p style="font-size: 20px;color: green;"> Top partnership</p>
+            <div class="invert" id="top-partnership"></div>
+          </div>
+        </div>
+        <div style="display: flex;text-align: center;">
             <div style="display: flex;align-items: center;height: 150px;"> 
               <div style=" margin: 0px 20px; line-height: 1;">
                 <p style="font-size: 20px;color: #b01e2e;"> Losses</p>
@@ -111,14 +126,6 @@
               </div>
             </div>
           </div>
-          <div style="height:250px;width:100%;">
-            <canvas id="run-rate-stats"></canvas>
-          </div>
-        </div>
-        <div>
-          <p style="font-size: 20px;color: green;"> Top partnership</p>
-          <div class="invert" id="top-partnership" style="width: 60%;"></div>
-        </div>
       </div>
     </template>
 

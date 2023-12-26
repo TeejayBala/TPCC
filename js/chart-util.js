@@ -196,6 +196,51 @@ var stats = {
             }
         }
     },
+    ecorate : {
+      type: 'line',
+      data: {},
+      options: {
+          // responsive: true,
+          // responsive : false,
+          maintainAspectRatio : false,
+          // aspectRatio : "1|1",
+          plugins: {
+              title: {
+                  display: false,
+                  // text: 'Run rate statistics'
+              },
+              legend: {
+                  display: false
+              }
+          },
+          interaction: {
+              intersect: false,
+          },
+          scales: {
+              x: {
+                  display: true,
+                  title: {
+                      display: false,
+                      text: 'Match'
+                  },
+                  ticks: {
+                      callback: function (value) {
+                          return `${this.getLabelForValue(value).substring(0, 5)}...`;;
+                      }
+                  }
+              },
+              y: {
+                  display: true,
+                  title: {
+                      display: true,
+                      text: 'Run rate'
+                  },
+                  suggestedMin: 0,
+                  // suggestedMax: 200
+              }
+          }
+      }
+    },
     winRadio : {
         type: 'doughnut',
         data: {},

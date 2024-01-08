@@ -197,6 +197,9 @@ playerIds.forEach(function(playerId) {
 var playersStats_2023 = JSON.parse(JSON.stringify(playersStats));
 var matchStats_2023 = JSON.parse(JSON.stringify(matchStats));
 
+var playersStats_2024 = JSON.parse(JSON.stringify(playersStats));
+var matchStats_2024 = JSON.parse(JSON.stringify(matchStats));
+
 var tableStyle = {
     search : true,
     pagination: {limit : 10 , summary : false},

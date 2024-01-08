@@ -451,17 +451,23 @@ var controller = {
             });
         },
         constructorLeaderboardDetails(data) {
+            document.querySelector("#batting-time-range").parentNode.style.display = "unset";
+            document.querySelector("#bowling-time-range").parentNode.style.display = "unset";
+            document.querySelector("#fielding-time-range").parentNode.style.display = "unset";
 
             if (this.range == "playersStats_2023") {
                 document.querySelector("#batting-time-range").innerText = "May 15 2023 to Dec 31  2023";
                 document.querySelector("#bowling-time-range").innerText = "May 15  2023 to Dec 31  2023";
                 document.querySelector("#fielding-time-range").innerText = "May 15  2023 to Dec 31  2023";
-            } else {
+            } else if (this.range == "playersStats"){
                 document.querySelector("#batting-time-range").innerText = "January 1 2022 to Today";
                 document.querySelector("#bowling-time-range").innerText = "January 1 2022 to Today";
                 document.querySelector("#fielding-time-range").innerText = "January 1 2022 to Today";
+            } else {
+                document.querySelector("#batting-time-range").parentNode.style.display = "none";
+                document.querySelector("#bowling-time-range").parentNode.style.display = "none";
+                document.querySelector("#fielding-time-range").parentNode.style.display = "none";
             }
-            
             var self = this;
             if (data == "first" ) {
                 this.topRunsReportGrid = new gridjs.Grid(Object.assign({
@@ -602,6 +608,7 @@ var controller = {
             this.bowling = [];
             this.fielding = [];
             this.others = [];
+            this.overall = [];
             
             var self = this;
             playerIds.forEach(function(playerId){
@@ -610,6 +617,7 @@ var controller = {
                 self.bowling.push({player_id : playerId , points : playerObj.points.bowling});
                 self.fielding.push({player_id : playerId , points : playerObj.points.fielding});
                 self.others.push({player_id : playerId , points : playerObj.points.others});
+                self.overall.push({player_id : playerId , points : playerObj.points.batting + playerObj.points.bowling + playerObj.points.fielding });
             });
 
             self.topBattingPoint = self.batting.sort((a, b) => {
@@ -625,6 +633,10 @@ var controller = {
             });
 
             self.topOtherPoint = self.others.sort((a, b) => {
+                return b.points - a.points;
+            });
+
+            self.topOverallPoint = self.overall.sort((a, b) => {
                 return b.points - a.points;
             });
             
@@ -648,6 +660,11 @@ var controller = {
                     columns: ["Rank", "Name", "Points",{id: "name" , name : "Name" , hidden : true}],
                     data: matchUtil.parseForTable(self.topOtherPoint,"points")
                 },tableStyle)).render(document.querySelector("#other-points"));
+
+                this.overallGrid = new gridjs.Grid(Object.assign({
+                    columns: ["Rank", "Name", "Points",{id: "name" , name : "Name" , hidden : true}],
+                    data: matchUtil.parseForTable(self.topOverallPoint,"points")
+                },tableStyle)).render(document.querySelector("#overall-points"));
 
                 this.battingGrid.on('rowClick', (...args) => {
                     var playerId = args[1].cells[3].data;
@@ -772,6 +789,11 @@ var controller = {
 
                 this.otherGrid.updateConfig({
                     data: matchUtil.parseForTable(self.topOtherPoint,"points")
+                }).forceRender();
+
+
+                this.overallGrid.updateConfig({
+                    data: matchUtil.parseForTable(self.topOverallPoint,"points")
                 }).forceRender();
             }
 

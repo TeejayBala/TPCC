@@ -499,24 +499,35 @@ parseMatchData(playersStats_2024,matchStats_2024,{
 
 
 playerIds.forEach(function(playerId){
-    var playerStats = playersStats[playerId];
-    
     // Batting Average = ( Runs Scored / (Innings Played - Times Not Out) )
-    playerStats.batting.avg = playerStats.batting.runs/(playerStats.batting.innings - playerStats.batting.notout);  
-
     // Batting Strike Rate = ( Number of Runs Scored x 100 ) / Number of Balls Faced
-    playerStats.batting.sr = (playerStats.batting.runs*100)/playerStats.batting.balls;
-
     // Economy Rate = Number of Runs Conceded / Number of Overs Bowled
-    playerStats.bowling.economy = playerStats.bowling.runs/playerStats.bowling.overs;
-
     // Bowling Strike Rate = Number of Balls Bowled / Number of Wickets Taken
-    playerStats.bowling.sr = playerStats.bowling.balls/playerStats.bowling.wickets;
-    
     // Bowling Average = Number of Runs Conceded / Number of Wickets Taken
-    playerStats.bowling.avg = playerStats.bowling.runs/playerStats.bowling.wickets;
 
+    var playerStats = playersStats[playerId];
+    playerStats.batting.avg = playerStats.batting.runs/(playerStats.batting.innings - playerStats.batting.notout);
+    playerStats.batting.sr = (playerStats.batting.runs*100)/playerStats.batting.balls;
+    playerStats.bowling.economy = playerStats.bowling.runs/playerStats.bowling.overs;
+    playerStats.bowling.sr = playerStats.bowling.balls/playerStats.bowling.wickets;
+    playerStats.bowling.avg = playerStats.bowling.runs/playerStats.bowling.wickets;
     playersStats[playerId].bowling.matches = playersStats[playerId].fielding.matches = playersStats[playerId].batting.matches;
+
+    var playerStats_2023 = playersStats_2023[playerId];
+    playerStats_2023.batting.avg = playerStats_2023.batting.runs/(playerStats_2023.batting.innings - playerStats_2023.batting.notout);
+    playerStats_2023.batting.sr = (playerStats_2023.batting.runs*100)/playerStats_2023.batting.balls;
+    playerStats_2023.bowling.economy = playerStats_2023.bowling.runs/playerStats_2023.bowling.overs;
+    playerStats_2023.bowling.sr = playerStats_2023.bowling.balls/playerStats_2023.bowling.wickets;
+    playerStats_2023.bowling.avg = playerStats_2023.bowling.runs/playerStats_2023.bowling.wickets;
+    playersStats_2023[playerId].bowling.matches = playersStats_2023[playerId].fielding.matches = playersStats_2023[playerId].batting.matches;
+
+    var playerStats_2024 = playersStats_2024[playerId];
+    playerStats_2024.batting.avg = playerStats_2024.batting.runs/(playerStats_2024.batting.innings - playerStats_2024.batting.notout);
+    playerStats_2024.batting.sr = (playerStats_2024.batting.runs*100)/playerStats_2024.batting.balls;
+    playerStats_2024.bowling.economy = playerStats_2024.bowling.runs/playerStats_2024.bowling.overs;
+    playerStats_2024.bowling.sr = playerStats_2024.bowling.balls/playerStats_2024.bowling.wickets;
+    playerStats_2024.bowling.avg = playerStats_2024.bowling.runs/playerStats_2024.bowling.wickets;
+    playersStats_2024[playerId].bowling.matches = playersStats_2024[playerId].fielding.matches = playersStats_2024[playerId].batting.matches;
 
 })
 

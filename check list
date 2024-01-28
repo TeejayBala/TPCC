@@ -1,7 +1,7 @@
 for new match adding
     1) Patch match data
         Api.get('/scorecard/v2/get-scorecard/' + matchID, null, function (error, result) {
-            console.log(result);
+            console.log(matchID , JSON.stringify(result));
         });
 
         and add in matches.js file.

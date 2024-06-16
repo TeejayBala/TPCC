@@ -24,7 +24,8 @@ const playerIds = [
     3161354,
     3032818,
     3171953,
-    2938713
+    2938713,
+    3215203
 ];
 
 const playerNames = {
@@ -48,7 +49,8 @@ const playerNames = {
         "Sumangar G":           2938713,   "Suman":           2938713,
         "Maharajan" :           6149496,
         "Rengaraj" :            9472826,
-        "Prabakaran" :          3293159,    "Praba Bro Zoho" : 3293159
+        "Prabakaran" :          3293159,    "Praba Bro Zoho" : 3293159,
+        "Raviston" :            3215203
 }
 var playerIdNames = {
     15434419 : "Ajay",                 
@@ -71,7 +73,8 @@ var playerIdNames = {
     2938713 : "Sumangar G",
     6149496 : "Maharajan",
     9472826 : "Rengaraj",
-    3293159 : "Prabakaran"
+    3293159 : "Prabakaran",
+    3215203 : "Raviston"
 }
 
 const playersPhotos = {
@@ -96,7 +99,7 @@ const playersPhotos = {
     6149496     :  "/image/profile/6149496.jpeg",     //'Maharajan'
     9472826     :  "/image/profile/9472826.jpeg",     //'Rengaraj'
     3293159     :  "/image/profile/3293159.jpeg",     //'Prabakaran',
-    
+    3215203     :  "/image/profile/3215203.jpeg",     //'Raviston
     // 14125110    :  "",     //'A S Krishna',
     // 6149496     :   "",     //'Maharajan',
     // 12838213    :   "",     //'Persian',

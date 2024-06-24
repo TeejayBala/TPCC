@@ -37,7 +37,7 @@ const playerNames = {
         "Jayaraj M":            2938679, "Arjun":                3173458,
         "Jenesh":               3173269,
         "Karthi Raja":          3163993, "Karthikraja":          3163993,"Karthikraja G":          3163993,
-        "Lokesh G":             15618359,"†Lokesh G":             15618359, 
+        "Lokesh G":             15618359,"†Lokesh G":             15618359, "† Lokesh G":             15618359, 
         "Nagarathinam Harinarayanan":7804617, "†Nagarathinam Harinarayanan":7804617, "† Nagarathinam Harinarayanan":7804617,
         "Raj Kumar":            3343356,
         "Ranjith G":            2938688, "Ranjith" : 2938688,

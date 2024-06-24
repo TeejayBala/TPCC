@@ -101,7 +101,6 @@ var controller = {
             });
             
             var topPartnership = [];
-            debugger
             for (let index = 0; index < matchStats.partnershipsData.length; index++) {
                 const partnership = matchStats.partnershipsData[index];
                 var players = partnership.player_a_name + " " + partnership.player_a_runs+"(" +partnership.player_a_balls + ") || " + 

@@ -99,31 +99,16 @@ var matchUtil = {
         });
         return bowlerScore;
     },
-    playerBattingStats(battingObj, playerObj, match) {
-        var playerBattingObj = playerObj.batting;
-        if (playerBattingObj.highestruns < battingObj.runs) {
-            playerBattingObj.highestruns = battingObj.runs;
+    playerBattingStats(battingObj, playerObj, match, position) {
+        this.calculateBattingStats(battingObj, playerObj.batting);
+
+        //Batting position calculation
+        if (playerObj.batting.position_data[position]) {
+            this.calculateBattingStats(battingObj, playerObj.batting.position_data[position]);
+        } else {
+            playerObj.batting.position_data[position] = JSON.parse(JSON.stringify(battingPositionStatsObj));
+            this.calculateBattingStats(battingObj, playerObj.batting.position_data[position]);
         }
-        if(battingObj.how_to_out == "not out") {
-            playerBattingObj.notout++;
-        } else if (battingObj.runs == 0) {
-            playerBattingObj.ducks ++;
-        }
-        if (battingObj.runs >= 30 && battingObj.runs < 50) {
-            playerBattingObj["30s"] ++;
-        }
-        if (battingObj.runs >= 50 && battingObj.runs < 100) {
-            playerBattingObj["50s"] ++;
-        }
-        if (battingObj.runs >= 100) {
-            playerBattingObj["100s"]  ++;
-        }
-        playerBattingObj.matches++;
-        playerBattingObj.innings++;
-        playerBattingObj["4s"] += battingObj["4s"] || 0;
-        playerBattingObj["6s"] += battingObj["6s"] || 0;
-        playerBattingObj.runs += battingObj.runs || 0;
-        playerBattingObj.balls += battingObj.balls || 0;
 
         //Batting points calculation
         var battingPoints = 0;
@@ -198,33 +183,41 @@ var matchUtil = {
             playerObj.pointsLog.batting[match.match_id] = pointsLog;
         }
     },
+    calculateBattingStats(battingObj, playerBattingObj) {
+        if (playerBattingObj.highestruns < battingObj.runs) {
+            playerBattingObj.highestruns = battingObj.runs;
+        }
+        if(battingObj.how_to_out == "not out") {
+            playerBattingObj.notout++;
+        } else if (battingObj.runs == 0) {
+            playerBattingObj.ducks ++;
+        }
+        if (battingObj.runs >= 30 && battingObj.runs < 50) {
+            playerBattingObj["30s"] ++;
+        }
+        if (battingObj.runs >= 50 && battingObj.runs < 100) {
+            playerBattingObj["50s"] ++;
+        }
+        if (battingObj.runs >= 100) {
+            playerBattingObj["100s"]  ++;
+        }
+        playerBattingObj.matches++;
+        playerBattingObj.innings++;
+        playerBattingObj["4s"] += battingObj["4s"] || 0;
+        playerBattingObj["6s"] += battingObj["6s"] || 0;
+        playerBattingObj.runs += battingObj.runs || 0;
+        playerBattingObj.balls += battingObj.balls || 0;
+    },
     playerBowlingStats(bowlingObj, playerObj, match) {
-        var playerBowlingObj = playerObj.bowling;
-        if (bowlingObj.wickets >= 3 && bowlingObj.wickets < 5) {
-            playerBowlingObj["3wickets"] ++;
-        }
-        if (bowlingObj.wickets >= 5) {
-            playerBowlingObj["5wickets"] ++;
-        }
-        
-        playerBowlingObj.innings++;
-        playerBowlingObj["4s"] += bowlingObj["4s"] || 0;
-        playerBowlingObj["6s"] += bowlingObj["6s"] || 0;
-        playerBowlingObj.runs  += bowlingObj.runs || 0;
-        playerBowlingObj.maidens  += bowlingObj.maidens || 0;
-        playerBowlingObj.overs  += bowlingObj.overs || 0;
-        playerBowlingObj.noballs  += bowlingObj.noball || 0;
-        playerBowlingObj.wides  += bowlingObj.wide || 0;
-        playerBowlingObj.wickets  += bowlingObj.wickets || 0;
-        playerBowlingObj.dotballs  += bowlingObj["0s"] || 0;
-        playerBowlingObj.balls  += matchUtil.oversToBalls(bowlingObj.overs || 0);
+        this.calculateBowlingStats(bowlingObj, playerObj.bowling);
 
-        if (bowlingObj.wickets > playerBowlingObj.bestWickets) {
-            playerBowlingObj.bestWickets = bowlingObj.wickets;
-            playerBowlingObj.bestRuns = bowlingObj.runs;
-        } else if (bowlingObj.wickets === playerBowlingObj.bestWickets && bowlingObj.runs < playerBowlingObj.bestRuns) {
-            playerBowlingObj.bestRuns = bowlingObj.runs;
-        }
+        // //Bowling position calculation
+        // if (playerObj.bowling.position_data[position]) {
+        //     this.calculateBowlingStats(battingObj, playerObj.bowling.position_data[position]);
+        // } else {
+        //     playerObj.bowling.position_data[position] = JSON.parse(JSON.stringify(battingPositionStatsObj));
+        //     this.calculateBowlingStats(battingObj, playerObj.bowling.position_data[position], oversPostionData);
+        // }
 
         //Bowling points calculation
         var bowlingPoints = 0;
@@ -239,7 +232,7 @@ var matchUtil = {
         if (bowlingObj.maidens > 0)
         pointsLog.push(contentUtil.pointsMessage("maidens",{player_name : playerName , "total_maidens" : bowlingObj.maidens, total_points : bowlingObj.maidens * 40 }));
         
-        if (playerBowlingObj.balls >= 12) {
+        if (playerObj.bowling.balls >= 12) {
             var eco = JSON.parse(bowlingObj.economy_rate);
             if(eco >= 12) {
                 bowlingPoints -= 30;
@@ -282,6 +275,34 @@ var matchUtil = {
         playerObj.points.bowling += bowlingPoints;
         if (pointsLog.length > 0) {
             playerObj.pointsLog.bowling[match.match_id] = pointsLog;
+        }
+    },
+
+    calculateBowlingStats(bowlingObj, playerBowlingObj, oversPostionData) {
+        if (bowlingObj.wickets >= 3 && bowlingObj.wickets < 5) {
+            playerBowlingObj["3wickets"] ++;
+        }
+        if (bowlingObj.wickets >= 5) {
+            playerBowlingObj["5wickets"] ++;
+        }
+        
+        playerBowlingObj.innings++;
+        playerBowlingObj["4s"] += bowlingObj["4s"] || 0;
+        playerBowlingObj["6s"] += bowlingObj["6s"] || 0;
+        playerBowlingObj.runs  += bowlingObj.runs || 0;
+        playerBowlingObj.maidens  += bowlingObj.maidens || 0;
+        playerBowlingObj.overs  += bowlingObj.overs || 0;
+        playerBowlingObj.noballs  += bowlingObj.noball || 0;
+        playerBowlingObj.wides  += bowlingObj.wide || 0;
+        playerBowlingObj.wickets  += bowlingObj.wickets || 0;
+        playerBowlingObj.dotballs  += bowlingObj["0s"] || 0;
+        playerBowlingObj.balls  += matchUtil.oversToBalls(bowlingObj.overs || 0);
+
+        if (bowlingObj.wickets > playerBowlingObj.bestWickets) {
+            playerBowlingObj.bestWickets = bowlingObj.wickets;
+            playerBowlingObj.bestRuns = bowlingObj.runs;
+        } else if (bowlingObj.wickets === playerBowlingObj.bestWickets && bowlingObj.runs < playerBowlingObj.bestRuns) {
+            playerBowlingObj.bestRuns = bowlingObj.runs;
         }
     },
 

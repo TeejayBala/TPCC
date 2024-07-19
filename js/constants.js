@@ -121,9 +121,53 @@ var battingStatsObj = {
     "100s" : 0,
     "4s" : 0,
     "6s" : 0,
+    "ducks" : 0,
+    "position_data" : {
+    }
+}
+var battingPositionStatsObj = {
+    "position" : 0,
+    "matches" : 0,
+    "innings" : 0,
+    "notout" : 0,
+    "runs" : 0,
+    "balls" : 0,
+    "highestruns": 0,
+    "avg" : 0,
+    "sr" : 0,
+    "30s" : 0,
+    "50s" : 0,
+    "100s" : 0,
+    "4s" : 0,
+    "6s" : 0,
     "ducks" : 0
-};
+}
 var bowlingStatsObj = {
+    matches : 0,
+    innings : 0,
+    overs : 0,
+    maidens : 0,
+    wickets : 0,
+    balls : 0,
+    runs : 0,
+    bestbowling : 0,
+    "3wickets" : 0,
+    noballs : 0,
+    dotballs : 0,
+    "5wickets" : 0,
+    economy : 0,
+    sr : 0,
+    avg : 0,
+    wides : 0,
+    "4s" : 0,
+    "6s" : 0,
+    "bestWickets" : 0,
+    "bestRuns" : 0,
+    "position_data" : {
+    }
+};
+var bowlingPositionStatsObj = {
+    position : 0,
     matches : 0,
     innings : 0,
     overs : 0,
@@ -202,6 +246,9 @@ var matchStats_2023 = JSON.parse(JSON.stringify(matchStats));
 
 var playersStats_2024 = JSON.parse(JSON.stringify(playersStats));
 var matchStats_2024 = JSON.parse(JSON.stringify(matchStats));
+
+var playersStats_2024_1 = JSON.parse(JSON.stringify(playersStats));
+var matchStats_2024_1 = JSON.parse(JSON.stringify(matchStats));
 
 var tableStyle = {
     search : true,

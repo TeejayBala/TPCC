@@ -380,6 +380,8 @@ var rawMatchesData = {
 
 players = {"is_team_member":1,"members":[{"player_id":2478593,"name":"Balakumar S","profile_photo":"https://media.cricheroes.in/user_profile/1683627079728_Miea8tMPs65r.jpeg","player_skill":"","is_verified":1,"is_captain":1,"is_admin":1,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Steady Batter","batter_category_info":"One who likes to build innings slowly and hold on to one end. Tap here to know more.","bowler_category":"Wildcard","bowler_category_info":"This bowler fearlessly trading runs for wickets, one can take a chance on this bowler."},{"player_id":14125110,"name":"A S Krishna","profile_photo":"https://media.cricheroes.in/user_profile/1679211767368_dO0swWiO8h2R.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"","bowler_category_info":""},{"player_id":10084098,"name":"Abdul Razeeth","profile_photo":"https://media.cricheroes.in/user_profile/1663786636010_0f2q3mDwJ2Vd.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Steady Batter","batter_category_info":"One who likes to build innings slowly and hold on to one end. Tap here to know more.","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":15434419,"name":"Ajay","profile_photo":"https://media.cricheroes.in/default/user_profile.png","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":2938678,"name":"Bhuvanesh R","profile_photo":"https://media.cricheroes.in/user_profile/1684743328744_JU87H1VnvAOy.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":3092272,"name":"Deepak Raj Mariyappan","profile_photo":"https://media.cricheroes.in/user_profile/1628511976110_qhUfxx5GigDk.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Classicist","batter_category_info":"One who can rotate strikes more than any other batter. Tap here to know more.","bowler_category":"Wildcard","bowler_category_info":"This bowler fearlessly trading runs for wickets, one can take a chance on this bowler."},{"player_id":3173458,"name":"Jay","profile_photo":"https://media.cricheroes.in/user_profile/1706298987859_iHwQj6jdQeSo.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Hard Hitter","batter_category_info":"One who deals in boundaries more than singles. Tap here to know more.","bowler_category":"Wildcard","bowler_category_info":"This bowler fearlessly trading runs for wickets, one can take a chance on this bowler."},{"player_id":2938679,"name":"Jayaraj M","profile_photo":"https://media.cricheroes.in/user_profile/1565092678053_kLifdnDJQOy4.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":3173269,"name":"Jenesh ","profile_photo":"https://media.cricheroes.in/user_profile/1676174462159_nNF4VUlaAlMU.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":10104412,"name":"Karthi Raja","profile_photo":"https://media.cricheroes.in/default/user_profile.png","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Hard Hitter","batter_category_info":"One who deals in boundaries more than singles. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":3163993,"name":"Karthikraja G","profile_photo":"https://media.cricheroes.in/user_profile/1565430409669_samql7ksUcHC.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Destroyer","batter_category_info":"One who mostly deals in boundaries. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":15618359,"name":"Lokesh G","profile_photo":"https://media.cricheroes.in/user_profile/1661138449766_vS92Q4gnj6MN.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":6149496,"name":"Maharajan","profile_photo":"https://media.cricheroes.in/user_profile/1605324948674_IE1ELfT4faar.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":3109368,"name":"Moulidharan","profile_photo":"https://media.cricheroes.in/user_profile/1569081827356_IrCyfXMWktfB.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Classicist","batter_category_info":"One who likes to rotate strikes more than scoring big shots. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":7804617,"name":"Nagarathinam Harinarayanan","profile_photo":"https://media.cricheroes.in/user_profile/1684114018963_Xg3cwS3HjYas.jpeg","player_skill":"BAT,WK","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Steady Batter","batter_category_info":"One who likes to build innings slowly and hold on to one end. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":12838213,"name":"Persian","profile_photo":"https://media.cricheroes.in/default/user_profile.png","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"","bowler_category_info":""},{"player_id":3293159,"name":"Praba Bro Zoho","profile_photo":"https://media.cricheroes.in/user_profile/1568387687974_Wbpf3sk0ihGE.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"","bowler_category_info":""},{"player_id":3496099,"name":"Praveen Kumar Narayanan","profile_photo":"https://media.cricheroes.in/user_profile/1612275932052_1gFDdjIoDrb3.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":3343356,"name":"Raj Kumar","profile_photo":"https://media.cricheroes.in/user_profile/1569286826734_dAdemLcYpEl8.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"Wildcard","bowler_category_info":"This bowler fearlessly trading runs for wickets, one can take a chance on this bowler."},{"player_id":2938688,"name":"Ranjith G","profile_photo":"https://media.cricheroes.in/user_profile/1694864472513_DgcUdGe6OGA5.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Steady Batter","batter_category_info":"One who likes to build innings slowly and hold on to one end. Tap here to know more.","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":3215203,"name":"Raviston","profile_photo":"https://media.cricheroes.in/user_profile/1693662193279_PI8XzaIr0SE7.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Hard Hitter","batter_category_info":"One who deals in boundaries more than singles. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":9472826,"name":"Rengaraj","profile_photo":"https://media.cricheroes.in/user_profile/1652511713008_U5H9HwI6EtuY.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."},{"player_id":3161332,"name":"Roman","profile_photo":"https://media.cricheroes.in/user_profile/1565102946896_O09Bu83Zq12L.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":2969572,"name":"Sanjay V","profile_photo":"https://media.cricheroes.in/user_profile/1684996233365_LOw29Lio7MZP.jpeg","player_skill":"WK","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Accumulator","batter_category_info":"One who can change pace of the innings as required. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":3161354,"name":"Selva","profile_photo":"https://media.cricheroes.in/user_profile/1678525606331_JCpZLBTMyCS4.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Classicist","batter_category_info":"One who likes to rotate strikes more than scoring big shots. Tap here to know more.","bowler_category":"Economist","bowler_category_info":"This bowler delivers tight spells and seizes wickets at regular intervals."},{"player_id":3032818,"name":"Siva Sankar","profile_photo":"https://media.cricheroes.in/user_profile/1565091785775_5bENapwozheE.jpg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"","bowler_category_info":""},{"player_id":3171953,"name":"sugumar","profile_photo":"https://media.cricheroes.in/default/user_profile.png","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"","bowler_category_info":""},{"player_id":2938713,"name":"Suman","profile_photo":"https://media.cricheroes.in/user_profile/1691254028293_Jw3Q0xnemDdM.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"Classicist","batter_category_info":"One who can rotate strikes more than any other batter. Tap here to know more.","bowler_category":"","bowler_category_info":""},{"player_id":23864579,"name":"Tamilselvan T","profile_photo":"https://media.cricheroes.in/user_profile/1695963366213_lgaYVUIcgAuV.jpeg","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"","bowler_category_info":""},{"player_id":21396635,"name":"Vignesh Ramesh","profile_photo":"https://media.cricheroes.in/default/user_profile.png","player_skill":"","is_verified":1,"is_captain":0,"is_admin":0,"is_player_pro":0,"association_tag":"","is_primary_login":0,"batter_category":"","batter_category_info":"","bowler_category":"Aspirant","bowler_category_info":"This bowler may carry incredible potential and skills but may need more game time."}],"team_id":2040687,"name":"Tamil Pasanga Cricket Club","short_name":"","created_by":2478593,"captain_id":2478593,"is_creator_team_admin":1,"is_active":1,"logo":"https://media.cricheroes.in/team_logo/1683012261995_1ZKMIjeqlubY.jpeg","city_id":3725,"city_name":"Guduvanchery","is_team_secure":1,"is_association_team":0,"is_verified":1,"team_logo":"https://media.cricheroes.in/team_logo/1683012261995_1ZKMIjeqlubY.jpeg","total_team_players":30}
 
+var skipErrorCommentartMatches = ["2898154","11769316","3563890","6643975","7022631","10627999","11342831","11715296"];
+
 var members = {};
 players.members.forEach(member => {
     members[member.player_id.toString()] = member;
@@ -424,6 +426,76 @@ function parseMatchData(playersResultObj,matchResultObj,parseData) {
                 }
             }        
         }
+
+        // Parse Commentary Data for bowling position data
+        var commentaryObj = commentary[matchId];
+        var teamIds = Object.keys(commentaryObj);
+
+        var oversPostionData = {
+            powerplay : {},
+            middle : {},
+            death : {}
+        };
+        
+        teamIds.forEach(teamId => {
+            var teamCommentaryObj = commentaryObj[teamId];
+            if (myTeam.id == teamId) {
+                
+            } else {
+                var wickets = teamCommentaryObj.wickets.data.commentary_with_over_summary;
+                wickets.forEach(wicket => {
+                    wicket.match_over_balls.forEach((wicketObj) => {
+                        var overs = wicketObj.current_over;
+                        
+                        var commentaryArray = wicketObj.commentary.split(' to ');
+                        var bowlerName      = commentaryArray[0];
+                        commentaryArray     = commentaryArray[1].split(' OUT ');
+                        var wicketsArray    = commentaryArray[1].split(', ');
+                        var wicketType      = wicketsArray[0];
+                        if (wicketType == "Run out" || wicketType == "Retired out") {
+                            return;
+                        }
+
+                        var playerId = playerNames[bowlerName];
+                        if (!playerId) {
+                            errorAlert("Failed to parseing commentary data. Matchid - " + matchId , skipErrorCommentartMatches.indexOf(matchId) > -1 );
+                            return;
+                        }
+
+                        var playerResultObj = playersResultObj[playerId]
+                        
+                        if  ( ( (matchData.overs >  0 && matchData.overs <= 20) && (overs <= 6) ) || 
+                              ( (matchData.overs > 20 && matchData.overs <= 25) && (overs <= 7) ) || 
+                              ( (matchData.overs > 25 && matchData.overs <= 30) && (overs <= 8) ) ) {
+                                
+                            if (!playerResultObj.bowling.position_data.powerplay) {
+                                playerResultObj.bowling.position_data.powerplay = JSON.parse(JSON.stringify(bowlingPositionStatsObj));
+                            }
+                            playerResultObj.bowling.position_data.powerplay.wickets++;
+                        } else 
+                        if  ( ( (matchData.overs >  0 && matchData.overs <= 20) && (overs > 6 && overs < 16 ) ) || 
+                              ( (matchData.overs > 20 && matchData.overs <= 25) && (overs > 7 && overs < 21 ) ) || 
+                              ( (matchData.overs > 25 && matchData.overs <= 30) && (overs > 8 && overs < 26 ) ) ) {
+                                
+                            if (!playerResultObj.bowling.position_data.middle) {
+                                playerResultObj.bowling.position_data.middle = JSON.parse(JSON.stringify(bowlingPositionStatsObj));
+                            }
+                            playerResultObj.bowling.position_data.middle.wickets++;
+                        } else 
+                        if  ( ( (matchData.overs >  0 && matchData.overs <= 20) && (overs >= 16 && overs <= 20 ) ) || 
+                              ( (matchData.overs > 20 && matchData.overs <= 25) && (overs >= 21 && overs <= 25 ) ) || 
+                              ( (matchData.overs > 25 && matchData.overs <= 30) && (overs >= 26 && overs <= 30 ) ) ) {
+                                
+                            if (!playerResultObj.bowling.position_data.death) {
+                                playerResultObj.bowling.position_data.death = JSON.parse(JSON.stringify(bowlingPositionStatsObj));
+                            }
+                            playerResultObj.bowling.position_data.death.wickets++;
+                        }
+                    });
+                });
+            }
+        });
+        
         
         if (matchData.winning_team) {
             matchData.result = (matchData.winning_team == myTeam.name) ? "win" : "lose" ;
@@ -448,9 +520,9 @@ function parseMatchData(playersResultObj,matchResultObj,parseData) {
             matchData.team_b.scorecard = [team_b];
         }
 
-        battingData.batting.forEach(function(batterObj) {
+        battingData.batting.forEach(function(batterObj, position) {
             if (playerIds.indexOf(batterObj.player_id) !== -1) {
-                matchUtil.playerBattingStats(batterObj, playersResultObj[batterObj.player_id],matchData);
+                matchUtil.playerBattingStats(batterObj, playersResultObj[batterObj.player_id], matchData, position);
             }
         });
         battingData.to_be_bat.forEach(function(player) {
@@ -461,7 +533,7 @@ function parseMatchData(playersResultObj,matchResultObj,parseData) {
         
         bowlData.bowling.forEach(function(bowlerObj) {
             if (playerIds.indexOf(bowlerObj.player_id) !== -1) {
-                matchUtil.playerBowlingStats(bowlerObj, playersResultObj[bowlerObj.player_id],matchData)
+                matchUtil.playerBowlingStats(bowlerObj, playersResultObj[bowlerObj.player_id],matchData);
             }
         });
 
@@ -534,6 +606,12 @@ parseMatchData(playersStats_2024,matchStats_2024,{
 
 
 
+parseMatchData(playersStats_2024_1,matchStats_2024_1,{
+    startTime : 1716921000000,
+    endTime : 1721391079397
+});
+
+
 
 
 playerIds.forEach(function(playerId){
@@ -566,7 +644,16 @@ playerIds.forEach(function(playerId){
     playerStats_2024.bowling.sr = playerStats_2024.bowling.balls/playerStats_2024.bowling.wickets;
     playerStats_2024.bowling.avg = playerStats_2024.bowling.runs/playerStats_2024.bowling.wickets;
     playersStats_2024[playerId].bowling.matches = playersStats_2024[playerId].fielding.matches = playersStats_2024[playerId].batting.matches;
-
+    
+    var playerStats_2024_1 = playersStats_2024_1[playerId];
+    playerStats_2024_1.batting.avg = playerStats_2024_1.batting.runs/(playerStats_2024_1.batting.innings - playerStats_2024_1.batting.notout);
+    playerStats_2024_1.batting.sr = (playerStats_2024_1.batting.runs*100)/playerStats_2024_1.batting.balls;
+    playerStats_2024_1.bowling.economy = playerStats_2024_1.bowling.runs/playerStats_2024_1.bowling.overs;
+    playerStats_2024_1.bowling.sr = playerStats_2024_1.bowling.balls/playerStats_2024_1.bowling.wickets;
+    playerStats_2024_1.bowling.avg = playerStats_2024_1.bowling.runs/playerStats_2024_1.bowling.wickets;
+    playersStats_2024_1[playerId].bowling.matches = playersStats_2024_1[playerId].fielding.matches = playersStats_2024_1[playerId].batting.matches;
+    
+    
 })
 
 

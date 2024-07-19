@@ -30,6 +30,15 @@ Router.add({
 });
 
 
+// Records
+Router.add({
+    path: '#/records',
+    on: function() {
+        templateUtil.loadTemplate(templateConfig.records);
+    }
+});
+
+
 // Players
 Router.add({
     path: '#/players',
@@ -97,6 +106,14 @@ var templateConfig = {
         title : "TPCC - Matches",
         callback()  {
             controller.matches.init(matches);
+        }
+    },
+    records : {
+        id : "records",
+        container : "#sub-container",
+        title : "TPCC - Records",
+        callback()  {
+            controller.records.init();
         }
     },
     players : {

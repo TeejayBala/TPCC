@@ -250,6 +250,18 @@ var controller = {
 
         }
     },
+    records : {
+        init() {
+            debugger;
+            this.eventHandler();
+        },
+        eventHandler() {
+            
+        },
+        destory() {
+
+        }
+    },
     players : {
         init(players) {
             this.eventHandler();

@@ -253,10 +253,14 @@ var controller = {
     records : {
         init() {
             debugger;
+            this.constructorBattingReport();
             this.eventHandler();
         },
         eventHandler() {
             
+        },
+        constructorBattingReport() {
+
         },
         destory() {
 

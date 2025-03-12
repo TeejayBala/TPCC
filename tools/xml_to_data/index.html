@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB Diagram</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #diagram { width: 100%; height: 600px; border: 1px solid #ddd; }
+        textarea { width: 100%; height: 120px; }
+        button { margin: 10px 0; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h2>Database Diagram</h2>
+    <textarea id="schemaInput">
+Table Users {
+    id: int
+    name: string
+    email: string
+}
+
+Table Posts {
+    id: int
+    title: string
+    content: text
+    user_id: int
+}
+
+Users -- Posts
+    </textarea>
+    <br>
+    <button onclick="generateDiagram()">Generate Diagram</button>
+    <div id="diagram"></div>
+
+    <script>
+        function parseSchema(schemaText) {
+            const tables = {};
+            const lines = schemaText.split("\n");
+            let currentTable = null;
+
+            lines.forEach(line => {
+                line = line.trim();
+                if (line.startsWith("Table")) {
+                    const tableName = line.split(" ")[1];
+                    tables[tableName] = { columns: [], relations: [] };
+                    currentTable = tableName;
+                } else if (currentTable && line.includes(":")) {
+                    const [columnName, type] = line.split(":").map(s => s.trim());
+                    tables[currentTable].columns.push({ name: columnName, type });
+                } else if (line.includes("--")) {  
+                    const [table1, table2] = line.split("--").map(s => s.trim());
+                    tables[table1]?.relations.push(table2);
+                    tables[table2]?.relations.push(table1);
+                }
+            });
+
+            return tables;
+        }
+
+        function renderDiagram(tables) {
+            document.getElementById("diagram").innerHTML = ""; 
+
+            const svg = d3.select("#diagram").append("svg")
+                .attr("width", 800)
+                .attr("height", 600);
+
+            const nodes = Object.keys(tables).map((table, index) => ({
+                id: table,
+                x: 200 + index * 150,
+                y: 150 + (index % 2) * 100
+            }));
+
+            const links = [];
+            Object.keys(tables).forEach(table => {
+                tables[table].relations.forEach(rel => {
+                    links.push({ source: table, target: rel });
+                });
+            });
+
+            const simulation = d3.forceSimulation(nodes)
+                .force("link", d3.forceLink(links).id(d => d.id).distance(150))
+                .force("charge", d3.forceManyBody().strength(-300))
+                .force("center", d3.forceCenter(400, 300))
+                .on("tick", ticked);
+
+            const link = svg.selectAll("line")
+                .data(links)
+                .enter().append("line")
+                .style("stroke", "#999")
+                .style("stroke-width", 2);
+
+            const node = svg.selectAll("g")
+                .data(nodes)
+                .enter().append("g")
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+            node.append("rect")
+                .attr("width", 80)
+                .attr("height", 40)
+                .attr("fill", "steelblue")
+                .attr("rx", 5)
+                .attr("ry", 5);
+
+            node.append("text")
+                .attr("dx", 10)
+                .attr("dy", 25)
+                .attr("fill", "white")
+                .style("font-size", "14px")
+                .text(d => d.id);
+
+            function ticked() {
+                node.attr("transform", d => `translate(${d.x},${d.y})`);
+                link.attr("x1", d => d.source.x + 40)
+                    .attr("y1", d => d.source.y + 20)
+                    .attr("x2", d => d.target.x + 40)
+                    .attr("y2", d => d.target.y + 20);
+            }
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        function generateDiagram() {
+            const schemaText = document.getElementById("schemaInput").value;
+            const tables = parseSchema(schemaText);
+            renderDiagram(tables);
+        }
+
+        window.onload = generateDiagram; 
+    </script>
+</body>
+</html>

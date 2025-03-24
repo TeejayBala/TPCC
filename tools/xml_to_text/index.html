@@ -1,0 +1,3672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Dictionary Graph</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .link { stroke: #999; stroke-opacity: 0.6; }
+        .node text { pointer-events: none; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h2>Database Schema Visualization</h2>
+    <svg width="10000" height="1000"></svg>
+
+    <script>
+        // d3.json("data-dictionary.json").then(graph => {
+        var graph = {
+  "nodes": [
+    {
+      "id": "POP_UPS_CATEGORY",
+      "group": 1
+    },
+    {
+      "id": "POP_UPS_TEMPLATE",
+      "group": 1
+    },
+    {
+      "id": "POP_UPS_TEMPLATE_TYPE",
+      "group": 1
+    },
+    {
+      "id": "POP_UPS_TEMPLATE_TEMPLATETYPE",
+      "group": 1
+    },
+    {
+      "id": "ROLES",
+      "group": 1
+    },
+    {
+      "id": "APP_USER",
+      "group": 1
+    },
+    {
+      "id": "TOUR",
+      "group": 1
+    },
+    {
+      "id": "TOUR_USER_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "FEATURES",
+      "group": 1
+    },
+    {
+      "id": "ROLE_FEATURES",
+      "group": 1
+    },
+    {
+      "id": "PROJECT",
+      "group": 1
+    },
+    {
+      "id": "PROJECT_IPFILTER",
+      "group": 1
+    },
+    {
+      "id": "PROJECT_USER_ROLE",
+      "group": 1
+    },
+    {
+      "id": "PROJECT_SETTINGS",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "RUNNING_EXPERIMENTS",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_EXCLUDED_IN_TRACKING_SCRIPT",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_HEATMAP",
+      "group": 1
+    },
+    {
+      "id": "ABSPLITEXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "FUNNEL_ANALYSIS",
+      "group": 1
+    },
+    {
+      "id": "VARIATION",
+      "group": 1
+    },
+    {
+      "id": "FUNNEL_STEPS",
+      "group": 1
+    },
+    {
+      "id": "EVENTS",
+      "group": 1
+    },
+    {
+      "id": "FUNNEL_STEP_EVENTS",
+      "group": 1
+    },
+    {
+      "id": "GOAL",
+      "group": 1
+    },
+    {
+      "id": "RUNNING_GOALS",
+      "group": 1
+    },
+    {
+      "id": "PROJECT_GOAL",
+      "group": 1
+    },
+    {
+      "id": "PAGE_VISIT_GOAL",
+      "group": 1
+    },
+    {
+      "id": "LINK_CLICK_GOAL",
+      "group": 1
+    },
+    {
+      "id": "FORM_SUBMIT_GOAL",
+      "group": 1
+    },
+    {
+      "id": "CUSTOM_EVENT_GOAL",
+      "group": 1
+    },
+    {
+      "id": "TIME_SPENT_GOAL",
+      "group": 1
+    },
+    {
+      "id": "ELEMENT_CLICK_GOAL",
+      "group": 1
+    },
+    {
+      "id": "ELEMENT_CLICK_VARIATION",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_GOAL",
+      "group": 1
+    },
+    {
+      "id": "AUDIENCE",
+      "group": 1
+    },
+    {
+      "id": "PROJECT_AUDIENCE",
+      "group": 1
+    },
+    {
+      "id": "AUDIENCE_ATTRIBUTE",
+      "group": 1
+    },
+    {
+      "id": "AUDIENCE_ATTRIBUTE_MATCHTYPE",
+      "group": 1
+    },
+    {
+      "id": "ATTRIBUTE_MATCHTYPE_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_AUDIENCE",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_SCHEDULER",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_LIMIT_STATUS",
+      "group": 1
+    },
+    {
+      "id": "VARIATION_VISITS",
+      "group": 1
+    },
+    {
+      "id": "GOAL_VISITS",
+      "group": 1
+    },
+    {
+      "id": "REVENUE_VISITS",
+      "group": 1
+    },
+    {
+      "id": "VISITOR_DATA_RAW_IDGEN",
+      "group": 1
+    },
+    {
+      "id": "JSON_VISITOR_RAW_IDGEN",
+      "group": 1
+    },
+    {
+      "id": "GOAL_DATA_RAW_IDGEN",
+      "group": 1
+    },
+    {
+      "id": "HEATMAP_EXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "SESSION_RECORDING_EXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "SESSION_RECORDING_PAGE_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "SESSION_RECORDING_DELETE_BACKUP",
+      "group": 1
+    },
+    {
+      "id": "TEMPLATE_TABLE_META",
+      "group": 1
+    },
+    {
+      "id": "SR_DFS_MAPPINGS",
+      "group": 1
+    },
+    {
+      "id": "SR_BUFFER",
+      "group": 1
+    },
+    {
+      "id": "SR_PAGE_RESOURCES",
+      "group": 1
+    },
+    {
+      "id": "HEATMAP_EXPERIMENT_VISITS",
+      "group": 1
+    },
+    {
+      "id": "DFS_FILE_INFO",
+      "group": 1
+    },
+    {
+      "id": "SCROLLMAP_DATA_DAY",
+      "group": 1
+    },
+    {
+      "id": "SCROLLMAP_DATA_HOUR",
+      "group": 1
+    },
+    {
+      "id": "VISITOR_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "VISITOR_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "VISITOR_DIMENSION_HOUR",
+      "group": 1
+    },
+    {
+      "id": "VISITOR_DIMENSION_DAY",
+      "group": 1
+    },
+    {
+      "id": "GOAL_DIMENSION_HOUR",
+      "group": 1
+    },
+    {
+      "id": "GOAL_DIMENSION_DAY",
+      "group": 1
+    },
+    {
+      "id": "STANDARD_DIMENSION",
+      "group": 1
+    },
+    {
+      "id": "DYNAMIC_ATTRIBUTES",
+      "group": 1
+    },
+    {
+      "id": "DYNAMIC_ATTRIBUTE_VALUES",
+      "group": 1
+    },
+    {
+      "id": "CUSTOM_DIMENSION",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_DYNAMIC_ATTR",
+      "group": 1
+    },
+    {
+      "id": "BROWSER_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "DEVICE_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_DEVICE_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "COUNTRY_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "LANGUAGE_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "OS_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "TRAFFICSOURCE_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "REFFERERURL_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "CURRENTURL_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "ARCHIEVE_TABLE_META",
+      "group": 1
+    },
+    {
+      "id": "ARCHIEVE_CUM_TABLE_META",
+      "group": 1
+    },
+    {
+      "id": "RAW_DATA_TABLE_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "BROWSER_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "BROWSER_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "DEVICE_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "DEVICE_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "COUNTRY_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "COUNTRY_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "LANG_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "LANG_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "OS_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "OS_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "TRAFSOUR_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "TRAFSOUR_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "REFURL_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "REFURL_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "DAYOFWK_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "DAYOFWK_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "HOURODY_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "HOURODY_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "COOKIE_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "COOKIE_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "URLPARM_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "URLPARM_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "JSVAR_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "JSVAR_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "CUSTDIM_VISIT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "CUSTDIM_VISIT_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "BROWSER_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "BROWSER_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "DEVICE_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "DEVICE_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "COUNTRY_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "COUNTRY_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "LANG_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "LANG_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "OS_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "OS_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "TRAFSOUR_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "TRAFSOUR_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "REFURL_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "REFURL_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "DAYOFWK_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "DAYOFWK_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "HOURODY_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "HOURODY_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "COOKIE_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "COOKIE_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "URLPARM_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "URLPARM_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "JSVAR_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "JSVAR_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "CUSTDIM_GOAL_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "CUSTDIM_GOAL_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "VISITOR_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "EVENT_ACTIVITY_LOG",
+      "group": 1
+    },
+    {
+      "id": "EVENT_MODULE_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "ADMIN_CONSOLE_AUDIT_LOG",
+      "group": 1
+    },
+    {
+      "id": "IMAGE_UPLOAD_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "INTEGRATION",
+      "group": 1
+    },
+    {
+      "id": "PROJECT_INTEGRATION",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_PROJECT_INTEGRATION",
+      "group": 1
+    },
+    {
+      "id": "GOOGLE_ANALYTICS_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "GOOGLE_ADWORDS_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "GOOGLE_TAG_MANAGER_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "REVENUE_REPORT_DAY",
+      "group": 1
+    },
+    {
+      "id": "REVENUE_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "TIME_SPENT_REPORT_HOUR",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_SCHEDULE",
+      "group": 1
+    },
+    {
+      "id": "SCHEDULE_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "ES_INDEX_META",
+      "group": 1
+    },
+    {
+      "id": "ES_INDEX_PORTAL_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "ES_FAILED_ENTRY",
+      "group": 1
+    },
+    {
+      "id": "ES_RETRY_FAILED_ENTRY",
+      "group": 1
+    },
+    {
+      "id": "CDN_FAILED_ENTRY",
+      "group": 1
+    },
+    {
+      "id": "DYNAMIC_CONFIGURATIONS",
+      "group": 1
+    },
+    {
+      "id": "MQUEUE_RESCUE",
+      "group": 1
+    },
+    {
+      "id": "ZOHOQUEUE_RESCUE",
+      "group": 1
+    },
+    {
+      "id": "AC_PORTAL",
+      "group": 1
+    },
+    {
+      "id": "AC_PROJECT",
+      "group": 1
+    },
+    {
+      "id": "AC_EXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "AC_GOAL",
+      "group": 1
+    },
+    {
+      "id": "SHARED_REPORT_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "SHARE_SESSION_RECORDINGS",
+      "group": 1
+    },
+    {
+      "id": "PREVIEW_MODE_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "COUNTRIES_JSON",
+      "group": 1
+    },
+    {
+      "id": "STATES_JSON",
+      "group": 1
+    },
+    {
+      "id": "CITIES_JSON",
+      "group": 1
+    },
+    {
+      "id": "LICENSE_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "PORTAL_LICENSE_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "PORTAL_LICENSE_ADDON",
+      "group": 1
+    },
+    {
+      "id": "PORTAL_LICENSE_YEARLY_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "LICENSE_ACTIVITY_LOG",
+      "group": 1
+    },
+    {
+      "id": "FORM_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "FORM_FIELD_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "FORM_CUSTOM_EVENTS",
+      "group": 1
+    },
+    {
+      "id": "SPACE_DELETION_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "PRIVACY_CONSENT",
+      "group": 1
+    },
+    {
+      "id": "USER_ON_BOARDING",
+      "group": 1
+    },
+    {
+      "id": "USER_IDENTITY_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "MA_USER_IDENTITY_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "DC_MIGRATION_ID_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "DATACENTER_MIGRATION_ID_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SESSION_RECORDING_MARK_AS_READ",
+      "group": 1
+    },
+    {
+      "id": "URL_MIGRATION_STATUS",
+      "group": 1
+    },
+    {
+      "id": "INTERCOM",
+      "group": 1
+    },
+    {
+      "id": "SALESIQ",
+      "group": 1
+    },
+    {
+      "id": "INTEGRATION_ACCESS_TOKEN_CACHE",
+      "group": 1
+    },
+    {
+      "id": "GLOBAL_ACCESS_TOKEN_CACHE",
+      "group": 1
+    },
+    {
+      "id": "STRATUSCDN_FILE_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "POLL_EXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "POLL_QUESTION",
+      "group": 1
+    },
+    {
+      "id": "QUESTION_LOGIC_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "POLL_ANSWER",
+      "group": 1
+    },
+    {
+      "id": "ANSWER_LOGIC_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "POPUPS_EXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "POPUPS_IMAGE",
+      "group": 1
+    },
+    {
+      "id": "ZOHOCDN_REFRESH_TOKEN",
+      "group": 1
+    },
+    {
+      "id": "INTERCOM_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SALESIQ_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "TAGS",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION_EXPERIENCE",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION_AUDIENCE",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION_GOAL",
+      "group": 1
+    },
+    {
+      "id": "VERSION",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_VERSION",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION_VERSION",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION_EXPERIENCE_VERSION",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION_AUDIENCE_VERSION",
+      "group": 1
+    },
+    {
+      "id": "PERSONALIZATION_GOAL_VERSION",
+      "group": 1
+    },
+    {
+      "id": "SPLITBRAIN_STATUS",
+      "group": 1
+    },
+    {
+      "id": "CRM_INTEGRATION_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "CRM_INTEGRATION_PROJECT_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "PROJECT_PUSH_KEYS",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_IMAGE",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_SETTING",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_BUTTON",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_RECURRING",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_RECURRING_PATTERN",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_OPT_IN_SETTINGS",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_JOB",
+      "group": 1
+    },
+    {
+      "id": "NOTIFICATION_VARIATION",
+      "group": 1
+    },
+    {
+      "id": "PUSH_GOAL",
+      "group": 1
+    },
+    {
+      "id": "PUSH_SUBSCRIPTION_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "SUBDOMAIN_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "MUTUAL_EXCLUSION_GROUP",
+      "group": 1
+    },
+    {
+      "id": "MUTUAL_EXCLUSION_GROUP_EXPERIMENTS",
+      "group": 1
+    },
+    {
+      "id": "REINDEX_STATUS",
+      "group": 1
+    },
+    {
+      "id": "REINDEX_MIGRATION_STATUS",
+      "group": 1
+    },
+    {
+      "id": "DCMIGRATION_INFORMATION",
+      "group": 1
+    },
+    {
+      "id": "DCMIGRATION_DFS_INFORMATION",
+      "group": 1
+    },
+    {
+      "id": "DCMIGRATION_IMPORTSTATUS",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_EXPERIMENT",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_FUNNEL_STEPS",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_APPLICATION",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_AUDIENCE",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_VS_MKPLUS_PROJECT",
+      "group": 1
+    },
+    {
+      "id": "WEBHOOK_TABLE",
+      "group": 1
+    },
+    {
+      "id": "LANDING_PAGE_INTEGRATION",
+      "group": 1
+    },
+    {
+      "id": "GROUPING",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_GROUP_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "GOALS_GROUP_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "TRIGGER",
+      "group": 1
+    },
+    {
+      "id": "EXPERIMENT_TRIGGER",
+      "group": 1
+    },
+    {
+      "id": "CRM_PUSH_SCHEDULE",
+      "group": 1
+    },
+    {
+      "id": "PORTAL_CUSTOM_DIMENSION",
+      "group": 1
+    },
+    {
+      "id": "CUSTOM_DIMENSION_ACTIVITY",
+      "group": 1
+    },
+    {
+      "id": "EXPORT_REPORTS_AS_EMAIL_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "PORTAL_LOGSPROJECT_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SERVICE_PROJECT_INTEGRATION",
+      "group": 1
+    },
+    {
+      "id": "SERVICE_EXPERIMENT_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SERVICE_GOAL_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SERVICE_TRIGGER_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SERVICE_EVENTS_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SERVICE_GROUPING_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "SERVICE_AUDIENCE_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "MH_LICENSE_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "WEBHOOK_SCHEDULE_INFO",
+      "group": 1
+    },
+    {
+      "id": "MA_FORMS_DATA_ENTRY",
+      "group": 1
+    },
+    {
+      "id": "AC_SCHEDULE",
+      "group": 1
+    },
+    {
+      "id": "ZEPTOMAIL_TOKEN_TABLE",
+      "group": 1
+    },
+    {
+      "id": "OPENAI_APIKEY",
+      "group": 1
+    },
+    {
+      "id": "ES_TIME_BASED_INDEX_META",
+      "group": 1
+    },
+    {
+      "id": "ES_TIME_BASED_INDEXES",
+      "group": 1
+    },
+    {
+      "id": "ES_TIME_BASED_INDEX_PORTAL_MAPPING",
+      "group": 1
+    },
+    {
+      "id": "ANDROID_PUSH_SETTINGS",
+      "group": 1
+    },
+    {
+      "id": "IOS_PUSH_SETTINGS",
+      "group": 1
+    },
+    {
+      "id": "IOS_PUSH_SETTINGS_FILE",
+      "group": 1
+    },
+    {
+      "id": "ANDROID_PUSH_SETTINGS_FILE",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_CHANNEL",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_NOTIFICATION_SETTING",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_NOTIFICATION_RECURRING",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_NOTIFICATION_RECURRING_PATTERN",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_NOTIFICATION_DETAIL",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_NOTIFICATION_BUTTON",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_NOTIFICATION_IMAGE",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_PUSH_EVENT",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_EVENTS",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_ATTRIBUTES",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_ATTRIBUTE_VALUES",
+      "group": 1
+    },
+    {
+      "id": "MOBILE_PUSH_EVENT_TRIGGER",
+      "group": 1
+    },
+    {
+      "id": "DC_MIGRATION_INFO",
+      "group": 1
+    },
+    {
+      "id": "SESSIONRAWDATA",
+      "group": 1
+    },
+    {
+      "id": "SESSION_GOAL_ACHIEVED",
+      "group": 1
+    },
+    {
+      "id": "SESSION_URL_VISITED",
+      "group": 1
+    },
+    {
+      "id": "SESSIONRECORDING_TAGMAPPING",
+      "group": 1
+    },
+    {
+      "id": "SESSION_URL_PARAMETER",
+      "group": 1
+    },
+    {
+      "id": "SESSION_RECORDING_EVENT_STREAM",
+      "group": 1
+    },
+    {
+      "id": "SOCIAL_BIO_VISITOR_DETAILS",
+      "group": 1
+    },
+    {
+      "id": "CENTRAL_RESOURCE_HASH",
+      "group": 1
+    },
+    {
+      "id": "IFRAME_METADATA",
+      "group": 1
+    },
+    {
+      "id": "PAGEID_ASSETDATA",
+      "group": 1
+    },
+    {
+      "id": "IFRAMEID_ASSETDATA",
+      "group": 1
+    },
+    {
+      "id": "DATA_MIGRATION_STATUS",
+      "group": 1
+    }
+  ],
+  "links": [
+    {
+      "source": "POP_UPS_TEMPLATE",
+      "target": "POP_UPS_CATEGORY",
+      "value": 1,
+      "label": "CATEGORY_TABLE_ID → CATEGORY_TABLE_ID"
+    },
+    {
+      "source": "POP_UPS_TEMPLATE_TEMPLATETYPE",
+      "target": "POP_UPS_TEMPLATE",
+      "value": 1,
+      "label": "TEMPLATE_TABLE_ID → TEMPLATE_TABLE_ID"
+    },
+    {
+      "source": "POP_UPS_TEMPLATE_TEMPLATETYPE",
+      "target": "POP_UPS_TEMPLATE_TYPE",
+      "value": 1,
+      "label": "TEMPLATE_TYPE_ID → TEMPLATE_TYPE_ID"
+    },
+    {
+      "source": "APP_USER",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "INVITED_BY → USER_ID"
+    },
+    {
+      "source": "APP_USER",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "APP_USER",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "MODIFIED_BY → USER_ID"
+    },
+    {
+      "source": "TOUR_USER_MAPPING",
+      "target": "TOUR",
+      "value": 1,
+      "label": "TOUR_CODE → TOUR_CODE"
+    },
+    {
+      "source": "ROLE_FEATURES",
+      "target": "FEATURES",
+      "value": 1,
+      "label": "FEATURE_ID → FEATURE_ID"
+    },
+    {
+      "source": "ROLE_FEATURES",
+      "target": "ROLES",
+      "value": 1,
+      "label": "ROLE_ID → ROLE_ID"
+    },
+    {
+      "source": "PROJECT",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "PROJECT_IPFILTER",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "PROJECT_USER_ROLE",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "PROJECT_USER_ROLE",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "USER_ID → USER_ID"
+    },
+    {
+      "source": "PROJECT_USER_ROLE",
+      "target": "ROLES",
+      "value": 1,
+      "label": "ROLE_ID → ROLE_ID"
+    },
+    {
+      "source": "PROJECT_SETTINGS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "EXPERIMENT",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "EXPERIMENT",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "RUNNING_EXPERIMENTS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_EXCLUDED_IN_TRACKING_SCRIPT",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "EXPERIMENT_EXCLUDED_IN_TRACKING_SCRIPT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_HEATMAP",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_HEATMAP",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "HEATMAP_EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "ABSPLITEXPERIMENT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "FUNNEL_ANALYSIS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "VARIATION",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "FUNNEL_STEPS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EVENTS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "EVENTS",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "FUNNEL_STEP_EVENTS",
+      "target": "FUNNEL_STEPS",
+      "value": 1,
+      "label": "STEP_ID → STEP_ID"
+    },
+    {
+      "source": "FUNNEL_STEP_EVENTS",
+      "target": "EVENTS",
+      "value": 1,
+      "label": "EVENT_ID → EVENT_ID"
+    },
+    {
+      "source": "GOAL",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "GOAL",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "RUNNING_GOALS",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "PROJECT_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "PAGE_VISIT_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "LINK_CLICK_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "FORM_SUBMIT_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "CUSTOM_EVENT_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "CUSTOM_EVENT_GOAL",
+      "target": "EVENTS",
+      "value": 1,
+      "label": "EVENT_ID → EVENT_ID"
+    },
+    {
+      "source": "TIME_SPENT_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "ELEMENT_CLICK_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "ELEMENT_CLICK_VARIATION",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "ELEMENT_CLICK_VARIATION",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "EXPERIMENT_GOAL",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_GOAL",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "PROJECT_AUDIENCE",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "PROJECT_AUDIENCE",
+      "target": "AUDIENCE",
+      "value": 1,
+      "label": "AUDIENCE_ID → AUDIENCE_ID"
+    },
+    {
+      "source": "EXPERIMENT_AUDIENCE",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_AUDIENCE",
+      "target": "AUDIENCE",
+      "value": 1,
+      "label": "AUDIENCE_ID → AUDIENCE_ID"
+    },
+    {
+      "source": "EXPERIMENT_SCHEDULER",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_LIMIT_STATUS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "VARIATION_VISITS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "VARIATION_VISITS",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_VISITS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "GOAL_VISITS",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_VISITS",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "REVENUE_VISITS",
+      "target": "GOAL_VISITS",
+      "value": 1,
+      "label": "REVENUE_VISITS_ID → GOAL_VISITS_ID"
+    },
+    {
+      "source": "HEATMAP_EXPERIMENT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SESSION_RECORDING_EXPERIMENT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SESSION_RECORDING_PAGE_DETAILS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SESSION_RECORDING_DELETE_BACKUP",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SR_PAGE_RESOURCES",
+      "target": "SESSION_RECORDING_PAGE_DETAILS",
+      "value": 1,
+      "label": "PAGE_ID → SESSION_RECORDING_PD_ID"
+    },
+    {
+      "source": "HEATMAP_EXPERIMENT_VISITS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SCROLLMAP_DATA_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SCROLLMAP_DATA_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "SCROLLMAP_DATA_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SCROLLMAP_DATA_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "VISITOR_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "VISITOR_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "VISITOR_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "VISITOR_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "VISITOR_DIMENSION_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "VISITOR_DIMENSION_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "VISITOR_DIMENSION_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "VISITOR_DIMENSION_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_DIMENSION_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "GOAL_DIMENSION_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_DIMENSION_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "GOAL_DIMENSION_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "GOAL_DIMENSION_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "GOAL_DIMENSION_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "DYNAMIC_ATTRIBUTES",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "DYNAMIC_ATTRIBUTE_VALUES",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "CUSTOM_DIMENSION",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "EXPERIMENT_DYNAMIC_ATTR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_DYNAMIC_ATTR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "BROWSER_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "BROWSER_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "BROWSER_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "BROWSER_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DEVICE_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DEVICE_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DEVICE_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DEVICE_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COUNTRY_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COUNTRY_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COUNTRY_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COUNTRY_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "LANG_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "LANG_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "LANG_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "LANG_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "OS_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "OS_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "OS_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "OS_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "TRAFSOUR_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "TRAFSOUR_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "TRAFSOUR_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "TRAFSOUR_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "REFURL_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "REFURL_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "REFURL_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "REFURL_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DAYOFWK_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DAYOFWK_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DAYOFWK_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DAYOFWK_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "HOURODY_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "HOURODY_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "HOURODY_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "HOURODY_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COOKIE_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COOKIE_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COOKIE_VISIT_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "COOKIE_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COOKIE_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COOKIE_VISIT_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "URLPARM_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "URLPARM_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "URLPARM_VISIT_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "URLPARM_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "URLPARM_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "URLPARM_VISIT_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "JSVAR_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "JSVAR_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "JSVAR_VISIT_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "JSVAR_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "JSVAR_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "JSVAR_VISIT_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "CUSTDIM_VISIT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "CUSTDIM_VISIT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "CUSTDIM_VISIT_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "CUSTDIM_VISIT_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "CUSTDIM_VISIT_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "CUSTDIM_VISIT_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "BROWSER_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "BROWSER_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "BROWSER_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "BROWSER_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "BROWSER_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "BROWSER_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "DEVICE_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DEVICE_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DEVICE_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "DEVICE_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DEVICE_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DEVICE_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "COUNTRY_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COUNTRY_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COUNTRY_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "COUNTRY_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COUNTRY_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COUNTRY_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "LANG_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "LANG_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "LANG_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "LANG_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "LANG_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "LANG_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "OS_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "OS_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "OS_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "OS_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "OS_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "OS_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "TRAFSOUR_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "TRAFSOUR_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "TRAFSOUR_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "TRAFSOUR_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "TRAFSOUR_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "TRAFSOUR_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "REFURL_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "REFURL_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "REFURL_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "REFURL_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "REFURL_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "REFURL_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "DAYOFWK_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DAYOFWK_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DAYOFWK_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "DAYOFWK_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "DAYOFWK_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "DAYOFWK_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "HOURODY_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "HOURODY_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "HOURODY_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "HOURODY_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "HOURODY_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "HOURODY_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "COOKIE_GOAL_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "URLPARM_GOAL_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "JSVAR_GOAL_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_HOUR",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_HOUR",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_DAY",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "CUSTDIM_GOAL_REPORT_DAY",
+      "target": "DYNAMIC_ATTRIBUTES",
+      "value": 1,
+      "label": "DYNAMIC_ATTRIBUTE_ID → DYNAMIC_ATTRIBUTE_ID"
+    },
+    {
+      "source": "EVENT_ACTIVITY_LOG",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "USER_ID → USER_ID"
+    },
+    {
+      "source": "IMAGE_UPLOAD_DETAILS",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "PROJECT_INTEGRATION",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "EXPERIMENT_PROJECT_INTEGRATION",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_PROJECT_INTEGRATION",
+      "target": "PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "PROJECT_INTEGRATION_ID → PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "GOOGLE_ANALYTICS_DETAILS",
+      "target": "EXPERIMENT_PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "EXPERIMENT_PROJECT_INTEGRATION_ID → EXPERIMENT_PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "GOOGLE_ADWORDS_DETAILS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "GOOGLE_TAG_MANAGER_DETAILS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "REVENUE_REPORT_DAY",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "REVENUE_REPORT_DAY",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "REVENUE_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "REVENUE_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "TIME_SPENT_REPORT_HOUR",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "TIME_SPENT_REPORT_HOUR",
+      "target": "VARIATION",
+      "value": 1,
+      "label": "VARIATION_ID → VARIATION_ID"
+    },
+    {
+      "source": "EXPERIMENT_SCHEDULE",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "ES_INDEX_PORTAL_MAPPING",
+      "target": "ES_INDEX_META",
+      "value": 1,
+      "label": "ES_INDEX_META_ID → ES_INDEX_META_ID"
+    },
+    {
+      "source": "AC_PROJECT",
+      "target": "AC_PORTAL",
+      "value": 1,
+      "label": "AC_PORTAL_ID → AC_PORTAL_ID"
+    },
+    {
+      "source": "AC_EXPERIMENT",
+      "target": "AC_PROJECT",
+      "value": 1,
+      "label": "AC_PROJECT_ID → AC_PROJECT_ID"
+    },
+    {
+      "source": "AC_GOAL",
+      "target": "AC_PROJECT",
+      "value": 1,
+      "label": "AC_PROJECT_ID → AC_PROJECT_ID"
+    },
+    {
+      "source": "SHARED_REPORT_DETAILS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SHARED_REPORT_DETAILS",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "SHARED_BY → USER_ID"
+    },
+    {
+      "source": "SHARE_SESSION_RECORDINGS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SHARE_SESSION_RECORDINGS",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "RECORDING_SHARED_BY → USER_ID"
+    },
+    {
+      "source": "PREVIEW_MODE_DETAILS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "PREVIEW_MODE_DETAILS",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "ENABLED_BY → USER_ID"
+    },
+    {
+      "source": "STATES_JSON",
+      "target": "COUNTRIES_JSON",
+      "value": 1,
+      "label": "COUNTRY_ID → ID"
+    },
+    {
+      "source": "CITIES_JSON",
+      "target": "STATES_JSON",
+      "value": 1,
+      "label": "STATE_ID → ID"
+    },
+    {
+      "source": "CITIES_JSON",
+      "target": "COUNTRIES_JSON",
+      "value": 1,
+      "label": "COUNTRY_ID → ID"
+    },
+    {
+      "source": "PORTAL_LICENSE_MAPPING",
+      "target": "LICENSE_DETAIL",
+      "value": 1,
+      "label": "LICENSE_DETAIL_ID → LICENSE_DETAIL_ID"
+    },
+    {
+      "source": "PORTAL_LICENSE_ADDON",
+      "target": "PORTAL_LICENSE_MAPPING",
+      "value": 1,
+      "label": "PORTAL_LICENSE_MAPPING_ID → PORTAL_LICENSE_MAPPING_ID"
+    },
+    {
+      "source": "PORTAL_LICENSE_YEARLY_DETAIL",
+      "target": "PORTAL_LICENSE_MAPPING",
+      "value": 1,
+      "label": "PORTAL_LICENSE_MAPPING_ID → PORTAL_LICENSE_MAPPING_ID"
+    },
+    {
+      "source": "LICENSE_ACTIVITY_LOG",
+      "target": "LICENSE_DETAIL",
+      "value": 1,
+      "label": "LICENSE_TYPE → LICENSE_DETAIL_ID"
+    },
+    {
+      "source": "LICENSE_ACTIVITY_LOG",
+      "target": "LICENSE_DETAIL",
+      "value": 1,
+      "label": "OLD_LICENSE_TYPE → LICENSE_DETAIL_ID"
+    },
+    {
+      "source": "FORM_DETAILS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "FORM_FIELD_DETAILS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "FORM_CUSTOM_EVENTS",
+      "target": "FORM_DETAILS",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "FORM_CUSTOM_EVENTS",
+      "target": "EVENTS",
+      "value": 1,
+      "label": "EVENT_ID → EVENT_ID"
+    },
+    {
+      "source": "PRIVACY_CONSENT",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "USER_IDENTITY_DETAILS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "MA_USER_IDENTITY_DETAILS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "SESSION_RECORDING_MARK_AS_READ",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "INTERCOM",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "SALESIQ",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "SALESIQ",
+      "target": "PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "PROJECT_INTEGRATION_ID → PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "INTEGRATION_ACCESS_TOKEN_CACHE",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "POLL_EXPERIMENT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "POLL_QUESTION",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "QUESTION_LOGIC_MAPPING",
+      "target": "POLL_QUESTION",
+      "value": 1,
+      "label": "QUESTION_ID → QUESTION_ID"
+    },
+    {
+      "source": "QUESTION_LOGIC_MAPPING",
+      "target": "POLL_QUESTION",
+      "value": 1,
+      "label": "LINKED_QUESTION_ID → QUESTION_ID"
+    },
+    {
+      "source": "POLL_ANSWER",
+      "target": "POLL_QUESTION",
+      "value": 1,
+      "label": "QUESTION_ID → QUESTION_ID"
+    },
+    {
+      "source": "ANSWER_LOGIC_MAPPING",
+      "target": "POLL_ANSWER",
+      "value": 1,
+      "label": "ANSWER_ID → ANSWER_ID"
+    },
+    {
+      "source": "ANSWER_LOGIC_MAPPING",
+      "target": "POLL_QUESTION",
+      "value": 1,
+      "label": "LINKED_QUESTION_ID → QUESTION_ID"
+    },
+    {
+      "source": "POPUPS_EXPERIMENT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "POPUPS_IMAGE",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "INTERCOM_MAPPING",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "SALESIQ_MAPPING",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "TAGS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "PERSONALIZATION",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "PERSONALIZATION_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "PERSONALIZATION_EXPERIENCE",
+      "target": "PERSONALIZATION",
+      "value": 1,
+      "label": "PERSONALIZATION_ID → PERSONALIZATION_ID"
+    },
+    {
+      "source": "PERSONALIZATION_AUDIENCE",
+      "target": "PERSONALIZATION",
+      "value": 1,
+      "label": "PERSONALIZATION_ID → PERSONALIZATION_ID"
+    },
+    {
+      "source": "PERSONALIZATION_AUDIENCE",
+      "target": "PERSONALIZATION_EXPERIENCE",
+      "value": 1,
+      "label": "PERSONALIZATION_EXPERIENCE_ID → PERSONALIZATION_EXPERIENCE_ID"
+    },
+    {
+      "source": "PERSONALIZATION_AUDIENCE",
+      "target": "AUDIENCE",
+      "value": 1,
+      "label": "AUDIENCE_ID → AUDIENCE_ID"
+    },
+    {
+      "source": "PERSONALIZATION_GOAL",
+      "target": "PERSONALIZATION",
+      "value": 1,
+      "label": "EXPERIMENT_ID → PERSONALIZATION_ID"
+    },
+    {
+      "source": "PERSONALIZATION_GOAL",
+      "target": "PROJECT_GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "VERSION",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_VERSION",
+      "target": "VERSION",
+      "value": 1,
+      "label": "VERSION_ID → VERSION_ID"
+    },
+    {
+      "source": "PERSONALIZATION_VERSION",
+      "target": "VERSION",
+      "value": 1,
+      "label": "VERSION_ID → VERSION_ID"
+    },
+    {
+      "source": "PERSONALIZATION_EXPERIENCE_VERSION",
+      "target": "VERSION",
+      "value": 1,
+      "label": "VERSION_ID → VERSION_ID"
+    },
+    {
+      "source": "PERSONALIZATION_AUDIENCE_VERSION",
+      "target": "VERSION",
+      "value": 1,
+      "label": "VERSION_ID → VERSION_ID"
+    },
+    {
+      "source": "PERSONALIZATION_GOAL_VERSION",
+      "target": "VERSION",
+      "value": 1,
+      "label": "VERSION_ID → VERSION_ID"
+    },
+    {
+      "source": "CRM_INTEGRATION_PROJECT_DETAILS",
+      "target": "CRM_INTEGRATION_DETAILS",
+      "value": 1,
+      "label": "CRM_INTEGRATION_DETAILS_ID → CRM_INTEGRATION_DETAILS_ID"
+    },
+    {
+      "source": "PROJECT_PUSH_KEYS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "NOTIFICATION_IMAGE",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "NOTIFICATION_DETAIL",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "NOTIFICATION_SETTING",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "NOTIFICATION_BUTTON",
+      "target": "NOTIFICATION_DETAIL",
+      "value": 1,
+      "label": "NOTIFICATION_DETAIL_ID → NOTIFICATION_DETAIL_ID"
+    },
+    {
+      "source": "NOTIFICATION_RECURRING",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "NOTIFICATION_RECURRING_PATTERN",
+      "target": "NOTIFICATION_RECURRING",
+      "value": 1,
+      "label": "NOTIFICATION_RECURRING_ID → NOTIFICATION_RECURRING_ID"
+    },
+    {
+      "source": "NOTIFICATION_OPT_IN_SETTINGS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "NOTIFICATION_JOB",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "NOTIFICATION_VARIATION",
+      "target": "NOTIFICATION_DETAIL",
+      "value": 1,
+      "label": "NOTIFICATION_DETAIL_ID → NOTIFICATION_DETAIL_ID"
+    },
+    {
+      "source": "PUSH_GOAL",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "PUSH_GOAL",
+      "target": "PROJECT_GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "PUSH_SUBSCRIPTION_DETAILS",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "MUTUAL_EXCLUSION_GROUP",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "MUTUAL_EXCLUSION_GROUP",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "MUTUAL_EXCLUSION_GROUP_EXPERIMENTS",
+      "target": "MUTUAL_EXCLUSION_GROUP",
+      "value": 1,
+      "label": "MUTUAL_EXCLUSION_GROUP_ID → MUTUAL_EXCLUSION_GROUP_ID"
+    },
+    {
+      "source": "MUTUAL_EXCLUSION_GROUP_EXPERIMENTS",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "MOBILE_EXPERIMENT",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "MOBILE_EXPERIMENT",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "MOBILE_FUNNEL_STEPS",
+      "target": "MOBILE_EXPERIMENT",
+      "value": 1,
+      "label": "MOBILE_EXPERIMENT_ID → MOBILE_EXPERIMENT_ID"
+    },
+    {
+      "source": "MOBILE_APPLICATION",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "MOBILE_APPLICATION",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "MOBILE_AUDIENCE",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "EXPERIMENT_VS_MKPLUS_PROJECT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_VS_MKPLUS_PROJECT",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PAGESENSE_PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "WEBHOOK_TABLE",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "LANDING_PAGE_INTEGRATION",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "GROUPING",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "GROUPING",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "CREATED_BY → USER_ID"
+    },
+    {
+      "source": "EXPERIMENT_GROUP_MAPPING",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_GROUP_MAPPING",
+      "target": "GROUPING",
+      "value": 1,
+      "label": "GROUPING_ID → GROUPING_ID"
+    },
+    {
+      "source": "GOALS_GROUP_MAPPING",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "GOALS_GROUP_MAPPING",
+      "target": "GROUPING",
+      "value": 1,
+      "label": "GROUPING_ID → GROUPING_ID"
+    },
+    {
+      "source": "TRIGGER",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "EXPERIMENT_TRIGGER",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "EXPERIMENT_TRIGGER",
+      "target": "TRIGGER",
+      "value": 1,
+      "label": "TRIGGER_ID → TRIGGER_ID"
+    },
+    {
+      "source": "CRM_PUSH_SCHEDULE",
+      "target": "USER_ON_BOARDING",
+      "value": 1,
+      "label": "USER_ON_BOARDING_ID → USER_ON_BOARDING_ID"
+    },
+    {
+      "source": "PORTAL_CUSTOM_DIMENSION",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "CUSTOM_DIMENSION_ACTIVITY",
+      "target": "PORTAL_CUSTOM_DIMENSION",
+      "value": 1,
+      "label": "PORTAL_CUSTOM_DIMENSION_ID → PORTAL_CUSTOM_DIMENSION_ID"
+    },
+    {
+      "source": "EXPORT_REPORTS_AS_EMAIL_DETAILS",
+      "target": "APP_USER",
+      "value": 1,
+      "label": "EXPORT_INITIATED_BY → USER_ID"
+    },
+    {
+      "source": "SERVICE_PROJECT_INTEGRATION",
+      "target": "PROJECT",
+      "value": 1,
+      "label": "PROJECT_ID → PROJECT_ID"
+    },
+    {
+      "source": "SERVICE_EXPERIMENT_MAPPING",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SERVICE_EXPERIMENT_MAPPING",
+      "target": "SERVICE_PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "SERVICE_PROJECT_INTEGRATION_ID → SERVICE_PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "SERVICE_GOAL_MAPPING",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "SERVICE_GOAL_MAPPING",
+      "target": "SERVICE_PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "SERVICE_PROJECT_INTEGRATION_ID → SERVICE_PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "SERVICE_TRIGGER_MAPPING",
+      "target": "TRIGGER",
+      "value": 1,
+      "label": "TRIGGER_ID → TRIGGER_ID"
+    },
+    {
+      "source": "SERVICE_TRIGGER_MAPPING",
+      "target": "SERVICE_PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "SERVICE_PROJECT_INTEGRATION_ID → SERVICE_PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "SERVICE_EVENTS_MAPPING",
+      "target": "EVENTS",
+      "value": 1,
+      "label": "EVENT_ID → EVENT_ID"
+    },
+    {
+      "source": "SERVICE_EVENTS_MAPPING",
+      "target": "SERVICE_PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "SERVICE_PROJECT_INTEGRATION_ID → SERVICE_PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "SERVICE_GROUPING_MAPPING",
+      "target": "GROUPING",
+      "value": 1,
+      "label": "GROUPING_ID → GROUPING_ID"
+    },
+    {
+      "source": "SERVICE_GROUPING_MAPPING",
+      "target": "SERVICE_PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "SERVICE_PROJECT_INTEGRATION_ID → SERVICE_PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "SERVICE_AUDIENCE_MAPPING",
+      "target": "AUDIENCE",
+      "value": 1,
+      "label": "AUDIENCE_ID → AUDIENCE_ID"
+    },
+    {
+      "source": "SERVICE_AUDIENCE_MAPPING",
+      "target": "SERVICE_PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "SERVICE_PROJECT_INTEGRATION_ID → SERVICE_PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "OPENAI_APIKEY",
+      "target": "PROJECT_INTEGRATION",
+      "value": 1,
+      "label": "PROJECT_INTEGRATION_ID → PROJECT_INTEGRATION_ID"
+    },
+    {
+      "source": "ES_TIME_BASED_INDEXES",
+      "target": "ES_TIME_BASED_INDEX_META",
+      "value": 1,
+      "label": "ES_TIME_BASED_INDEX_META_ID → ES_TIME_BASED_INDEX_META_ID"
+    },
+    {
+      "source": "ES_TIME_BASED_INDEX_PORTAL_MAPPING",
+      "target": "ES_TIME_BASED_INDEX_META",
+      "value": 1,
+      "label": "ES_TIME_BASED_INDEX_META_ID → ES_TIME_BASED_INDEX_META_ID"
+    },
+    {
+      "source": "ANDROID_PUSH_SETTINGS",
+      "target": "MOBILE_APPLICATION",
+      "value": 1,
+      "label": "MOBILE_APPLICATION_ID → MOBILE_APPLICATION_ID"
+    },
+    {
+      "source": "IOS_PUSH_SETTINGS",
+      "target": "MOBILE_APPLICATION",
+      "value": 1,
+      "label": "MOBILE_APPLICATION_ID → MOBILE_APPLICATION_ID"
+    },
+    {
+      "source": "IOS_PUSH_SETTINGS_FILE",
+      "target": "MOBILE_APPLICATION",
+      "value": 1,
+      "label": "MOBILE_APPLICATION_ID → MOBILE_APPLICATION_ID"
+    },
+    {
+      "source": "ANDROID_PUSH_SETTINGS_FILE",
+      "target": "MOBILE_APPLICATION",
+      "value": 1,
+      "label": "MOBILE_APPLICATION_ID → MOBILE_APPLICATION_ID"
+    },
+    {
+      "source": "MOBILE_CHANNEL",
+      "target": "MOBILE_APPLICATION",
+      "value": 1,
+      "label": "MOBILE_APPLICATION_ID → MOBILE_APPLICATION_ID"
+    },
+    {
+      "source": "MOBILE_NOTIFICATION_SETTING",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "MOBILE_NOTIFICATION_SETTING",
+      "target": "MOBILE_APPLICATION",
+      "value": 1,
+      "label": "MOBILE_APPLICATION_ID → MOBILE_APPLICATION_ID"
+    },
+    {
+      "source": "MOBILE_NOTIFICATION_RECURRING",
+      "target": "MOBILE_NOTIFICATION_SETTING",
+      "value": 1,
+      "label": "MOBILE_NOTIFICATION_SETTING_ID → MOBILE_NOTIFICATION_SETTING_ID"
+    },
+    {
+      "source": "MOBILE_NOTIFICATION_RECURRING_PATTERN",
+      "target": "MOBILE_NOTIFICATION_RECURRING",
+      "value": 1,
+      "label": "MOBILE_NOTIFICATION_RECURRING_ID → MOBILE_NOTIFICATION_RECURRING_ID"
+    },
+    {
+      "source": "MOBILE_NOTIFICATION_DETAIL",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "MOBILE_NOTIFICATION_BUTTON",
+      "target": "MOBILE_NOTIFICATION_DETAIL",
+      "value": 1,
+      "label": "MOBILE_NOTIFICATION_DETAIL_ID → MOBILE_NOTIFICATION_DETAIL_ID"
+    },
+    {
+      "source": "MOBILE_NOTIFICATION_IMAGE",
+      "target": "MOBILE_NOTIFICATION_DETAIL",
+      "value": 1,
+      "label": "MOBILE_NOTIFICATION_DETAIL_ID → MOBILE_NOTIFICATION_DETAIL_ID"
+    },
+    {
+      "source": "MOBILE_PUSH_EVENT",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "MOBILE_EVENTS",
+      "target": "MOBILE_APPLICATION",
+      "value": 1,
+      "label": "MOBILE_APPLICATION_ID → MOBILE_APPLICATION_ID"
+    },
+    {
+      "source": "MOBILE_ATTRIBUTES",
+      "target": "MOBILE_EVENTS",
+      "value": 1,
+      "label": "MOBILE_EVENT_ID → MOBILE_EVENT_ID"
+    },
+    {
+      "source": "MOBILE_ATTRIBUTE_VALUES",
+      "target": "MOBILE_ATTRIBUTES",
+      "value": 1,
+      "label": "MOBILE_ATTRIBUTE_ID → MOBILE_ATTRIBUTE_ID"
+    },
+    {
+      "source": "MOBILE_PUSH_EVENT_TRIGGER",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENT_ID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SESSIONRAWDATA",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENTID → EXPERIMENT_ID"
+    },
+    {
+      "source": "SESSION_GOAL_ACHIEVED",
+      "target": "SESSIONRAWDATA",
+      "value": 1,
+      "label": "RECORDING_ID → RECORDING_ID"
+    },
+    {
+      "source": "SESSION_GOAL_ACHIEVED",
+      "target": "GOAL",
+      "value": 1,
+      "label": "GOAL_ID → GOAL_ID"
+    },
+    {
+      "source": "SESSION_URL_VISITED",
+      "target": "SESSIONRAWDATA",
+      "value": 1,
+      "label": "RECORDING_ID → RECORDING_ID"
+    },
+    {
+      "source": "SESSIONRECORDING_TAGMAPPING",
+      "target": "SESSIONRAWDATA",
+      "value": 1,
+      "label": "RECORDING_ID → RECORDING_ID"
+    },
+    {
+      "source": "SESSION_URL_PARAMETER",
+      "target": "SESSION_URL_VISITED",
+      "value": 1,
+      "label": "URL_ID → URL_ID"
+    },
+    {
+      "source": "SESSION_URL_PARAMETER",
+      "target": "SESSIONRAWDATA",
+      "value": 1,
+      "label": "RECORDING_ID → RECORDING_ID"
+    },
+    {
+      "source": "SESSION_RECORDING_EVENT_STREAM",
+      "target": "SESSIONRAWDATA",
+      "value": 1,
+      "label": "RECORDING_ID → RECORDING_ID"
+    },
+    {
+      "source": "CENTRAL_RESOURCE_HASH",
+      "target": "EXPERIMENT",
+      "value": 1,
+      "label": "EXPERIMENTID → EXPERIMENT_ID"
+    },
+    {
+      "source": "IFRAME_METADATA",
+      "target": "SESSIONRAWDATA",
+      "value": 1,
+      "label": "RECORDINGID → RECORDING_ID"
+    },
+    {
+      "source": "PAGEID_ASSETDATA",
+      "target": "SESSIONRAWDATA",
+      "value": 1,
+      "label": "RECORDINGID → RECORDING_ID"
+    },
+    {
+      "source": "PAGEID_ASSETDATA",
+      "target": "CENTRAL_RESOURCE_HASH",
+      "value": 1,
+      "label": "CENTRAL_RESOURCE_KEY → HASH_ID"
+    },
+    {
+      "source": "IFRAMEID_ASSETDATA",
+      "target": "IFRAME_METADATA",
+      "value": 1,
+      "label": "METADATA_ID → METADATA_ID"
+    },
+    {
+      "source": "IFRAMEID_ASSETDATA",
+      "target": "CENTRAL_RESOURCE_HASH",
+      "value": 1,
+      "label": "CENTRAL_RESOURCE_KEY → HASH_ID"
+    }
+  ]
+};
+            const svg = d3.select("svg"),
+                width = +svg.attr("width"),
+                height = +svg.attr("height");
+
+            const simulation = d3.forceSimulation(graph.nodes)
+                .force("link", d3.forceLink(graph.links).id(d => d.id).distance(150))
+                .force("charge", d3.forceManyBody().strength(-300))
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            const link = svg.append("g")
+                .selectAll("line")
+                .data(graph.links)
+                .enter().append("line")
+                .attr("class", "link")
+                .attr("stroke-width", d => Math.sqrt(d.value));
+
+            const node = svg.append("g")
+                .selectAll("circle")
+                .data(graph.nodes)
+                .enter().append("circle")
+                .attr("r", 10)
+                .attr("fill", "blue")
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+            node.append("title")
+                .text(d => d.id);
+
+            const text = svg.append("g")
+                .selectAll("text")
+                .data(graph.nodes)
+                .enter().append("text")
+                .text(d => d.id)
+                .attr("x", 12)
+                .attr("y", 3);
+
+            simulation.on("tick", () => {
+                link.attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node.attr("cx", d => d.x)
+                    .attr("cy", d => d.y);
+
+                text.attr("x", d => d.x + 12)
+                    .attr("y", d => d.y + 3);
+            });
+
+            function dragstarted(d) {
+                if (!d.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(d) {
+                d.fx = d3.event.x;
+                d.fy = d3.event.y;
+            }
+
+            function dragended(d) {
+                if (!d.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        // });
+    </script>
+</body>
+</html>

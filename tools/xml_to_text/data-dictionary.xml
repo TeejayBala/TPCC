@@ -1,85 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DB Diagram (Optimized)</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        #diagram { width: 100%; height: 600px; border: 1px solid #ddd; overflow: hidden; }
-        textarea { width: 100%; height: 120px; }
-        button { margin: 10px 0; padding: 5px 10px; }
-    </style>
-</head>
-<body>
-    <h2>Database Diagram (Optimized)</h2>
-    <textarea id="schemaInput">
-Table Users {
-    id: int
-    name: string
-    email: string
-}
+<?xml version="1.0" ?>
+<!-- $Id$ -->
+<!DOCTYPE data-dictionary SYSTEM "data-dictionary.dtd">
+<?xml-stylesheet type="text/xsl" href="data-dictionary-transform.xsl"?>
 
-Table Posts {
-    id: int
-    title: string
-    content: text
-    user_id: int
-}
 
-Table Comments {
-    id: int
-    post_id: int
-    user_id: int
-    text: string
-}
-
-Users -- Posts
-Posts -- Comments
-Users -- Comments
-    </textarea>
-    <br>
-    <button onclick="generateDiagram()">Generate Diagram</button>
-    <div id="diagram"></div>
-
-    <script>
-
-		  function xmlToSchema(xmlString) {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-
-            let schema = "";
-
-            // Convert tables and columns
-            const tables = xmlDoc.getElementsByTagName("table");
-            for (let table of tables) {
-                const tableName = table.getAttribute("name");
-                schema += `Table ${tableName} {\n`;
-
-                const columns = table.getElementsByTagName("column");
-                for (let column of columns) {
-                    const columnName = column.getAttribute("name");
-                    const columnType = column.getAttribute("type");
-                    schema += `    ${columnName}: ${columnType}\n`;
-                }
-                schema += `}\n\n`;
-            }
-
-            // Convert relationships
-            const relations = xmlDoc.getElementsByTagName("relation");
-            for (let relation of relations) {
-                const from = relation.getAttribute("from");
-                const to = relation.getAttribute("to");
-                schema += `${from} -- ${to}\n`;
-            }
-
-            return schema.trim();
-        }
-
-        // Example XML Input
-        const xmlString = `
-       <data-dictionary name="ABTest" template-meta-handler="com.zoho.abtest.utility.TemplateTableMetaHandler">
+<data-dictionary name="ABTest" template-meta-handler="com.zoho.abtest.utility.TemplateTableMetaHandler">
 
 
 <!-- pop_ups-start -->
@@ -3727,7 +3652,6 @@ Users -- Comments
 		</foreign-keys>
 	</table> 
 	 -->
-	 
 	<table name="DFS_FILE_INFO">
 		<description></description>
 		<columns>
@@ -20994,145 +20918,50 @@ Users -- Comments
 		</foreign-keys>
 	</table>
 	
+	<table name="DATA_MIGRATION_STATUS">
+		<columns>
+			<column name="DATA_MIGRATION_STATUS_ID">
+				<description></description>
+				<data-type>BIGINT</data-type>
+				<max-size>19</max-size>
+				<nullable>false</nullable>
+				<uniquevalue-generation>
+					<generator-name>DATA_MIGRATION_STATUS_ID_GENERATOR</generator-name>
+				</uniquevalue-generation>
+			</column>
+			<column name="ZSOID">
+				<description></description>
+				<data-type>BIGINT</data-type>
+				<max-size>19</max-size>
+				<nullable>false</nullable>
+			</column>
+			<column name="MIGRATION_START_TIME">
+				<description></description>
+				<data-type>BIGINT</data-type>
+				<max-size>20</max-size>
+				<nullable>true</nullable>
+			</column>
+			<column name="MIGRATION_END_TIME">
+				<description></description>
+				<data-type>BIGINT</data-type>
+				<max-size>20</max-size>
+				<nullable>true</nullable>
+			</column>
+			<column name="MIGRATION_COMPLETION_STATUS">
+				<description></description>
+				<data-type>BOOLEAN</data-type>
+				<default-value>false</default-value>
+				<nullable>false</nullable>
+			</column>
+			<column name="LOGS_PROJECT_MIGRATION_STATUS_JSON">
+				<description>maintains status for each log type raw data</description>
+				<data-type>CHAR</data-type>
+				<max-size>1000</max-size>
+				<nullable>true</nullable>
+			</column>
+		</columns>
+		<primary-key name="DATA_MIGRATION_STATUS_PK">
+			<primary-key-column>DATA_MIGRATION_STATUS_ID</primary-key-column>
+		</primary-key>
+	</table>
 </data-dictionary>
-        `;
-
-        // Convert XML to Schema DSL
-        const schemaDSL = xmlToSchema(xmlString);
-        console.log(schemaDSL);
-
-        document.querySelectorAll("#schemaInput")[0].value = schemaDSL;
-
-		
-        function parseSchema(schemaText) {
-            const tables = {};
-            const lines = schemaText.split("\n");
-            let currentTable = null;
-
-            lines.forEach(line => {
-                line = line.trim();
-                if (line.startsWith("Table")) {
-                    const tableName = line.split(" ")[1];
-                    tables[tableName] = { columns: [], relations: [] };
-                    currentTable = tableName;
-                } else if (currentTable && line.includes(":")) {
-                    const [columnName, type] = line.split(":").map(s => s.trim());
-                    tables[currentTable].columns.push({ name: columnName, type });
-                } else if (line.includes("--")) {
-                    const [table1, table2] = line.split("--").map(s => s.trim());
-                    tables[table1]?.relations.push(table2);
-                    tables[table2]?.relations.push(table1);
-                }
-            });
-
-            return tables;
-        }
-
-        function renderDiagram(tables) {
-            document.getElementById("diagram").innerHTML = "";
-
-            const width = 1200, height = 800;
-            const svg = d3.select("#diagram").append("svg")
-                .attr("width", width)
-                .attr("height", height)
-                .call(d3.zoom().scaleExtent([0.5, 3]).on("zoom", (event) => {
-                    svgGroup.attr("transform", event.transform);
-                }))
-                .append("g");
-
-            const nodes = Object.keys(tables).map((table, index) => ({
-                id: table,
-                columns: tables[table].columns,
-                x: (index % 10) * 150 + 100,  
-                y: Math.floor(index / 10) * 120 + 100 
-            }));
-
-            const links = [];
-            Object.keys(tables).forEach(table => {
-                tables[table].relations.forEach(rel => {
-                    links.push({ source: table, target: rel });
-                });
-            });
-
-            const link = svg.selectAll("line")
-                .data(links)
-                .enter().append("line")
-                .style("stroke", "#999")
-                .style("stroke-width", 2);
-
-            const node = svg.selectAll("g")
-                .data(nodes)
-                .enter().append("g")
-                .attr("transform", d => `translate(${d.x},${d.y})`);
-
-            node.append("rect")
-                .attr("width", 120)
-                .attr("height", d => 30 + d.columns.length * 15)
-                .attr("fill", "steelblue")
-                .attr("rx", 5)
-                .attr("ry", 5)
-                .style("cursor", "pointer");
-
-            node.append("text")
-                .attr("x", 10)
-                .attr("y", 20)
-                .attr("fill", "white")
-                .style("font-weight", "bold")
-                .text(d => d.id);
-
-            node.selectAll("text.columns")
-                .data(d => d.columns)
-                .enter().append("text")
-                .attr("class", "columns")
-                .attr("x", 10)
-                .attr("y", (d, i) => 35 + i * 15)
-                .attr("fill", "#ddd")
-                .text(d => `${d.name}: ${d.type}`);
-
-            function updatePositions() {
-                node.attr("transform", d => `translate(${d.x},${d.y})`);
-                link.attr("x1", d => d.source.x + 60)
-                    .attr("y1", d => d.source.y + 15)
-                    .attr("x2", d => d.target.x + 60)
-                    .attr("y2", d => d.target.y + 15);
-            }
-
-            const simulation = d3.forceSimulation(nodes)
-                .force("link", d3.forceLink(links).id(d => d.id).distance(180))
-                .force("charge", d3.forceManyBody().strength(-500))
-                .force("center", d3.forceCenter(width / 2, height / 2))
-                .on("tick", updatePositions);
-
-            function dragstarted(event, d) {
-                if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-            }
-
-            function dragged(event, d) {
-                d.fx = event.x;
-                d.fy = event.y;
-            }
-
-            function dragended(event, d) {
-                if (!event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-            }
-
-            node.call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
-        }
-
-        function generateDiagram() {
-            const schemaText = document.getElementById("schemaInput").value;
-            const tables = parseSchema(schemaText);
-            renderDiagram(tables);
-        }
-
-        window.onload = generateDiagram;
-    </script>
-</body>
-</html>

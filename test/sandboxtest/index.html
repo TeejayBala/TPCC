@@ -1,56 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Web Pixel Sandbox</title>
-</head>
-<body>
-  <h3>Running web-pixel-sandbox-CUSTOM-999.js</h3>
+  <head>
+    <title>Pixel Sandbox Demo</title>
+  </head>
+  <body>
+    <h3>✅ Shopify-style Pixel Sandbox Loaded</h3>
 
-  <script>
-    // Load the pixel code from your local file as string
-    const code = `
-      debugger;
-      const obj = Object.preventExtensions({ id: 1 });
-      try {
-        obj.hashCode = "abc123";
-        console.log("🔥 Pixel error:");
-      } catch (err) {
-        console.error("🔥 Pixel error:", err.message);
-      }
+    <script>
+      // Create the iframe with Shopify-style sandbox
+      const iframe = document.createElement("iframe");
+      iframe.setAttribute("sandbox", "allow-scripts"); // fully isolated
+      iframe.style.width = "100%";
+      iframe.style.height = "100px";
+      document.body.appendChild(iframe);
 
-      window.top.postMessage({
-        type: "PIXEL_EVENT",
-        name: "custom_pixel",
-        timestamp: Date.now()
-      }, "*");
-    `;
-
-    // Convert to blob
-    const blob = new Blob([code], { type: 'application/javascript' });
-    const blobURL = URL.createObjectURL(blob);
-
-    // Create sandbox iframe like Shopify does
-    const iframe = document.createElement("iframe");
-    iframe.setAttribute("sandbox", "allow-scripts");
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
-
-    // Load your custom JS file via script.src (not srcdoc)
-    iframe.srcdoc = `
-      <!DOCTYPE html>
-      <html>
+      // Load your external JS file into iframe via <script src="">
+      iframe.srcdoc = `
+        <!DOCTYPE html>
+        <html>
         <body>
-          <script src="${blobURL}"><\/script>
+          <script src="./pixels/web-pixel-sandbox-CUSTOM-999.js"><\/script>
         </body>
-      </html>
-    `;
+        </html>
+      `;
 
-    // Listen to pixel messages
-    window.addEventListener("message", (e) => {
-      if (e.data?.type === "PIXEL_EVENT") {
-        console.log("📦 Pixel event received:", e.data);
-      }
-    });
-  </script>
-</body>
+      // Listen for messages sent from pixel script
+      window.addEventListener("message", (event) => {
+        if (event.data?.type === "PIXEL_EVENT") {
+          console.log("📦 Pixel Event:", event.data.payload);
+        }
+      });
+    </script>
+  </body>
 </html>

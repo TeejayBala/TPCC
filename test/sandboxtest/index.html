@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Pixel Sandbox</title>
+</head>
+<body>
+  <h3>Running web-pixel-sandbox-CUSTOM-999.js</h3>
+
+  <script>
+    // Load the pixel code from your local file as string
+    const code = `
+      debugger;
+      const obj = Object.preventExtensions({ id: 1 });
+      try {
+        obj.hashCode = "abc123";
+      } catch (err) {
+        console.error("🔥 Pixel error:", err.message);
+      }
+
+      window.top.postMessage({
+        type: "PIXEL_EVENT",
+        name: "custom_pixel",
+        timestamp: Date.now()
+      }, "*");
+    `;
+
+    // Convert to blob
+    const blob = new Blob([code], { type: 'application/javascript' });
+    const blobURL = URL.createObjectURL(blob);
+
+    // Create sandbox iframe like Shopify does
+    const iframe = document.createElement("iframe");
+    iframe.setAttribute("sandbox", "allow-scripts");
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    // Load your custom JS file via script.src (not srcdoc)
+    iframe.srcdoc = `
+      <!DOCTYPE html>
+      <html>
+        <body>
+          <script src="${blobURL}"><\/script>
+        </body>
+      </html>
+    `;
+
+    // Listen to pixel messages
+    window.addEventListener("message", (e) => {
+      if (e.data?.type === "PIXEL_EVENT") {
+        console.log("📦 Pixel event received:", e.data);
+      }
+    });
+  </script>
+</body>
+</html>

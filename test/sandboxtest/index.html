@@ -13,6 +13,7 @@
       const obj = Object.preventExtensions({ id: 1 });
       try {
         obj.hashCode = "abc123";
+        console.log("🔥 Pixel error:");
       } catch (err) {
         console.error("🔥 Pixel error:", err.message);
       }

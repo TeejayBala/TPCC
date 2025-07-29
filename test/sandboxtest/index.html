@@ -5,9 +5,14 @@
 </head>
 <body>
   <h1>Main Page</h1>
-  <iframe 
-    src="sandbox.html"
-    sandbox="allow-scripts"
-    style="width: 100%; height: 300px; border: 1px solid #ccc;"></iframe>
+  <script>
+     // main.js
+    const worker = new Worker('sandboxed-worker.js');
+    worker.postMessage({ type: 'init' });
+
+    worker.onmessage = (e) => {
+        console.log("From sandbox:", e.data);
+    };
+  </script>
 </body>
 </html>

@@ -5,28 +5,37 @@
 </head>
 <body>
   <script>
-    try {
-      // DOM access will fail here
-      console.log('window:', window); // allowed
-      console.log('document:', document); // likely restricted
+    // try {
+    //   // DOM access will fail here
+    //   console.log('window:', window); // allowed
+    //   console.log('document:', document); // likely restricted
 
-      // Fake Shopify-like pixel API
-      const analytics = {
-        subscribe: (eventName, callback) => {
-          console.log(`[Analytics] Subscribed to ${eventName}`);
-          // Simulate event trigger
-          setTimeout(() => {
-            callback({ type: eventName, data: { orderId: 12345 } });
-          }, 2000);
-        }
-      };
+    //   // Fake Shopify-like pixel API
+    //   const analytics = {
+    //     subscribe: (eventName, callback) => {
+    //       console.log(`[Analytics] Subscribed to ${eventName}`);
+    //       // Simulate event trigger
+    //       setTimeout(() => {
+    //         callback({ type: eventName, data: { orderId: 12345 } });
+    //       }, 2000);
+    //     }
+    //   };
 
-      analytics.subscribe("checkout_completed", (event) => {
-        console.log("Received event:", event);
-      });
-    } catch (e) {
-      console.error("Sandbox Error:", e);
+    //   analytics.subscribe("checkout_completed", (event) => {
+    //     console.log("Received event:", event);
+    //   });
+    // } catch (e) {
+    //   console.error("Sandbox Error:", e);
+    // }
+
+    // sandboxed-worker.js
+    self.onmessage = (event) => {
+    // No DOM access here
+    if (event.data.type === 'init') {
+        self.postMessage("Pixel received event: checkout_completed");
     }
+    };
+
   </script>
 </body>
 </html>

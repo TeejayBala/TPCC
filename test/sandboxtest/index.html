@@ -1,35 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pixel Sandbox Demo</title>
-  </head>
-  <body>
-    <h3>✅ Shopify-style Pixel Sandbox Loaded</h3>
-
-    <script>
-      // Create the iframe with Shopify-style sandbox
-      const iframe = document.createElement("iframe");
-      iframe.setAttribute("sandbox", "allow-scripts"); // fully isolated
-      iframe.style.width = "100%";
-      iframe.style.height = "100px";
-      document.body.appendChild(iframe);
-
-      // Load your external JS file into iframe via <script src="">
-      iframe.srcdoc = `
-        <!DOCTYPE html>
-        <html>
-        <body>
-          <script src="./pixels/web-pixel-sandbox-CUSTOM-999.js"><\/script>
-        </body>
-        </html>
-      `;
-
-      // Listen for messages sent from pixel script
-      window.addEventListener("message", (event) => {
-        if (event.data?.type === "PIXEL_EVENT") {
-          console.log("📦 Pixel Event:", event.data.payload);
-        }
-      });
-    </script>
-  </body>
+<head>
+  <title>Pixel Sandbox Host</title>
+</head>
+<body>
+  <h1>Main Page</h1>
+  <iframe 
+    src="sandbox.html"
+    sandbox="allow-scripts"
+    style="width: 100%; height: 300px; border: 1px solid #ccc;"></iframe>
+</body>
 </html>

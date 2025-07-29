@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Pixel Sandbox Host</title>
+  <meta charset="UTF-8" />
+  <title>Shopify Sandbox Simulation</title>
 </head>
 <body>
-  <h1>Main Page</h1>
-  <script>
-     // main.js
-    const worker = new Worker('sandboxed-worker.js');
-    worker.postMessage({ type: 'init' });
+  <h1>Pixel Sandbox Simulation (Web Worker)</h1>
+  <button id="sendEvent">Simulate Checkout Completed</button>
 
-    worker.onmessage = (e) => {
-        console.log("From sandbox:", e.data);
-    };
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

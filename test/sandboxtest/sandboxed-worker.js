@@ -1,4 +1,4 @@
-'use strict'; // 🔒 Required to throw on frozen objects
+// 'use strict'; // 🔒 Required to throw on frozen objects
 
 const pixelApi = {
   subscriptions: {},

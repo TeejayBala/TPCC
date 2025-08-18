@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart - My Dummy Shop</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    body {
+      padding-top: 70px;
+    }
+    .product-img {
+      width: 100px;
+      height: 70px;
+      object-fit: cover;
+    }
+  </style>
+  <script src="https://bala-5590.csez.zohocorpin.com:8443/js/webTrackingService.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="fas fa-store"></i> My Dummy Shop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
+          <li class="nav-item"><a class="nav-link active" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" id="nav-login"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li class="nav-item d-none" id="nav-logout"><a class="nav-link" href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cart Section -->
+  <div class="container mt-5">
+    <h2 class="mb-4">Your Shopping Cart</h2>
+    <div id="cartContainer"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light text-center py-4 mt-5">
+    <p class="mb-0">© 2025 My Dummy Shop. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Cart Script -->
+  <script>
+    // Handle login/logout toggle
+    document.addEventListener('DOMContentLoaded', () => {
+        const cookies = document.cookie.split('; ').reduce((acc, val) => {
+        const [key, value] = val.split('=');
+        acc[key] = value;
+        return acc;
+      }, {});
+
+      const isLoggedIn = cookies['loggedIn'] === 'true';
+      if (!isLoggedIn) {
+        window.location.href = 'login.html';
+        return;
+      }
+        
+    //   const isLoggedIn = document.cookie.split('; ').includes('loggedIn=true');
+      document.getElementById('nav-login').classList.toggle('d-none', isLoggedIn);
+      document.getElementById('nav-logout').classList.toggle('d-none', !isLoggedIn);
+    });
+
+    // Products database (same as in products.html)
+    const products = [
+      { id: 1, name: "Red Widget", price: 19.99, img: "https://via.placeholder.com/300x200/ff4d4d/ffffff?text=Red+Widget" },
+      { id: 2, name: "Blue Widget", price: 24.99, img: "https://via.placeholder.com/300x200/4d79ff/ffffff?text=Blue+Widget" },
+      { id: 3, name: "Green Widget", price: 29.99, img: "https://via.placeholder.com/300x200/4dff88/000000?text=Green+Widget" },
+      { id: 4, name: "Yellow Widget", price: 22.50, img: "https://via.placeholder.com/300x200/ffff4d/000000?text=Yellow+Widget" },
+      { id: 5, name: "Black Widget", price: 39.99, img: "https://via.placeholder.com/300x200/333333/ffffff?text=Black+Widget" },
+      { id: 6, name: "White Widget", price: 17.75, img: "https://via.placeholder.com/300x200/ffffff/000000?text=White+Widget" },
+      { id: 7, name: "Orange Widget", price: 21.99, img: "https://via.placeholder.com/300x200/ffa64d/000000?text=Orange+Widget" },
+      { id: 8, name: "Purple Widget", price: 34.95, img: "https://via.placeholder.com/300x200/b266ff/ffffff?text=Purple+Widget" },
+      { id: 9, name: "Teal Widget", price: 28.49, img: "https://via.placeholder.com/300x200/4dcccc/000000?text=Teal+Widget" },
+      { id: 10, name: "Gray Widget", price: 23.89, img: "https://via.placeholder.com/300x200/c0c0c0/000000?text=Gray+Widget" }
+    ];
+
+    function getCart() {
+      const cartCookie = document.cookie.split('; ').find(row => row.startsWith('cart='));
+      return cartCookie ? JSON.parse(decodeURIComponent(cartCookie.split('=')[1])) : [];
+    }
+
+    function setCart(cart) {
+      document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; path=/`;
+    }
+
+    function removeFromCart(index) {
+      const cart = getCart();
+      cart.splice(index, 1);
+      setCart(cart);
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cartContainer");
+      const cart = getCart();
+
+      if (cart.length === 0) {
+        container.innerHTML = `<p class="text-muted">Your cart is empty. <a href="products.html">Go shopping!</a></p>`;
+        return;
+      }
+
+      let total = 0;
+      let html = `
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      cart.forEach((id, index) => {
+        const product = products.find(p => p.id === id);
+        if (product) {
+          total += product.price;
+          html += `
+            <tr>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img src="${product.img}" class="product-img me-3" alt="${product.name}">
+                  <a href="product-detail.html?id=${product.id}" class="text-decoration-none">${product.name}</a>
+                </div>
+              </td>
+              <td>$${product.price.toFixed(2)}</td>
+              <td><button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})"><i class="fas fa-trash-alt"></i></button></td>
+            </tr>
+          `;
+        }
+      });
+
+      html += `
+          </tbody>
+        </table>
+        <div class="text-end">
+          <h5>Total: $${total.toFixed(2)}</h5>
+          <a href="checkout.html" class="btn btn-primary"><i class="fas fa-credit-card"></i> Proceed to Checkout</a>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCart);
+  </script>
+</body>
+</html>

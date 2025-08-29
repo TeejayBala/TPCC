@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products - My Dummy Shop</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y397YYB2H8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y397YYB2H8');
+</script>
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  />
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <style>
+    body {
+      padding-top: 70px;
+    }
+    .product-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+  <script src="https://bala-5590:8443/js/webTrackingService.js?domain=bala-5590:8443&portal_name=teejaybala&project_key=5225ea92842d4fa1a14ac116fe1b57d9"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="fas fa-store"></i> My Dummy Shop</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link active" href="products.html"><i class="fas fa-box"></i> Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" id="nav-login"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li class="nav-item d-none" id="nav-logout"><a class="nav-link" href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Products Grid -->
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">Our Products</h2>
+    <div class="row" id="productGrid"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light text-center py-4 mt-5">
+    <p class="mb-0">© 2025 My Dummy Shop. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Product Script -->
+  <script>
+    // Handle login/logout toggle
+    document.addEventListener('DOMContentLoaded', () => {
+        const cookies = document.cookie.split('; ').reduce((acc, val) => {
+        const [key, value] = val.split('=');
+        acc[key] = value;
+        return acc;
+      }, {});
+
+      const isLoggedIn = cookies['loggedIn'] === 'true';
+      if (!isLoggedIn) {
+        window.location.href = 'login.html';
+        return;
+      }
+        
+    //   const isLoggedIn = document.cookie.split('; ').includes('loggedIn=true');
+      document.getElementById('nav-login').classList.toggle('d-none', isLoggedIn);
+      document.getElementById('nav-logout').classList.toggle('d-none', !isLoggedIn);
+    });
+
+    // Sample product list
+    const products = [
+      { id: 1, name: "Red Widget", price: 19.99, img: "https://via.placeholder.com/300x200/ff4d4d/ffffff?text=Red+Widget" },
+      { id: 2, name: "Blue Widget", price: 24.99, img: "https://via.placeholder.com/300x200/4d79ff/ffffff?text=Blue+Widget" },
+      { id: 3, name: "Green Widget", price: 29.99, img: "https://via.placeholder.com/300x200/4dff88/000000?text=Green+Widget" },
+      { id: 4, name: "Yellow Widget", price: 22.50, img: "https://via.placeholder.com/300x200/ffff4d/000000?text=Yellow+Widget" },
+      { id: 5, name: "Black Widget", price: 39.99, img: "https://via.placeholder.com/300x200/333333/ffffff?text=Black+Widget" },
+      { id: 6, name: "White Widget", price: 17.75, img: "https://via.placeholder.com/300x200/ffffff/000000?text=White+Widget" },
+      { id: 7, name: "Orange Widget", price: 21.99, img: "https://via.placeholder.com/300x200/ffa64d/000000?text=Orange+Widget" },
+      { id: 8, name: "Purple Widget", price: 34.95, img: "https://via.placeholder.com/300x200/b266ff/ffffff?text=Purple+Widget" },
+      { id: 9, name: "Teal Widget", price: 28.49, img: "https://via.placeholder.com/300x200/4dcccc/000000?text=Teal+Widget" },
+      { id: 10, name: "Gray Widget", price: 23.89, img: "https://via.placeholder.com/300x200/c0c0c0/000000?text=Gray+Widget" }
+    ];
+
+    // Utility: Get cart from cookie
+    function getCart() {
+      const cartCookie = document.cookie.split('; ').find(row => row.startsWith('cart='));
+      return cartCookie ? JSON.parse(decodeURIComponent(cartCookie.split('=')[1])) : [];
+    }
+
+    // Utility: Set cart to cookie
+    function setCart(cart) {
+      document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; path=/`;
+    }
+
+    // Add item to cart
+    function addToCart(id) {
+      const cart = getCart();
+      cart.push(id);
+      setCart(cart);
+      alert("Item added to cart!");
+    }
+
+    // Render product cards
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      products.forEach(product => {
+        const col = document.createElement("div");
+        col.className = "col-md-4 mb-4";
+
+        col.innerHTML = `
+          <div class="card product-card h-100">
+            <a href="product-detail.html?id=${product.id}">
+                <img src="${product.img}" class="card-img-top" alt="${product.name}" />
+            </a>
+
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">
+                    <a href="product-detail.html?id=${product.id}" class="text-decoration-none text-dark">
+                        ${product.name}
+                    </a>
+                </h5>
+              <p class="card-text">$${product.price.toFixed(2)}</p>
+              <button class="btn btn-success mt-auto" onclick="addToCart(${product.id})">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(col);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderProducts);
+  </script>
+</body>
+</html>

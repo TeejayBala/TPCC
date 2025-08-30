@@ -5,7 +5,7 @@ window.common = {
     logout : () => {
 
     },
-    add_to_cart : (id, name, price) {
+    add_to_cart : (id, name, price) => {
         dataLayer.push({
             event: 'add_to_cart',
             ecommerce: {

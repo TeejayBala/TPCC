@@ -1,8 +1,8 @@
 window.common = {
-    login : () {
+    login : () => {
 
     },
-    logout : () {
+    logout : () => {
 
     },
     add_to_cart : (id, name, price) {
@@ -18,19 +18,19 @@ window.common = {
             }
         });
     },
-    purchase : () {
+    purchase : () => {
 
     },
-    begin_checkout : () {
+    begin_checkout : () => {
 
     },
-    view_item : () {
+    view_item : () => {
 
     },
-    search : () {
+    search : () => {
 
     },
-    thankyou : () {
+    thankyou : () => {
 
     }
 }

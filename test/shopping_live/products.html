@@ -129,9 +129,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     // Add item to cart
     function addToCart(id) {
       const cart = getCart();
+      const product = products.find(p => p.id === id);
       cart.push(id);
       setCart(cart);
-      common.add_to_cart();
+      common.add_to_cart(product);
       alert("Item added to cart!");
     }
 

@@ -10,8 +10,20 @@
         pageScreen.innerText="body{background:transparent !important; opacity:0  !important; visibility: hidden  !important;} html{ opacity:0  !important; visibility: hidden  !important; }";//NO I18N
         pageScreen.setAttribute("id", "zps-page-screen");
         document.head.prepend(pageScreen);
+
+        const currentScript = document.currentScript;
+
+        const psScript = document.createElement('script');
+
+        // Set the src or inline code
+        psScript.src = "https://cdn.pagesense.io/js/bzsj4n23/136e27a4a38140acb12704651bfa6528.js";
+        psScript.type = 'text/javascript';
+        psScript.async = true; // Optional: load script asynchronously
+
+        // Append it to the head or body
+        currentScript.parentNode.insertBefore(newScript, currentScript.nextSibling);
     </script>
-    <script src="https://cdn.pagesense.io/js/bzsj4n23/136e27a4a38140acb12704651bfa6528.js"></script>
+    <script src=""></script>
 
     <link rel="stylesheet" href="style.css">
     <!-- Fontawesome -->

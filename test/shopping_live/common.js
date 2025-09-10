@@ -21,9 +21,21 @@ window.common = {
         }
     },
     purchase : () => {
-
+        if (product) {
+            dataLayer.push({
+                event: 'purchase',
+                ecommerce: {
+                    items: [{
+                        item_id: "cart_"+product.id,
+                        item_name: product.name,
+                        price: product.price,
+                        quantity: 1
+                    }]
+                }
+            });
+        }
     },
-    begin_checkout : () => {
+    begin_checkout : (email) => {
 
     },
     view_item : () => {

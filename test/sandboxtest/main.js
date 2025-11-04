@@ -1,7 +1,7 @@
 // Load the sandboxed pixel (simulating Shopify pixel app extension)
 // const pixelWorker = new Worker('sandboxed-worker.js');
 
-const pixelWorker = new Worker('bot.min.js');
+const pixelWorker = new Worker('https://bala-5590.csez.zohocorpin.com:8443/js/teejaybala/bbf877395bc445f4a544ff55192f1972.js');
 
 // Send custom pixel "init" message
 pixelWorker.postMessage({

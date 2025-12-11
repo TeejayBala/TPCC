@@ -61,6 +61,8 @@
                     script.onload = function() {
                         if (!(window._ps_conf && window._ps_conf.pauseRenderForManualActivation)) {
                             _ps_code.revealPage();
+                        } else {
+                            clearTimeout(fallbackTimeout);
                         }
                     };
 

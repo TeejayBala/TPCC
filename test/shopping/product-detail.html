@@ -66,7 +66,9 @@
                     }
 
                     script.onload = function() {
-                        _ps_code.revealPage();
+                        if (!(window._ps_conf && window._ps_conf.pauseRenderForManualActivation)) {
+                            _ps_code.revealPage();
+                        }
                     };
 
                     script.onerror = function() {
@@ -107,7 +109,7 @@
         }
 
     })();
-</script>
+  </script>
 </head>
 <body>
 

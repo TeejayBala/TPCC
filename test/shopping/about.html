@@ -86,13 +86,22 @@
         };
 
         try {
+
+            if (window._ps_conf && window._ps_conf.pauseRenderForManualActivation) {
+              window.pagesense = [];
+              window.pagesense.push = function(array) {
+                if (array && array[0] == "activate") {
+                  _ps_code && _ps_code.revealPage();
+                }
+              }
+            }
+
             _ps_code.addScript({
                 src: "https://bala-5590.csez.zohocorpin.com:8443/js/teejaybala/199c045cb5f74b5abb1f8786d97e2636.js"
             });
         } catch (err) {
             _ps_code.revealPage();
         }
-
     })();
   </script>
 </head>

@@ -6,8 +6,8 @@ window.common = {
 
     },
     add_to_cart : (product) => {
-        if (product && dataLayer && dataLayer.push) {
-            dataLayer.push({
+        if (product && window.dataLayer && window.dataLayer.push) {
+            window.dataLayer.push({
                 event: 'add_to_cart',
                 ecommerce: {
                     items: [{
@@ -21,8 +21,8 @@ window.common = {
         }
     },
     purchase : (items) => {
-        if (items && dataLayer && dataLayer.push) {
-            dataLayer.push({
+        if (items && window.dataLayer && window.dataLayer.push) {
+            window.dataLayer.push({
                 event: 'purchase',
                 ecommerce: {
                     items: items
@@ -37,8 +37,8 @@ window.common = {
             price: product.price,
             quantity: 1
         }];
-        if (items && dataLayer && dataLayer.push) {
-            dataLayer.push({
+        if (items && window.dataLayer && window.dataLayer.push) {
+            window.dataLayer.push({
                 event: 'begin_checkout',
                 ecommerce: {
                     items: items
@@ -47,8 +47,8 @@ window.common = {
         }
     },
     view_item : (product) => {
-        if (product && dataLayer && dataLayer.push) {
-            dataLayer.push({
+        if (product && window.dataLayer && window.dataLayer.push) {
+            window.dataLayer.push({
                 event: 'view_item',
                 ecommerce: {
                     items: [{

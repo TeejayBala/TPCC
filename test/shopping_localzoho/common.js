@@ -6,7 +6,7 @@ window.common = {
 
     },
     add_to_cart : (product) => {
-        if (product) {
+        if (product && dataLayer && dataLayer.push) {
             dataLayer.push({
                 event: 'add_to_cart',
                 ecommerce: {
@@ -21,7 +21,7 @@ window.common = {
         }
     },
     purchase : (items) => {
-        if (items) {
+        if (items && dataLayer && dataLayer.push) {
             dataLayer.push({
                 event: 'purchase',
                 ecommerce: {
@@ -37,7 +37,7 @@ window.common = {
             price: product.price,
             quantity: 1
         }];
-        if (items) {
+        if (items && dataLayer && dataLayer.push) {
             dataLayer.push({
                 event: 'begin_checkout',
                 ecommerce: {
@@ -47,7 +47,7 @@ window.common = {
         }
     },
     view_item : (product) => {
-        if (product) {
+        if (product && dataLayer && dataLayer.push) {
             dataLayer.push({
                 event: 'view_item',
                 ecommerce: {
